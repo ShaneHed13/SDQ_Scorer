@@ -1,0 +1,159 @@
+/* Banner Code */
+
+h1 {
+  max-width: 800px;
+}
+
+h1 img {
+  height: auto;
+  margin: 3px;
+  max-height: 150px;
+  max-width: 100%;
+}
+
+/* Navigation Code */
+
+nav {
+  background-color:#EB3F3F;
+  border-radius: 3px 3px 0 0;
+  font-family: open sans;
+  text-align: right;
+  font-size: 125%;
+  padding: 5px;
+  text-decoration: none;
+}
+ 
+nav a {
+  color: white;
+}
+  
+nav a:hover {
+  color:#848383;
+  transition: .3s ease;
+}
+             
+/* Articles Code */
+
+#wrapper {
+  background-color: whitesmoke;
+  margin: auto;
+  padding: 5px;
+}
+
+.story-list {
+  padding-left: 5px;
+}
+
+/* Date */
+h5 {
+  font-size: 12px;
+  font-style: italic;
+  border-bottom: 1px solid black;
+}
+
+article {
+  margin-top: 10px;
+}
+
+* {
+  margin: 0; padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+  max-width: 700px;
+}
+
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+  max-width: 200px;
+  border-radius: 15px;
+}
+
+li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+li {
+  padding: 10px;
+  overflow: auto;
+  border-bottom: 1px black solid;
+}
+
+
+/* Star Rating System*/
+ .p1 {
+  position:relative;
+  font-size: 17px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  margin: auto;
+}
+
+.rating > input {
+  display:none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 2vw;
+  color:rgb(160, 153, 50);
+  cursor: pointer;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+  opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+  opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+  opacity: 4;
+}
+
+
+/* Footer Code */
+             
+footer {
+  background-color:#EB3f3f;
+  border-radius: 0 0 3px 3px;
+  color: #000000;
+  font-size: 80%;
+  padding: 5px;
+  text-align: left;
+  margin: auto;
+}     
+        
+footer a {
+  color: white;
+  text-decoration: none;
+}
+       
+footer a:hover {
+  color:#848383;
+  transition: .3s ease;
+}
