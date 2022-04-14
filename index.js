@@ -3,7 +3,7 @@
 
     let storyItems = "";
     
-    for (story of sdq411) {
+    for (story of sdqPT410) {
         storyItems += "<tr><td><p>" + story.id + ": " + story.question + "</td><td></p><input type='radio' name=" + story.id + "></td><td></p><input type='radio' name=" + story.id + "></td><td></p><input type='radio' name=" + story.id + "></td></tr>";
       }
 
