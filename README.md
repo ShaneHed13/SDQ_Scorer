@@ -1,3 +1,3 @@
 # SDQ_Scorer
 
-Testing github integration
+Testing github integration.
