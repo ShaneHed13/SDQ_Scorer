@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html lang="en">
+        
+        <head>
+            <title>SDQ Store 'n Store</title>
+            <meta charset="UTF-8">
+        </head>
+        
+        <body>
+            <h1>SDQ Store 'n Store</h1>
+            
+            
+            <table>
+            <% tests.forEach(function(r) {%>
+                <tr><td><button onclick='javascript:logTask(<%= r.id %>)'><%= r.name %></button></td>
+            <% }); %>
+                
+            </table>
+            
+            <script>
+                let currentTaskID = null;
+                                
+                const logTask = async function(id) {
+                  
+                    const response = await fetch('/log', {
+                        method: 'POST',
+                        headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                        },
+                        
+                        body: JSON.stringify({
+                        total: '50',
+                        emotional: '10',
+                        conduct: '10',
+                        hyperactivity: '10',
+                        peer: '10',
+                        prosocial: '10',
+                        impact: '10',
+                        expires: "'1/1/1900'",
+                            
+                        })
+                
+                    });
+                    
+                
+                    const result = await response.json();
+                    console.log(result);
+
+                    currentTaskId = id;
+                      
+                };
+            </script>
+            
+        </body>
+
+    </html>

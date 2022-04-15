@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <html lang="en">
+        
+        <head>
+            <title>DB Info</title>
+            <meta charset="UTF-8">
+        </head>
+        
+        <body>
+        <h1>Completed SDQ's</h1>
+            <ul>
+            <% completedSDQ.forEach(function(r) { %>
+                <li><%= r.total %></li>
+            <% }); %>   
+                
+            </ul>
+
+        </body>
+
+    </html>
