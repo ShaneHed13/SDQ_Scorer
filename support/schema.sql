@@ -1,9 +1,13 @@
-CREATE TABLE observations (
+CREATE TABLE completedSDQ (
     id SERIAL PRIMARY KEY,
-    users_id INT NOT NULL,
-    sutdents_id INT NOT NULL,
-    tasks_id INT NOT NULL,
-    duration INTERVAL NOT NULL
+    total INT NOT NULL,
+    emotional INT NOT NULL,
+    conduct INT NOT NULL,
+    hyperactivity INT NOT NULL,
+    peer INT NOT NULL,
+    prosocial INT NOT NULL,
+    impact INT NOT NULL,
+    expires DATE NOT NULL
     );
     
 CREATE TABLE tests (
