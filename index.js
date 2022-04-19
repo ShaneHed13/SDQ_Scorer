@@ -66,6 +66,33 @@ express()
     
 })
 
+.get('/sdq410tp', async(req, res) => {
+    
+    try{
+        const client = await pool.connect();
+        const sdqTests = await client.query(
+        
+            `SELECT * FROM sdqTests`         
+        );
+        
+        const locals = {
+            
+            'sdqTests': (sdqTests) ? sdqTests.rows : null,
+            
+        };
+        
+        res.render('pages/sdq410tp.ejs', locals);
+        client.release();
+        
+    }
+    catch (err){
+        
+        console.error(err);
+        res.send("Error: " + err);
+}
+    
+})
+
 .post('/log', async(req, res) => {
     try{        
         const client = await pool.connect();``
