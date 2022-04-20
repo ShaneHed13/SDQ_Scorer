@@ -8,9 +8,31 @@
         
         <body>
         <h1>Completed SDQ's</h1>
-            <table><tr><th>ID</th><th>Total</th><th>Emotional Problems</th><th>Conduct Problems</th><th>Hyperactivity Problems</th><th>Peer Problems</th><th>Prosocial Behavior</th><th>Impact Score</th><th>Expiration Date</th></tr>
+            
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Total</th>
+                    <th>Emotional Problems</th>
+                    <th>Conduct Problems</th>
+                    <th>Hyperactivity Problems</th>
+                    <th>Peer Problems</th>
+                    <th>Prosocial Behavior</th>
+                    <th>Impact Score</th>
+                    <th>Expiration Date</th>
+                </tr>
+                
             <% completedSDQ.forEach(function(r) { %>
-                <tr><td><%= r.id %></td><td><%= r.total %></td><td><%= r.emotional %></td><td><%= r.conduct %></td><td><%= r.hyperactivity %></td><td><%= r.peer %></td><td><%= r.prosocial %></td><td><%= r.impact %></td><td><%= r.expires %></td></tr>
+                <tr>
+                    <td><%= r.id %></td>
+                    <td><%= r.total %></td>
+                    <td><%= r.emotional %></td>
+                    <td><%= r.conduct %></td>
+                    <td><%= r.hyperactivity %></td>
+                    <td><%= r.peer %></td>
+                    <td><%= r.prosocial %></td>
+                    <td><%= r.impact %></td>
+                    <td><%= r.expires %></td></tr>
             <% }); %>   
                 
             </table>
