@@ -66,7 +66,7 @@ express()
     
 })
 
-.get('/sdq410tp', async(req, res) => {
+.get('/sdq410pt', async(req, res) => {
     
     try{
         const client = await pool.connect();
@@ -81,7 +81,7 @@ express()
             
         };
         
-        res.render('pages/sdq410tp.ejs', locals);
+        res.render('pages/sdq410pt.ejs', locals);
         client.release();
         
     }
