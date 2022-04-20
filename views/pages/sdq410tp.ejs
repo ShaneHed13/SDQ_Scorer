@@ -7,15 +7,53 @@
         </head>
         
         <body>
-        <h1>SDQ 4-10 Parent/Teacher Version</h1>
-            <table><tr><th>Number</th><th>Question</th><th>Not True</th><th>Somewhat True</th><th>Always True</th></tr>
+        <h1>Strengths and Difficulties Questionnaire: P or T 4-10</h1>
+
+            <label>Child's Name: </label><input type="text">&nbsp;&nbsp;&nbsp;
+            <label>Date of Birth: </label><input type="text">
+            
+            <br><br>
+            
+            <table>
+                <tr>
+                    <th>Num.</th>
+                    <th>Question</th>
+                    <th>Not True</th>
+                    <th>Somewhat True</th>
+                    <th>Always True</th>
+                </tr>  
                 
-                
-            <% sdqTests.forEach(function(r) { %>
-                <tr><td><%= r.id %></td><td><%= r.sdq410pt %></td><td><input type="radio" name="<%= r.id %>"><%= r.never %></td><td><input type="radio" name="<%= r.id %>"><%= r.sometimes %></td><td><input type="radio" name="<%= r.id %>"><%= r.always %></td></tr>
-            <% }); %>   
+                <% sdqTests.forEach(function(r) { %>
+                <tr>
+                    <td><%= r.id %></td>
+                    <td><%= r.sdq410pt %></td>
+                    <td><input type="radio" name="<%= r.id %>"><%= r.never %></td>
+                    <td><input type="radio" name="<%= r.id %>"><%= r.sometimes %></td><td><input type="radio" name="<%= r.id %>"><%= r.always %></td>
+                </tr>
+                <% }); %>   
                 
             </table>
+            
+            <br><br>
+            
+            <label>Completed By: </label><input type="text"> &nbsp;&nbsp;&nbsp;
+            <label>Date Completed: </label><input type="text">
+            
+            <br><br>
+            
+            <table>
+                <tr>
+                    <td>
+                        <tr>Parent<input type="radio" name="cb"></tr>
+                        <tr>Teacher<input type="radio" name="cb"></tr>
+                    </td>
+                </tr>
+            </table>
+            
+            <br>
+            
+            <button type="submit">Submit</button>
+            
         </body>
 
     </html>
