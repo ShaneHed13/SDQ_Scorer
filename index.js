@@ -18,35 +18,36 @@ express()
     .set('view engine', 'ejs')
     .get('/', async(req, res) => {
     
-        try {
-            const client = await pool.connect();
-            
-            const tests = await client.query(
-            `SELECT * FROM tests ORDER BY id ASC`);
-            
-            const locals = {
-                'tests': (tests) ? tests.rows : null
-            };
-            
-            res.render('pages/index', locals);
-    
-            client.release();
-        }
-        catch (err) {
-            console.error(err);
-            res.send("Error " + err);
-            
-        }
-})
 
-.get('/db-info', async(req, res) => {
-    
     try{
         const client = await pool.connect();
         const completedSDQ = await client.query(
         
             `SELECT * FROM completedSDQ`         
         );
+        
+        const locals = {
+            
+            'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
+            
+        };
+        
+        res.render('pages/index', locals);
+        client.release();
+        
+    }
+    catch (err){
+        
+        console.error(err);
+        res.send("Error: " + err);
+}
+    
+})
+
+.get('/db-info', async(req, res) => {
+    
+    try{
+        const client = await pool.connect();
         
         const locals = {
             
@@ -82,6 +83,33 @@ express()
         };
         
         res.render('pages/sdq410pt.ejs', locals);
+        client.release();
+        
+    }
+    catch (err){
+        
+        console.error(err);
+        res.send("Error: " + err);
+}
+    
+})
+
+.get('/sdq1117pt', async(req, res) => {
+    
+    try{
+        const client = await pool.connect();
+        const sdqTests = await client.query(
+        
+            `SELECT * FROM sdqTests`         
+        );
+        
+        const locals = {
+            
+            'sdqTests': (sdqTests) ? sdqTests.rows : null,
+            
+        };
+        
+        res.render('pages/sdq1117pt.ejs', locals);
         client.release();
         
     }
