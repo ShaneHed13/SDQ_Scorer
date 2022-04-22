@@ -23,7 +23,7 @@ express()
         const client = await pool.connect();
         const completedSDQ = await client.query(
         
-            `SELECT * FROM completedSDQ`         
+            `SELECT * FROM tests`         
         );
         
         const locals = {
@@ -49,6 +49,10 @@ express()
     try{
         const client = await pool.connect();
         
+                const completedSDQ = await client.query(
+        
+            `SELECT * FROM completedSDQ`         
+        );
         const locals = {
             
             'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
