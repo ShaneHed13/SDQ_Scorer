@@ -11,10 +11,11 @@
   <a href="/">Return to Homepage</a>
   <h1>Student Records</h1>
 
-  <label>Child's Name: </label><input type="text">
+  <label for="child">Child's Name: </label>
+  <input type="text" id="child" name="child">
   <button type="submit" onclick="getRecords()">Submit</button>
 
-  <table>
+  <table id="results" style="display:none;">
     <tr>
       <th>ID</th>
       <th>Child</th>
@@ -68,6 +69,9 @@
   <script>
 
     const getRecords = async function () {
+
+
+      document.getElementById('results').style.display = 'block'
 
       const response = await fetch('/log', {
         method: 'GET',
