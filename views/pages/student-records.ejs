@@ -68,46 +68,11 @@
 
   <script>
 
-
     function getChildRecords() {
-
       let childName = child.value;
-
-      console.log(childName);
+      
+      window.location.href = '/student-records/' + childName;
     }
-
-    // const getRecords = async function () {
-
-    //   document.getElementById('results').style.display = 'block'
-
-    //   const response = await fetch('/student-records', {
-    //     method: 'GET',
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-
-    //     body: JSON.stringify({
-    //       child: "'John'",
-    //       total: '50',
-    //       emotional: '10',
-    //       conduct: '10',
-    //       hyperactivity: '10',
-    //       peer: '10',
-    //       prosocial: '10',
-    //       impact: '10',
-    //       expires: "'4/22/2022'",
-
-    //     })
-
-    //   });
-
-    //   const result = await response.json();
-    //   console.log(result);
-
-    //   currentTaskId = id;
-
-    // };
 
   </script>
 

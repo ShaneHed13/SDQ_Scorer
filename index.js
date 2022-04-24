@@ -131,7 +131,6 @@ express()
 
       const completedSDQ = await client.query(
         `SELECT * FROM completedSDQ`
-        // `SELECT * FROM completedSDQ WHERE child='Bob'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -153,8 +152,6 @@ express()
 
       const completedSDQ = await client.query(
         `SELECT * FROM completedSDQ WHERE child = '${req.params.child}'`
-        // `SELECT * FROM completedSDQ WHERE id = ${req.params.id}`
-        // `SELECT * FROM completedSDQ WHERE child = 'John'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
