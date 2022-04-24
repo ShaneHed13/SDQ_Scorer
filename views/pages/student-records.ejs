@@ -13,9 +13,9 @@
 
   <label for="child">Child's Name: </label>
   <input type="text" id="child" name="child">
-  <button type="submit" onclick="getRecords()">Submit</button>
+  <button type="submit" onclick="getChildRecords()">Submit</button>
 
-  <table id="results" style="display:none;">
+  <table>
     <tr>
       <th>ID</th>
       <th>Child</th>
@@ -68,38 +68,46 @@
 
   <script>
 
-    const getRecords = async function () {
 
+    function getChildRecords() {
 
-      document.getElementById('results').style.display = 'block'
+      let childName = child.value;
 
-      const response = await fetch('/log', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+      console.log(childName);
+    }
 
-        // body: JSON.stringify({
-        //   total: '50',
-        //   emotional: '10',
-        //   conduct: '10',
-        //   hyperactivity: '10',
-        //   peer: '10',
-        //   prosocial: '10',
-        //   impact: '10',
-        //   expires: "'4/22/2022'",
+    // const getRecords = async function () {
 
-        // })
+    //   document.getElementById('results').style.display = 'block'
 
-      });
+    //   const response = await fetch('/student-records', {
+    //     method: 'GET',
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
 
-      const result = await response.json();
-      console.log(result);
+    //     body: JSON.stringify({
+    //       child: "'John'",
+    //       total: '50',
+    //       emotional: '10',
+    //       conduct: '10',
+    //       hyperactivity: '10',
+    //       peer: '10',
+    //       prosocial: '10',
+    //       impact: '10',
+    //       expires: "'4/22/2022'",
 
-      currentTaskId = id;
+    //     })
 
-    };
+    //   });
+
+    //   const result = await response.json();
+    //   console.log(result);
+
+    //   currentTaskId = id;
+
+    // };
 
   </script>
 

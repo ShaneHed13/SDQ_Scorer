@@ -126,18 +126,15 @@ express()
   })
 
   .get('/student-records', async (req, res) => {
-
     try {
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-
         `SELECT * FROM completedSDQ`
+        // `SELECT * FROM completedSDQ WHERE child='Bob'`
       );
       const locals = {
-
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
-
       };
 
       res.render('pages/student-records', locals);
@@ -145,11 +142,32 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
+  })
 
+  .get('/student-records/:child', async (req, res) => {
+    try {
+      const client = await pool.connect();
+
+      const completedSDQ = await client.query(
+        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}'`
+        // `SELECT * FROM completedSDQ WHERE id = ${req.params.id}`
+        // `SELECT * FROM completedSDQ WHERE child = 'John'`
+      );
+      const locals = {
+        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
+      };
+
+      res.render('pages/student-records', locals);
+      client.release();
+
+    }
+    catch (err) {
+      console.error(err);
+      res.send("Error: " + err);
+    }
   })
 
   .post('/log', async (req, res) => {
