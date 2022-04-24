@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>Student Records</title>
+  <title>Individual Student Records</title>
   <meta charset="UTF-8">
 </head>
 
 <body>
 
   <a href="/">Return to Homepage</a>
-  <h1>Student Records</h1>
+  <h1>Individual Student Records</h1>
 
   <label for="child">Child's Name: </label>
   <input type="text" id="child" name="child">
@@ -78,6 +78,8 @@
       }
 
       const formattedChildName = arr.join(" ");
+
+      // console.log(formattedChildName);
 
       window.location.href = '/student-records/' + formattedChildName;
     }

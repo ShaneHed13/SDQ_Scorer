@@ -130,7 +130,8 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ`
+        // Dummy SQL command to allow page load
+        `SELECT * FROM completedSDQ WHERE child = ''`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
