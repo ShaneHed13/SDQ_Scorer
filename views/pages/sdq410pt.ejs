@@ -11,8 +11,8 @@
   <a href="/">Return to Homepage</a>
   <h1>Strengths and Difficulties Questionnaire: P or T 4-10</h1>
 
-  <label>Child's Name: </label><input type="text">&nbsp;&nbsp;&nbsp;
-  <label>Date of Birth: </label><input type="text">
+  <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
+  <label>Date of Birth: </label><input id="dob" type="date">
 
   <br><br>
 
@@ -50,7 +50,7 @@
 
   <br><br>
 
-  <label>Completed By: </label><input type="text"> &nbsp;&nbsp;&nbsp;
+  <label>Completed By: </label><input id="completed" type="text"> &nbsp;&nbsp;&nbsp;
   <label>Date Completed: </label><input id="date" type="date">
 
   <br><br>
@@ -58,8 +58,8 @@
   <table>
     <tr>
       <td>
-    <tr>Parent<input type="radio" name="cb"></tr>
-    <tr>Teacher<input type="radio" name="cb"></tr>
+    <tr>Parent<input id="parent" type="radio" name="cb"></tr>
+    <tr>Teacher<input id="teacher" type="radio" name="cb"></tr>
     </td>
     </tr>
   </table>
@@ -71,9 +71,8 @@
   <script>
     let currentTaskID = null;
 
-
-    //This function loops through the test and pulls the selected answers. Said answers are assigned point values, and the scores are calculated from there.
-    function test() {
+    // Loops through the test and pulls the selected answers. Said answers are assigned point values, and the scores are calculated from there.
+    const logTask = async function () {
 
       let count = 0;
       let qArray = [];
@@ -182,16 +181,22 @@
       let prScore = q1 + q4 + q9 + q17 + q20;
       let tdScore = epScore + cpScore + haScore + ppScore + prScore;
 
-      let expires = document.getElementById('date');
+      // Getting values from text and date boxes
+      let expires = document.getElementById('date').value;
+      let child = document.getElementById('name').value;
+      let birthDate = document.getElementById('dob').value;
+      let compBy = document.getElementById('completed').value;
+      /* let role = "";
+      
+      if (document.getElementById('teacher').checked == true) {
+        let role = "Teacher";
+      }
 
-      alert("ep-" + epScore + " cp-" + cpScore + " ha-" + haScore + " pp-" + ppScore + " pr-" + prScore + " td-" + tdScore);
+      if (document.getElementById('parent').checked == true) {
+        let role = "Parent";
+      }  */
 
-    }// end test function
-
-    const logTask = async function () {
-
-
-      test();
+      alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
 
       const response = await fetch('/log', {
         method: 'POST',
@@ -201,16 +206,18 @@
         },
 
         body: JSON.stringify({
-          child: "'Tom Ross'",
-          total: 50,
-          emotional: 10,
-          conduct: 10,
-          hyperactivity: 10,
-          peer: 10,
-          prosocial: 10,
+          child: child,
+          dob: birthDate,
+          total: tdScore,
+          emotional: epScore,
+          conduct: cpScore,
+          hyperactivity: haScore,
+          peer: ppScore,
+          prosocial: prScore,
           impact: 10,
-          expires: "'4/23/2022'",
-
+          completed: compBy,
+          role: "Teacher",
+          expires: expires
         })
 
       });

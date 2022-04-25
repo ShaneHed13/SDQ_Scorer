@@ -172,6 +172,7 @@ express()
     try {
       const client = await pool.connect(); ``
       const child = req.body.child;
+      const dob = req.body.dob;
       const total = req.body.total;
       const emotional = req.body.emotional;
       const conduct = req.body.conduct;
@@ -179,12 +180,14 @@ express()
       const peer = req.body.peer;
       const prosocial = req.body.prosocial;
       const impact = req.body.impact;
+      const completed = req.body.completed;
+      const role = req.body.role;
       const expires = req.body.expires;
 
 
       const sqlInsert = await client.query(
-        `INSERT INTO completedSDQ (child, total, emotional, conduct, hyperactivity, peer, prosocial, impact, expires)
-        VALUES(${child}, ${total}, ${emotional}, ${conduct}, ${hyperactivity}, ${peer}, ${prosocial}, ${impact}, ${expires})
+        `INSERT INTO completedSDQ (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
+        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity} , ${peer}, ${prosocial}, ${impact}, '${completed}', '${role}', '${expires}')
         RETURNING id as new_id;`);
 
 
