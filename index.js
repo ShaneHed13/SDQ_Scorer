@@ -44,33 +44,6 @@ express()
 
   })
 
-  .get('/db-info', async (req, res) => {
-
-    try {
-      const client = await pool.connect();
-
-      const completedSDQ = await client.query(
-
-        `SELECT * FROM completedSDQ`
-      );
-      const locals = {
-
-        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
-
-      };
-
-      res.render('pages/db-info', locals);
-      client.release();
-
-    }
-    catch (err) {
-
-      console.error(err);
-      res.send("Error: " + err);
-    }
-
-  })
-
   .get('/sdq410pt', async (req, res) => {
 
     try {
@@ -114,6 +87,33 @@ express()
       };
 
       res.render('pages/sdq1117pt.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+  .get('/sdq1117s', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq1117s.ejs', locals);
       client.release();
 
     }
