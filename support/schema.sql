@@ -24,6 +24,24 @@ CREATE TABLE sdqTests (
   always TEXT NOT NULL
 );
 
+CREATE TABLE impactSupplement (
+  id SERIAL PRIMARY KEY,
+  parent TEXT NOT NULL,
+  teacher TEXT NOT NULL,
+  notAtAll INT NOT NULL,
+  little INT NOT NULL,
+  mediumAmt INT NOT NULL,
+  great INT NOT null.
+);
+
+INSERT INTO impactSupplement (parent, self, notAtAll, little, mediumAmt, great) VALUES
+('Do the difficulties upset or distress your child?', 'Do the difficulties upset or distress you?', 0, 0, 1, 2),
+('HOME LIFE', 'HOME LIFE', 0, 0, 1, 2),
+('FRIENDSHIPS', 'FRIENDSHIPS', 0, 0, 1, 2),
+('CLASSSROOM LEARNING', 'CLASSROOM LEARNING', 0, 0, 1, 2),
+('LEISURE ACTIVITIES', 'LEISURE ACTIVITIES', 0, 0, 1, 2),
+('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?', 0, 0, 1, 2);
+
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL

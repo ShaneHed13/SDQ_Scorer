@@ -44,6 +44,147 @@ express()
 
   })
 
+.get('/sdq410pIS', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq410pIS.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+.get('/sdq1117tIS', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq1117tIS.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+.get('/sdq1117pIS', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq1117pIS.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+.get('/sdq1117sIS', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq1117sIS.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+.get('/sdq410tIS', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqTests = await client.query(
+
+        `SELECT * FROM sdqTests`
+
+      );
+
+      const locals = {
+
+        'sdqTests': (sdqTests) ? sdqTests.rows : null,
+
+      };
+
+      res.render('pages/sdq410tIS.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+
   .get('/sdq410pt', async (req, res) => {
 
     try {
