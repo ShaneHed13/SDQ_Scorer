@@ -145,33 +145,59 @@
 
       } //end while loop
 
-      let q1;
-      let q2;
-      let q3;
-      let q4;
-      let q5;
-      let q6;
-      let q7;
-      let q8;
-      let q9;
-      let q10;
-      let q11;
-      let q12;
-      let q13;
-      let q14;
-      let q15;
-      let q16;
-      let q17;
-      let q18;
-      let q19;
-      let q20;
-      let q21;
-      let q22;
-      let q23;
-      let q24;
-      let q25;
+      // Getting values from text and date boxes
+      let expires = document.getElementById('date').value;
+      let child = document.getElementById('name').value;
+      let birthDate = document.getElementById('dob').value;
+      let compBy = document.getElementById('completed').value;
+      /* let role = ""; */
 
-      [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25] = aArray;
+      if(aArray[0] == undefined || aArray[1] == undefined || aArray[2] == undefined || aArray[3] == undefined || aArray[4] == undefined || aArray[5] == undefined || aArray[6] == undefined || aArray[7] == undefined || aArray[8] == undefined || aArray[9] == undefined || aArray[10] == undefined ||
+         aArray[11] == undefined || aArray[12] == undefined || aArray[13] == undefined || aArray[14] == undefined || aArray[15] == undefined || aArray[16] == undefined ||aArray[17] == undefined || aArray[18] == undefined || aArray[19] == undefined || aArray[20] == undefined ||
+         aArray[21] == undefined || aArray[22] == undefined || aArray[23] == undefined || aArray[24] == undefined) {
+        
+        alert('Please provide and answer for each question.');
+      
+      } else if(child == "") {
+        alert("Please enter the child's name.");
+      } else if(birthDate == "") {
+        alert("Please enter the child's birthday.");
+      } else if(compBy==""){
+        alert("Please enter the name of the person completing the form.");
+      } else if(expires== "") {
+        alert("Please enter a date of completion.");
+      } else {
+
+        alert("Information submitted to database.");
+
+            let q1;
+            let q2;
+            let q3;
+            let q4;
+            let q5;
+            let q6;
+            let q7;
+            let q8;
+            let q9;
+            let q10;
+            let q11;
+            let q12;
+            let q13;
+            let q14;
+            let q15;
+            let q16;
+            let q17;
+            let q18;
+            let q19;
+            let q20;
+            let q21;
+            let q22;
+            let q23;
+            let q24;
+            let q25;
+
+            [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25] = aArray;
+        
 
       //Assign actual scores
       let epScore = q3 + q8 + q13 + q16 + q24;
@@ -180,14 +206,8 @@
       let ppScore = q6 + q11 + q14 + q19 + q23;
       let prScore = q1 + q4 + q9 + q17 + q20;
       let tdScore = epScore + cpScore + haScore + ppScore + prScore;
-
-      // Getting values from text and date boxes
-      let expires = document.getElementById('date').value;
-      let child = document.getElementById('name').value;
-      let birthDate = document.getElementById('dob').value;
-      let compBy = document.getElementById('completed').value;
-      /* let role = "";
-      
+ 
+      /*
       if (document.getElementById('teacher').checked == true) {
         let role = "Teacher";
       }
@@ -197,6 +217,8 @@
       }  */
 
       alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
+
+      }
 
       const response = await fetch('/log', {
         method: 'POST',
