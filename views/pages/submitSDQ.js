@@ -1,6 +1,3 @@
-    let currentTaskID = null;
-
-    // Loops through the test and pulls the selected answers. Said answers are assigned point values, and the scores are calculated from there.
     const submitSDQ = async function () {
 
       let count = 0;
@@ -153,7 +150,5 @@
 
       const result = await response.json();
       console.log(result);
-
-      currentTaskId = id;
 
     };

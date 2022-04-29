@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DB Info</title>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <a href="/">Return to Homepage</a>
+  <h1>Single Page Strength and Difficulties Questionaire</h1>
+    
+  <select onchange="changeTest();">
+    <option value=”sdq410pt”>4-10 Parent/Teacher</option>
+    <option value=”sdq1117pt”>11-17 Parent/Teacher</option>
+    <option value=”sdq1117s”>11-17 Self</option>
+  </select>
+    
+  <script>
+  
+      function changeTest(){
+        const select = document.querySelector("select");
+        const selectedChoice = select.value;
+        console.log(selectedChoice)
+      }
+  
+  </script>
+
+  <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
+  <label>Date of Birth: </label><input id="dob" type="date">
+
+  <br><br>
+
+  <table>
+    <tr>
+      <th>Num.</th>
+      <th>Question</th>
+      <th>Not True</th>
+      <th>Somewhat True</th>
+      <th>Always True</th>
+    </tr>
+
+    <% sdqPage.forEach(function(r) { %>
+
+      <tr>
+        <td>
+          <%= r.id %>
+        </td>
+        <td>
+          <%= r.sdq1117pt %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="never">
+          <%= r.never %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="sometimes">
+          <%= r.sometimes %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="always">
+          <%= r.always %>
+        </td>
+      </tr>
+      <% }); %>
+
+  </table>
+
+  <br><br>
+
+  <label>Completed By: </label><input id="completed" type="text"> &nbsp;&nbsp;&nbsp;
+  <label>Date Completed: </label><input id="date" type="date">
+
+  <br><br>
+
+  <table>
+    <tr>
+      <td>
+    <tr>Parent<input id="parent" type="radio" name="cb"></tr>
+    <tr>Teacher<input id="teacher" type="radio" name="cb"></tr>
+    <tr>Self<input id="self" type="radio" name="cb"></tr>
+    </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <button type="submit" onclick="logTask()">Submit</button>
+
+</body>
+
+</html>

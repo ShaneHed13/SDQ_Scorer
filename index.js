@@ -183,6 +183,8 @@ express()
       console.error(err);
       res.send("Error: " + err);
     }
+    
+    document.$htt
 
   })
 
@@ -285,6 +287,33 @@ express()
       };
 
       res.render('pages/sdq1117s.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+  .get('/sdqPage', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const sdqPage = await client.query(
+
+        `SELECT * FROM sdqTests`
+      );
+
+      const locals = {
+
+        'sdqPage': (sdqPage) ? sdqPage.rows : null,
+
+      };
+
+      res.render('pages/sdqPage.ejs', locals);
       client.release();
 
     }
