@@ -13,6 +13,22 @@ CREATE TABLE completedSDQ (
   role TEXT NOT NULL,
   expires DATE NOT NULL
 );
+
+CREATE TABLE results (
+  id SERIAL PRIMARY KEY,
+  child TEXT NOT NULL,
+  birthdate DATE NOT NULL,
+  total INT NOT NULL,
+  emotional INT NOT NULL,
+  conduct INT NOT NULL,
+  hyperactivity INT NOT NULL,
+  peer INT NOT NULL,
+  prosocial INT NOT NULL,
+  impact INT NOT NULL,
+  completedBy TEXT NOT NULL,
+  role TEXT NOT NULL,
+  expires DATE NOT NULL
+);
     
 CREATE TABLE sdqTests (
   id SERIAL PRIMARY KEY,

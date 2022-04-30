@@ -368,6 +368,34 @@ express()
     }
   })
 
+  .get('/results', async (req, res) => {
+
+    try {
+      const client = await pool.connect();
+      const results = await client.query(
+
+        `SELECT * FROM results`
+
+      );
+
+      const locals = {
+
+        'results': (results) ? results.rows : null,
+
+      };
+
+      res.render('pages/results.ejs', locals);
+      client.release();
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
   .post('/log', async (req, res) => {
     try {
       const client = await pool.connect(); ``
@@ -413,7 +441,56 @@ express()
 
   })
 
-  .listen(PORT, () => console.log('Listening on ${ PORT }'));
+  .post('/results', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const child = req.body.child;
+      const dob = req.body.dob;
+      const total = req.body.total;
+      const emotional = req.body.emotional;
+      const conduct = req.body.conduct;
+      const hyperactivity = req.body.hyperactivity;
+      const peer = req.body.peer;
+      const prosocial = req.body.prosocial;
+      const impact = req.body.impact;
+      const completed = req.body.completed;
+      const role = req.body.role;
+      const expires = req.body.expires;
+
+      const emptyTable = await client.query(
+        `TRUNCATE TABLE results;`
+      );
+        
+      const sqlInsert = await client.query(
+        `INSERT INTO results (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
+        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity} , ${peer}, ${prosocial}, ${impact}, '${completed}', '${role}', '${expires}')
+        RETURNING id as new_id;`);
+
+
+      const result = {
+
+        'response': (sqlInsert) ? (sqlInsert.rows[0]) : null
+
+      };
+
+      res.set({
+        'Content-Type': 'application/json'
+
+      });
+      res.json({ requestBody: result });
+      client.release();
+
+
+    }
+    catch (err) {
+
+      console.error(err);
+      res.send("Error: " + err);
+    }
+
+  })
+
+  .listen(PORT, () => console.log('Listening on PORT:' + PORT));
 
 
 

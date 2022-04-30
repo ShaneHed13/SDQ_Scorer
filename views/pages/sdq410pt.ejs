@@ -67,8 +67,8 @@
 
   <br>
 
-  <button type="submit" onclick="submitSDQ()">Submit</button>
-    
+  <button type="submit" onclick="logTask()">Submit</button>
+
   <script>
     let currentTaskID = null;
 
@@ -169,7 +169,7 @@
         alert("Please enter a date of completion.");
       } else {
 
-        alert("Information submitted to database.");
+        alert("Test Completion Successful");
 
             let q1;
             let q2;
@@ -200,28 +200,60 @@
             [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25] = aArray;
         
 
-      //Assign actual scores
-      let epScore = q3 + q8 + q13 + q16 + q24;
-      let cpScore = q5 + q7 + q12 + q18 + q22;
-      let haScore = q2 + q10 + q15 + q21 + q25;
-      let ppScore = q6 + q11 + q14 + q19 + q23;
-      let prScore = q1 + q4 + q9 + q17 + q20;
-      let tdScore = epScore + cpScore + haScore + ppScore + prScore;
- 
-      /*
-      if (document.getElementById('teacher').checked == true) {
-        let role = "Teacher";
+        //Assign actual scores
+        let epScore = q3 + q8 + q13 + q16 + q24;
+        let cpScore = q5 + q7 + q12 + q18 + q22;
+        let haScore = q2 + q10 + q15 + q21 + q25;
+        let ppScore = q6 + q11 + q14 + q19 + q23;
+        let prScore = q1 + q4 + q9 + q17 + q20;
+        let tdScore = epScore + cpScore + haScore + ppScore + prScore;
+  
+        /*
+        if (document.getElementById('teacher').checked == true) {
+          let role = "Teacher";
+        }
+
+        if (document.getElementById('parent').checked == true) {
+          let role = "Parent";
+        }  */
+
+        alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
+
+        // Sending successful test results to a new Results page for scoring
+        const response = await fetch('/results', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            child: child,
+            dob: birthDate,
+            total: tdScore,
+            emotional: epScore,
+            conduct: cpScore,
+            hyperactivity: haScore,
+            peer: ppScore,
+            prosocial: prScore,
+            impact: 10,
+            completed: compBy,
+            role: "Teacher",
+            expires: expires
+          })
+
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        window.location.href = "results";
+
       }
 
-      if (document.getElementById('parent').checked == true) {
-        let role = "Parent";
-      }  */
-
-      alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
-
-      }
-
-      const response = await fetch('/log', {
+      
+      // Posts test results to the db
+      /* const response = await fetch('/log', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -243,12 +275,9 @@
           expires: expires
         })
 
-      });
+      }); */
 
-      const result = await response.json();
-      console.log(result);
-
-      currentTaskId = id;
+      
 
     };
 
