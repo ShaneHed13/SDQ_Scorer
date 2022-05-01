@@ -35,7 +35,8 @@
                     <td><%= r.peer %></td>
                     <td><%= r.prosocial %></td>
                     <td><%= r.impact %></td>
-                    <td><%= r.expires %></td></tr>
+                    <td><%= r.expires.toDateString() %></td>
+                </tr>
             <% }); %>   
                 
             </table>

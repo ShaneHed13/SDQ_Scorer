@@ -16,6 +16,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Birthdate</th>
             <th>Total</th>
             <th>Emotional Problems</th>
             <th>Conduct Problems</th>
@@ -24,24 +25,168 @@
             <th>Prosocial Behavior</th>
             <th>Impact Score</th>
             <th>Expiration Date</th>
+            <th>Completed By</th>
+            <th>Role</th>
         </tr>
         
     <% results.forEach(function(r) { %>
         <tr>
             <td><%= r.id %></td>
-            <td><%= r.child %></td>
-            <td><%= r.total %></td>
-            <td><%= r.emotional %></td>
-            <td><%= r.conduct %></td>
-            <td><%= r.hyperactivity %></td>
-            <td><%= r.peer %></td>
-            <td><%= r.prosocial %></td>
-            <td><%= r.impact %></td>
-            <td><%= r.expires %></td>
+            <td id="child"><%= r.child %></td>
+            <td id="dob"><%= r.birthdate.toDateString() %></td>
+
+            <td id="total">
+              <% if (r.total >= 19) {
+                  totalCat = "Very high (" + r.total + ")";
+                } else if (r.total >= 16) {
+                  totalCat = "High (" + r.total + ")";
+                } else if (r.total >= 12) {
+                  totalCat = "Slightly raised (" + r.total + ")";
+                } else {
+                  totalCat = "Close to average (" + r.total + ")";
+                } %>
+              <%= totalCat %>
+            </td>
+
+            <td id="emotional">
+              <% if (r.emotional >= 6) {
+                    emotionalCat = "Very high (" + r.emotional + ")";
+                } else if (r.emotional == 5) {
+                    emotionalCat = "High (" + r.emotional + ")";
+                } else if (r.emotional == 4) {
+                    emotionalCat = "Slightly raised (" + r.emotional + ")";
+                } else {
+                    emotionalCat = "Close to average (" + r.emotional + ")";
+                } %>
+              <%= emotionalCat %>
+            </td>
+
+            <td id="conduct">
+              <% if (r.conduct >= 5) {
+                  conductCat = "Very high (" + r.conduct + ")";
+                } else if (r.conduct == 4) {
+                  conductCat = "High (" + r.conduct + ")";
+                } else if (r.conduct == 3) {
+                  conductCat = "Slightly raised (" + r.conduct + ")";
+                } else {
+                  conductCat = "Close to average (" + r.conduct + ")";
+                } %>
+              <%= conductCat %>
+            </td>
+
+            <td id="hyperactivity">
+              <% if (r.hyperactivity >= 9) {
+                  hyperCat = "Very high (" + r.hyperactivity + ")";
+                } else if (r.hyperactivity == 8) {
+                  hyperCat = "High (" + r.hyperactivity + ")";
+                } else if (r.hyperactivity >= 6) {
+                  hyperCat = "Slightly raised (" + r.hyperactivity + ")";
+                } else {
+                  hyperCat = "Close to average (" + r.hyperactivity + ")";
+                } %>
+              <%= hyperCat %>
+            </td>
+
+            <td id="peer">
+              <% if (r.peer >= 6) {
+                  peerCat = "Very high (" + r.peer + ")";
+                } else if (r.peer == 5) {
+                  peerCat = "High (" + r.peer + ")";
+                } else if (r.peer >= 3) {
+                  peerCat = "Slightly raised (" + r.peer + ")";
+                } else {
+                  peerCat = "Close to average (" + r.peer + ")";
+                } %>
+              <%= peerCat %>
+            </td>
+
+            <td id="prosocial">
+              <% if (r.prosocial >= 6) {
+                  prosocialCat = "Close to average (" + r.prosocial + ")";
+                } else if (r.prosocial == 5) {
+                  prosocialCat = "Slightly lowered (" + r.prosocial + ")";
+                } else if (r.prosocial == 4) {
+                  prosocialCat = "Low (" + r.prosocial + ")";
+                } else {
+                  prosocialCat = "Very low (" + r.prosocial + ")";
+                } %>
+              <%= prosocialCat %>
+            </td>
+
+            <td id="impact">
+              <% if (r.impact >= 3) {
+                  impactCat = "Very high (" + r.impact + ")";
+                } else if (r.impact == 2) {
+                  impactCat = "High (" + r.impact + ")";
+                } else if (r.impact == 1) {
+                  impactCat = "Slightly raised (" + r.impact + ")";
+                } else {
+                  impactCat = "Close to average (" + r.impact + ")";
+                } %>
+              <%= impactCat %>
+            </td>
+
+            <td id="expires"><%= r.expires.toDateString() %></td>
+            <td id="completedby"><%= r.completedby %></td>
+            <td id="role"><%= r.role %></td>
         </tr>
     <% }); %>   
         
     </table>
+    <br>
+    <button type="submit" onclick="logTask()">Submit</button>
+
+    <script>
+      const logTask = async function () {
+
+        // Get values from test results to store in db
+        let child = document.getElementById('child').innerHTML;
+        let birthDate = document.getElementById('dob').innerHTML;
+        let tdScore = document.getElementById('total').innerHTML;
+        let epScore = document.getElementById('emotional').innerHTML;
+        let cpScore = document.getElementById('conduct').innerHTML;
+        let haScore = document.getElementById('hyperactivity').innerHTML;
+        let ppScore = document.getElementById('peer').innerHTML;
+        let prScore = document.getElementById('prosocial').innerHTML;
+        let imScore = document.getElementById('impact').innerHTML;
+        let compBy = document.getElementById('completedby').innerHTML;
+        let role = document.getElementById('role').innerHTML;
+        let expires = document.getElementById('expires').innerHTML;
+
+        // Test for correct values
+        //console.log(tdScore + ", " + expires);
+
+        // Posts test results to the db
+        const response = await fetch('/log', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            child: child,
+            dob: birthDate,
+            total: tdScore,
+            emotional: epScore,
+            conduct: cpScore,
+            hyperactivity: haScore,
+            peer: ppScore,
+            prosocial: prScore,
+            impact: imScore,
+            completed: compBy,
+            role: role,
+            expires: expires
+          })
+
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+      }; 
+    </script>
+
   </body>
 
 </html>

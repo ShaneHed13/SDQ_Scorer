@@ -415,7 +415,7 @@ express()
 
       const sqlInsert = await client.query(
         `INSERT INTO completedSDQ (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
-        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity} , ${peer}, ${prosocial}, ${impact}, '${completed}', '${role}', '${expires}')
+        VALUES('${child}', '${dob}', '${total}', '${emotional}', '${conduct}', '${hyperactivity}' , '${peer}', '${prosocial}', '${impact}', '${completed}', '${role}', '${expires}')
         RETURNING id as new_id;`);
 
 

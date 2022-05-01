@@ -67,7 +67,7 @@
 
   <br>
 
-  <button type="submit" onclick="logTask()">Submit</button>
+  <button type="submit" onclick="logTask()">Score Test</button>
 
   <script>
     let currentTaskID = null;
@@ -217,9 +217,9 @@
           let role = "Parent";
         }  */
 
-        alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
+        //alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
 
-        // Sending successful test results to a new Results page for scoring
+        // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {
           method: 'POST',
           headers: {
