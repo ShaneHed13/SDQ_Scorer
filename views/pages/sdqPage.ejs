@@ -10,7 +10,9 @@
 
   <a href="/">Return to Homepage</a>
   <h1>Single Page Strength and Difficulties Questionaire</h1>
+   
     
+  
   <select onchange="changeTest();">
     <option value=”sdq410pt”>4-10 Parent/Teacher</option>
     <option value=”sdq1117pt”>11-17 Parent/Teacher</option>
@@ -18,7 +20,6 @@
   </select>
     
   <script>
-  
       function changeTest(){
         const select = document.querySelector("select");
         const selectedChoice = select.value;
@@ -41,7 +42,7 @@
       <th>Always True</th>
     </tr>
 
-      <script> sdqPage.forEach(function(r) { </script>
+    <% sdqPage.forEach(function(r) { %>
 
       <tr>
         <td>
