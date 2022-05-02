@@ -7,7 +7,7 @@ CREATE TABLE completedSDQ (
   conduct TEXT NOT NULL,
   hyperactivity TEXT NOT NULL,
   peer TEXT NOT NULL,
-  prosocial INT NOT NULL,
+  prosocial TEXT NOT NULL,
   impact TEXT NOT NULL,
   completedBy TEXT NOT NULL,
   role TEXT NOT NULL,

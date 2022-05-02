@@ -70,16 +70,8 @@
 
     function getChildRecords() {
       // Ensure case safety
-      let childName = child.value.toLowerCase();
-      const arr = childName.split(" ");
-
-      for (var i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-      }
-
-      const formattedChildName = arr.join(" ");
-
-      window.location.href = '/student-records/' + formattedChildName;
+      let childName = child.value;
+      window.location.href = '/student-records/' + childName;
     }
 
   </script>
