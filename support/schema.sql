@@ -7,7 +7,7 @@ CREATE TABLE completedSDQ (
   conduct TEXT NOT NULL,
   hyperactivity TEXT NOT NULL,
   peer TEXT NOT NULL,
-  prosocial INT NOT NULL,
+  prosocial TEXT NOT NULL,
   impact TEXT NOT NULL,
   completedBy TEXT NOT NULL,
   role TEXT NOT NULL,
@@ -44,7 +44,14 @@ CREATE TABLE impactSupplement (
   id SERIAL PRIMARY KEY,
   parent TEXT NOT NULL,
   teacher TEXT NOT NULL,
+<<<<<<< HEAD
   self TEXT NOT NULL
+=======
+  notAtAll INT NOT NULL,
+  little INT NOT NULL,
+  mediumAmt INT NOT NULL,
+  great INT NOT null
+>>>>>>> 3d3bec6f6ccea51a27e7e34a618444bc657bd20e
 );
 
 CREATE TABLE users (
@@ -60,6 +67,7 @@ CREATE TABLE tests (
   name TEXT NOT NULL
 );  
 
+<<<<<<< HEAD
 INSERT INTO impactSupplement (parent, teacher, self) VALUES
 ('Do the difficulties upset or distress your child?','Do the difficulties upset or distress the child?', 'Do the difficulties upset or distress you?'),
 ('HOME LIFE','PEER RELATIONSHIPS', 'HOME LIFE'),
@@ -67,6 +75,15 @@ INSERT INTO impactSupplement (parent, teacher, self) VALUES
 ('CLASSSROOM LEARNING', 'N/A', 'CLASSROOM LEARNING'),
 ('LEISURE ACTIVITIES', 'N/A', 'LEISURE ACTIVITIES'),
 ('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties put a burden on you or the class as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?');   
+=======
+INSERT INTO impactSupplement (parent, teacher, notAtAll, little, mediumAmt, great) VALUES
+('Do the difficulties upset or distress your child?', 'Do the difficulties upset or distress you?', 0, 0, 1, 2),
+('HOME LIFE', 'HOME LIFE', 0, 0, 1, 2),
+('FRIENDSHIPS', 'FRIENDSHIPS', 0, 0, 1, 2),
+('CLASSSROOM LEARNING', 'CLASSROOM LEARNING', 0, 0, 1, 2),
+('LEISURE ACTIVITIES', 'LEISURE ACTIVITIES', 0, 0, 1, 2),
+('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?', 0, 0, 1, 2);   
+>>>>>>> 3d3bec6f6ccea51a27e7e34a618444bc657bd20e
 
 
 INSERT INTO tests (name) VALUES

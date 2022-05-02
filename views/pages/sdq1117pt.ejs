@@ -145,6 +145,31 @@
 
       } //end while loop
 
+      // Getting values from text and date boxes
+      let expires = document.getElementById('date').value;
+      let child = document.getElementById('name').value;
+      let birthDate = document.getElementById('dob').value;
+      let compBy = document.getElementById('completed').value;
+      /* let role = ""; */
+
+      if(aArray[0] == undefined || aArray[1] == undefined || aArray[2] == undefined || aArray[3] == undefined || aArray[4] == undefined || aArray[5] == undefined || aArray[6] == undefined || aArray[7] == undefined || aArray[8] == undefined || aArray[9] == undefined || aArray[10] == undefined ||
+         aArray[11] == undefined || aArray[12] == undefined || aArray[13] == undefined || aArray[14] == undefined || aArray[15] == undefined || aArray[16] == undefined ||aArray[17] == undefined || aArray[18] == undefined || aArray[19] == undefined || aArray[20] == undefined ||
+         aArray[21] == undefined || aArray[22] == undefined || aArray[23] == undefined || aArray[24] == undefined) {
+        
+        alert('Please provide and answer for each question.');
+      
+      } else if(child == "") {
+        alert("Please enter the child's name.");
+      } else if(birthDate == "") {
+        alert("Please enter the child's birthday.");
+      } else if(compBy==""){
+        alert("Please enter the name of the person completing the form.");
+      } else if(expires== "") {
+        alert("Please enter a date of completion.");
+      } else {
+
+        alert("Test Completion Successful");
+
       let q1;
       let q2;
       let q3;
@@ -182,50 +207,36 @@
       let tdScore = epScore + cpScore + haScore + ppScore + prScore;
 
       // Getting values from text and date boxes
-      let expires = document.getElementById('date').value;
-      let child = document.getElementById('name').value;
-      let birthDate = document.getElementById('dob').value;
-      let compBy = document.getElementById('completed').value;
-      /* let role = "";
-      
-      if (document.getElementById('teacher').checked == true) {
-        let role = "Teacher";
+      const response = await fetch('/results', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            child: child,
+            dob: birthDate,
+            total: tdScore,
+            emotional: epScore,
+            conduct: cpScore,
+            hyperactivity: haScore,
+            peer: ppScore,
+            prosocial: prScore,
+            impact: 10,
+            completed: compBy,
+            role: "Teacher",
+            expires: expires
+          })
+
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        window.location.href = "results";
+
       }
-
-      if (document.getElementById('parent').checked == true) {
-        let role = "Parent";
-      }  */
-
-      alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
-
-      const response = await fetch('/log', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-
-        body: JSON.stringify({
-          child: child,
-          dob: birthDate,
-          total: tdScore,
-          emotional: epScore,
-          conduct: cpScore,
-          hyperactivity: haScore,
-          peer: ppScore,
-          prosocial: prScore,
-          impact: 10,
-          completed: compBy,
-          role: "Teacher",
-          expires: expires
-        })
-
-      });
-
-      const result = await response.json();
-      console.log(result);
-
-      currentTaskId = id;
 
     };
 
