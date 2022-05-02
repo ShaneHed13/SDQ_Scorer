@@ -300,14 +300,14 @@ express()
 
     try {
       const client = await pool.connect();
-      const sdqPage = await client.query(
+      const testQuestions = await client.query(
 
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
 
-        'sdqPage': (sdqPage) ? sdqPage.rows : null,
+        'testQuestions': (testQuestions) ? testQuestions.rows : null,
 
       };
 

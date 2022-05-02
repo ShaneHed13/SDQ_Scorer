@@ -10,20 +10,29 @@
 
   <a href="/">Return to Homepage</a>
   <h1>Single Page Strength and Difficulties Questionaire</h1>
-   
-    
-  
+
   <select onchange="changeTest();">
-    <option value=”sdq410pt”>4-10 Parent/Teacher</option>
-    <option value=”sdq1117pt”>11-17 Parent/Teacher</option>
-    <option value=”sdq1117s”>11-17 Self</option>
+    <option value='sdq410pt'>4-10 Parent/Teacher</option>
+    <option value='sdq1117pt'>11-17 Parent/Teacher</option>
+    <option value='sdq1117s'>11-17 Self</option>
   </select>
-    
+
   <script>
+      
       function changeTest(){
         const select = document.querySelector("select");
-        const selectedChoice = select.value;
-        console.log(selectedChoice)
+        const selectedChoice = select.value;          
+          
+          document.querySelectorAll(".a").forEach(el => {
+            el.style.display = selectedChoice == "sdq410pt" ? 'inline-block' : 'none';       
+          });
+          document.querySelectorAll(".b").forEach(el => {
+            el.style.display = selectedChoice == "sdq1117pt" ? 'inline-block' : 'none';       
+          });
+          document.querySelectorAll(".c").forEach(el => {
+            el.style.display = selectedChoice == "sdq1117s" ? 'inline-block' : 'none';       
+          });
+
       }
   
   </script>
@@ -42,14 +51,16 @@
       <th>Always True</th>
     </tr>
 
-    <% sdqPage.forEach(function(r) { %>
+    <% testQuestions.forEach(function(r) { %>
 
       <tr>
         <td>
           <%= r.id %>
         </td>
         <td>
-          <%= r.sdq1117pt %>
+            <div class ="a" style="display:inline-block;"><%= r.sdq410pt %></div>
+            <div class ="b" style="display:none;"><%= r.sdq1117pt %></div>
+            <div class ="c" style="display:none;"><%= r.sdq1117s %></div>
         </td>
         <td><input type="radio" name="<%= r.id %>" value="never">
           <%= r.never %>
