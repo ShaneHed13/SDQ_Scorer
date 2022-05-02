@@ -273,9 +273,15 @@ express()
         `SELECT * FROM sdqTests`
       );
 
+      const impactQuestions = await client.query(
+
+        `SELECT * FROM impactSupplement`
+      );
+        
       const locals = {
 
         'testQuestions': (testQuestions) ? testQuestions.rows : null,
+        'impactQuestions': (impactQuestions) ? impactQuestions.rows : null,
 
       };
 

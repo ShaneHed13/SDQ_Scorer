@@ -14,9 +14,9 @@
     
   
   <select onchange="changeTest();">
-    <option value='sdq410pt'>4-10 Parent/Teacher</option>
-    <option value='sdq1117pt'>11-17 Parent/Teacher</option>
-    <option value='sdq1117s'>11-17 Self</option>
+    <option value='sdq410pt'>4-10 Parent/Teacher Single Page</option>
+    <option value='sdq1117pt'>11-17 Parent/Teacher Single Page</option>
+    <option value='sdq1117s'>11-17 Self Single Page</option>
   </select>
 
   <script>
@@ -33,6 +33,29 @@
           });
           document.querySelectorAll(".c").forEach(el => {
             el.style.display = selectedChoice == "sdq1117s" ? 'inline-block' : 'none';       
+          });
+          
+      }
+          
+    function changeIS(){
+        const selectIS = document.getElementById("isChange");
+        const selectedIS = selectIS.value;          
+          
+        console.log(selectedIS);
+        
+          document.querySelectorAll(".pIS, .tIS, .sIS").forEach(el => {
+             
+              el.style.display = selectedIS == "no" ? 'none' : 'none';
+          });
+        
+          document.querySelectorAll(".pIS").forEach(el => {
+            el.style.display = selectedIS == "pIS" ? 'inline-block' : 'none';       
+          });
+          document.querySelectorAll(".tIS").forEach(el => {
+            el.style.display = selectedIS == "tIS" ? 'inline-block' : 'none';       
+          });
+          document.querySelectorAll(".sIS").forEach(el => {
+            el.style.display = selectedIS == "sIS" ? 'inline-block' : 'none';       
           });
 
       }
@@ -71,6 +94,51 @@
           <%= r.sometimes %>
         </td>
         <td><input type="radio" name="<%= r.id %>" value="always">
+          <%= r.always %>
+        </td>
+      </tr>
+      <% }); %>
+
+  </table>
+    
+    <br><br>
+    
+  <select id="isChange" onchange="changeIS();">
+    <option value='no'>No Impact Supplement</option>
+    <option value='pIS'>Parent Impact Supplement</option>
+    <option value='tIS'>Teacher Impact Supplement</option>
+    <option value='sIS'>Self Impact Supplement</option>
+  </select>
+    
+    <br><br>
+    
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Not At All</th>
+      <th>Only A Little</th>
+      <th>A Medium Amount</th>
+      <th>A Great Deal</th>
+    </tr>
+
+    <% impactQuestions.forEach(function(r) { %>
+
+      <tr>
+        <td>
+            <div class ="pIS" style="display:none;"><%= r.parent %></div>
+            <div class ="tIS" style="display:none;"><%= r.teacher %></div>
+            <div class ="sIS" style="display:none;"><%= r.self %></div>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="notAtAll">
+          <%= r.never %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="aLittle">
+          <%= r.never %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="mediumAmt">
+          <%= r.sometimes %>
+        </td>
+        <td><input type="radio" name="<%= r.id %>" value="greatDeal">
           <%= r.always %>
         </td>
       </tr>
