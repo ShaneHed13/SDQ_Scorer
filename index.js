@@ -56,7 +56,7 @@ express()
 
   })
 
-  .get('/sdq410pIS', async (req, res) => {
+  .get('/sdq410pIS', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -79,7 +79,7 @@ express()
 
   })
 
-  .get('/sdq1117tIS', async (req, res) => {
+  .get('/sdq1117tIS', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -103,7 +103,7 @@ express()
 
   })
 
-  .get('/sdq1117pIS', async (req, res) => {
+  .get('/sdq1117pIS', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -127,7 +127,7 @@ express()
 
   })
 
-  .get('/db-info', async (req, res) => {
+  .get('/db-info', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -151,7 +151,7 @@ express()
 
   })
 
-  .get('/sdq1117sIS', async (req, res) => {
+  .get('/sdq1117sIS', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -174,7 +174,7 @@ express()
     }
   })
 
-  .get('/sdq410tIS', async (req, res) => {
+  .get('/sdq410tIS', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -195,7 +195,7 @@ express()
     }
   })
 
-  .get('/sdq410pt', async (req, res) => {
+  .get('/sdq410pt', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -218,7 +218,7 @@ express()
 
   })
 
-  .get('/sdq1117pt', async (req, res) => {
+  .get('/sdq1117pt', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -241,7 +241,7 @@ express()
 
   })
 
-  .get('/sdq1117s', async (req, res) => {
+  .get('/sdq1117s', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -264,7 +264,7 @@ express()
 
   })
 
-  .get('/sdqPage', async (req, res) => {
+  .get('/sdqPage', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -290,7 +290,7 @@ express()
 
   })
 
-  .get('/student-records', async (req, res) => {
+  .get('/student-records', checkNotAuthenticated, async (req, res) => {
     try {
       const client = await pool.connect();
 
@@ -312,7 +312,7 @@ express()
     }
   })
 
-  .get('/student-records/:child', async (req, res) => {
+  .get('/student-records/:child', checkNotAuthenticated, async (req, res) => {
     try {
       const client = await pool.connect();
 
@@ -327,14 +327,14 @@ express()
       client.release();
 
     }
-    
+
     catch (err) {
       console.error(err);
       res.send("Error: " + err);
     }
   })
 
-  .get('/results', async (req, res) => {
+  .get('/results', checkNotAuthenticated, async (req, res) => {
 
     try {
       const client = await pool.connect();
@@ -448,7 +448,7 @@ express()
     })
   )
 
-  .post('/log', async (req, res) => {
+  .post('/log', checkNotAuthenticated, async (req, res) => {
     try {
       const client = await pool.connect(); ``
       const child = req.body.child;
@@ -493,7 +493,7 @@ express()
 
   })
 
-  .post('/results', async (req, res) => {
+  .post('/results', checkNotAuthenticated, async (req, res) => {
     try {
       const client = await pool.connect();
       const child = req.body.child;
