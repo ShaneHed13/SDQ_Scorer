@@ -47,7 +47,7 @@ CREATE TABLE impactSupplement (
   notAtAll INT NOT NULL,
   little INT NOT NULL,
   mediumAmt INT NOT NULL,
-  great INT NOT null.
+  great INT NOT null
 );
 
 CREATE TABLE users (
@@ -63,7 +63,7 @@ CREATE TABLE tests (
   name TEXT NOT NULL
 );  
 
-INSERT INTO impactSupplement (parent, self, notAtAll, little, mediumAmt, great) VALUES
+INSERT INTO impactSupplement (parent, teacher, notAtAll, little, mediumAmt, great) VALUES
 ('Do the difficulties upset or distress your child?', 'Do the difficulties upset or distress you?', 0, 0, 1, 2),
 ('HOME LIFE', 'HOME LIFE', 0, 0, 1, 2),
 ('FRIENDSHIPS', 'FRIENDSHIPS', 0, 0, 1, 2),
