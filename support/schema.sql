@@ -50,19 +50,28 @@ CREATE TABLE impactSupplement (
   great INT NOT null.
 );
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  password TEXT NOT NULL,
+  UNIQUE (email)
+);
+
+CREATE TABLE tests (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);  
+
 INSERT INTO impactSupplement (parent, self, notAtAll, little, mediumAmt, great) VALUES
 ('Do the difficulties upset or distress your child?', 'Do the difficulties upset or distress you?', 0, 0, 1, 2),
 ('HOME LIFE', 'HOME LIFE', 0, 0, 1, 2),
 ('FRIENDSHIPS', 'FRIENDSHIPS', 0, 0, 1, 2),
 ('CLASSSROOM LEARNING', 'CLASSROOM LEARNING', 0, 0, 1, 2),
 ('LEISURE ACTIVITIES', 'LEISURE ACTIVITIES', 0, 0, 1, 2),
-('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?', 0, 0, 1, 2);
+('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?', 0, 0, 1, 2);   
 
-CREATE TABLE tests (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
-);  
-    
+
 INSERT INTO tests (name) VALUES
   ('SDQ 4-10 Parents/Teachers'),
   ('SDQ 11-17 Parents/Teachers'),

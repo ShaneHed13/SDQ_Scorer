@@ -2,6 +2,14 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5005;
 const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const flash = require('express-flash');
+const passport = require('passport');
+
+const initializePassport = require('./passportConfig');
+
+initializePassport(passport);
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -13,51 +21,50 @@ const pool = new Pool({
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.json())
-  .use(express.urlencoded({ extended: true }))
+  .use(express.urlencoded({ extended: true })) //false??
+  .use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+  }))
+  .use(passport.initialize())
+  .use(passport.session())
+  .use(flash())
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', async (req, res) => {
 
-
     try {
       const client = await pool.connect();
       const completedSDQ = await client.query(
-
         `SELECT * FROM tests`
       );
 
       const locals = {
-
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
-
       };
 
       res.render('pages/index', locals);
       client.release();
-
     }
-    catch (err) {
 
+    catch (err) {
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
 
-.get('/sdq410pIS', async (req, res) => {
+  .get('/sdq410pIS', async (req, res) => {
 
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
-
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq410pIS.ejs', locals);
@@ -65,27 +72,23 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
 
-.get('/sdq1117tIS', async (req, res) => {
+  .get('/sdq1117tIS', async (req, res) => {
 
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
 
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq1117tIS.ejs', locals);
@@ -93,27 +96,23 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
 
-.get('/sdq1117pIS', async (req, res) => {
+  .get('/sdq1117pIS', async (req, res) => {
 
     try {
       const client = await pool.connect();
+
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
-
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq1117pIS.ejs', locals);
@@ -121,27 +120,23 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
 
-.get('/db-info', async (req, res) => {
+  .get('/db-info', async (req, res) => {
 
     try {
       const client = await pool.connect();
+
       const completedSDQ = await client.query(
-
         `SELECT * FROM completedSDQ`
-
       );
 
       const locals = {
-
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
-
       };
 
       res.render('pages/db-info.ejs', locals);
@@ -149,29 +144,23 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
 
-
-
-.get('/sdq1117sIS', async (req, res) => {
+  .get('/sdq1117sIS', async (req, res) => {
 
     try {
       const client = await pool.connect();
+
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
-
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq1117sIS.ejs', locals);
@@ -179,55 +168,42 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
-
   })
 
-.get('/sdq410tIS', async (req, res) => {
+  .get('/sdq410tIS', async (req, res) => {
 
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
-
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq410tIS.ejs', locals);
       client.release();
-
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
-
   })
-
 
   .get('/sdq410pt', async (req, res) => {
 
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq410pt.ejs', locals);
@@ -235,7 +211,6 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
@@ -247,14 +222,11 @@ express()
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq1117pt.ejs', locals);
@@ -262,7 +234,6 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
@@ -274,14 +245,11 @@ express()
     try {
       const client = await pool.connect();
       const sdqTests = await client.query(
-
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
-
         'sdqTests': (sdqTests) ? sdqTests.rows : null,
-
       };
 
       res.render('pages/sdq1117s.ejs', locals);
@@ -289,7 +257,6 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
@@ -301,14 +268,11 @@ express()
     try {
       const client = await pool.connect();
       const sdqPage = await client.query(
-
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
-
         'sdqPage': (sdqPage) ? sdqPage.rows : null,
-
       };
 
       res.render('pages/sdqPage.ejs', locals);
@@ -316,7 +280,6 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
@@ -371,15 +334,11 @@ express()
     try {
       const client = await pool.connect();
       const results = await client.query(
-
         `SELECT * FROM results`
-
       );
 
       const locals = {
-
         'results': (results) ? results.rows : null,
-
       };
 
       res.render('pages/results.ejs', locals);
@@ -387,12 +346,102 @@ express()
 
     }
     catch (err) {
-
       console.error(err);
       res.send("Error: " + err);
     }
 
   })
+
+  .get('/register', checkAuthenticated, (req, res) => {
+    res.render('pages/register');
+  })
+
+  .get('/login', checkAuthenticated, async (req, res) => {
+        res.render('pages/login');
+  })
+
+  .get('/home', checkNotAuthenticated, async (req, res) => {
+      res.render('pages/home', { user: req.user.name });
+  })
+
+  .get('/logout', (req, res) => {
+    req.logOut();
+    req.flash('success_msg', 'You are now logged out.');
+    res.redirect('/');
+  })
+
+  .post('/register', async (req, res) => {
+    let { name, email, password, password2 } = req.body;
+
+    let errors = []; // use for form validation
+
+    console.log({
+      name,
+      email,
+      password,
+      password2
+    });
+
+    if (!name || !email || !password || !password2) {
+      errors.push({ message: "All fields are required" });
+    }
+
+    if (password.length < 7) {
+      errors.push({ message: "Password must be a least 7 characters long" });
+    }
+
+    if (password !== password2) {
+      errors.push({ message: "Passwords do not match" });
+    }
+
+    if (errors.length > 0) {
+      res.render('pages/register', { errors, name, email, password, password2 });
+    } else {
+      hashedPassword = await bcrypt.hash(password, 10);
+      console.log(hashedPassword);
+      // Validation passed
+      pool.query(
+        `SELECT * FROM users
+          WHERE email = $1`,
+        [email],
+        (err, results) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(results.rows);
+
+          if (results.rows.length > 0) {
+            return res.render("register", {
+              message: "Email already registered"
+            });
+          } else {
+            pool.query(
+              `INSERT INTO users (name, email, password)
+                  VALUES ($1, $2, $3)
+                  RETURNING id, password`,
+              [name, email, hashedPassword],
+              (err, results) => {
+                if (err) {
+                  throw err;
+                }
+                console.log(results.rows);
+                req.flash("success_msg", "You are now registered. Please log in");
+                res.redirect("/login");
+              }
+            );
+          }
+        }
+      );
+    }
+  })
+
+  .post('/login',
+    passport.authenticate('local', {
+      successRedirect: '/home',
+      failureRedirect: '/login',
+      failureFlash: true
+    })
+  )
 
   .post('/log', async (req, res) => {
     try {
@@ -458,7 +507,7 @@ express()
       const emptyTable = await client.query(
         `TRUNCATE TABLE results;`
       );
-        
+
       const sqlInsert = await client.query(
         `INSERT INTO results (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
         VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity} , ${peer}, ${prosocial}, ${impact}, '${completed}', '${role}', '${expires}')
@@ -488,7 +537,23 @@ express()
 
   })
 
-  .listen(PORT, () => console.log('Listening on PORT:' + PORT));
+  .listen(PORT, () => {
+    console.log('Listening on PORT:' + PORT)});
+
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/home');
+    }
+    next();
+  }
+  
+  function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+  
+    res.redirect('/login');
+  }
 
 
 
