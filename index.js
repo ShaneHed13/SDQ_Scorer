@@ -7,6 +7,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 
+
 const initializePassport = require('./passportConfig');
 
 initializePassport(passport);
@@ -267,12 +268,15 @@ express()
 
     try {
       const client = await pool.connect();
-      const sdqPage = await client.query(
+      const testQuestions = await client.query(
+
         `SELECT * FROM sdqTests`
       );
 
       const locals = {
-        'sdqPage': (sdqPage) ? sdqPage.rows : null,
+
+        'testQuestions': (testQuestions) ? testQuestions.rows : null,
+
       };
 
       res.render('pages/sdqPage.ejs', locals);
@@ -323,6 +327,7 @@ express()
       client.release();
 
     }
+    
     catch (err) {
       console.error(err);
       res.send("Error: " + err);
