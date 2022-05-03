@@ -43,9 +43,8 @@
           
         console.log(selectedIS);
         
-          document.querySelectorAll(".pIS, .tIS, .sIS").forEach(el => {
-             
-              el.style.display = selectedIS == "no" ? 'none' : 'none';
+          document.querySelectorAll(".IS, .pIS, .tIS, .sIS").forEach(el => {
+            el.style.display = selectedIS == "no" ? 'none' : 'inline-block';
           });
         
           document.querySelectorAll(".pIS").forEach(el => {
@@ -112,7 +111,7 @@
     
     <br><br>
     
-  <table>
+  <table class ="IS" style="display:none;">
     <tr>
       <th>Question</th>
       <th>Not At All</th>
