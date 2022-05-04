@@ -10,131 +10,105 @@
 
   <body>
     <a href="/home">Return to Homepage</a>
-    <h1>Current Test Results</h1>
-    
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Birthdate</th>
-            <th>Total</th>
-            <th>Emotional Problems</th>
-            <th>Conduct Problems</th>
-            <th>Hyperactivity Problems</th>
-            <th>Peer Problems</th>
-            <th>Prosocial Behavior</th>
-            <th>Impact Score</th>
-            <th>Expiration Date</th>
-            <th>Completed By</th>
-            <th>Role</th>
-        </tr>
         
     <% results.forEach(function(r) { %>
-        <tr>
-            <td><%= r.id %></td>
-            <td id="child"><%= r.child %></td>
-            <td id="dob"><%= r.birthdate.toDateString() %></td>
-
-            <td id="total">
-              <% if (r.total >= 19) {
-                  totalCat = "Very high (" + r.total + ")";
+      
+    <p>Child Name:&nbsp;<%= r.child %></p> 
+    <p>DOB:&nbsp;<%= r.birthdate.toLocaleDateString() %></p>
+    <p>Completed by: <%=r.completedby %>(<%=r.role %>) </p>
+    <p>Completion Date: <%=r.expires.toLocaleDateString() %></p>
+      <ul>
+        <li>Total Score:</li>
+            <ul>
+                <% if (r.total >= 19) {
+                  totalCat = "Very high";
                 } else if (r.total >= 16) {
-                  totalCat = "High (" + r.total + ")";
+                  totalCat = "High";
                 } else if (r.total >= 12) {
-                  totalCat = "Slightly raised (" + r.total + ")";
+                  totalCat = "Slightly raised";
                 } else {
-                  totalCat = "Close to average (" + r.total + ")";
+                  totalCat = "Close to average";
                 } %>
-              <%= totalCat %>
-            </td>
+                <li><%= r.total %>: <%= totalCat %></li>
+            </ul>
 
-            <td id="emotional">
-              <% if (r.emotional >= 6) {
-                    emotionalCat = "Very high (" + r.emotional + ")";
-                } else if (r.emotional == 5) {
-                    emotionalCat = "High (" + r.emotional + ")";
-                } else if (r.emotional == 4) {
-                    emotionalCat = "Slightly raised (" + r.emotional + ")";
+        <li>Conduct Problems:</li>
+            <ul>
+                <% if (r.conduct >= 5) {
+                  conductCat = "Very high";
+                } else if (r.conduct >= 4) {
+                  conductCat = "High";
+                } else if (r.conduct >= 3) {
+                  conductCat = "Slightly raised";
                 } else {
-                    emotionalCat = "Close to average (" + r.emotional + ")";
+                  conductCat = "Close to average";
                 } %>
-              <%= emotionalCat %>
-            </td>
+                <li><%= r.conduct %>: <%= conductCat %></li>
+            </ul>
 
-            <td id="conduct">
-              <% if (r.conduct >= 5) {
-                  conductCat = "Very high (" + r.conduct + ")";
-                } else if (r.conduct == 4) {
-                  conductCat = "High (" + r.conduct + ")";
-                } else if (r.conduct == 3) {
-                  conductCat = "Slightly raised (" + r.conduct + ")";
+        <li>Emotional Problems:</li>
+            <ul>
+                <% if (r.emotional >= 6) {
+                  emotionalCat = "Very high";
+                } else if (r.emotional >= 5) {
+                  emotionalCat = "High";
+                } else if (r.emotional >= 4) {
+                  emotionalCat = "Slightly raised";
                 } else {
-                  conductCat = "Close to average (" + r.conduct + ")";
+                  emotionalCat = "Close to average";
                 } %>
-              <%= conductCat %>
-            </td>
+                <li><%= r.emotional %>: <%= emotionalCat %></li>
+            </ul>
 
-            <td id="hyperactivity">
-              <% if (r.hyperactivity >= 9) {
-                  hyperCat = "Very high (" + r.hyperactivity + ")";
-                } else if (r.hyperactivity == 8) {
-                  hyperCat = "High (" + r.hyperactivity + ")";
+        <li>Hyperactivity Problems:</li>
+            <ul>
+                <% if (r.hyperactivity >= 9) {
+                  hyperactivityCat = "Very high";
+                } else if (r.hyeractivity >= 8) {
+                  hyperactivityCat = "High";
                 } else if (r.hyperactivity >= 6) {
-                  hyperCat = "Slightly raised (" + r.hyperactivity + ")";
+                  hyperactivityCat = "Slightly raised";
                 } else {
-                  hyperCat = "Close to average (" + r.hyperactivity + ")";
+                  hyperactivityCat = "Close to average";
                 } %>
-              <%= hyperCat %>
-            </td>
+                <li><%= r.hyperactivity %>: <%= hyperactivityCat %></li>
+            </ul>
 
-            <td id="peer">
-              <% if (r.peer >= 6) {
-                  peerCat = "Very high (" + r.peer + ")";
-                } else if (r.peer == 5) {
-                  peerCat = "High (" + r.peer + ")";
+        <li>Peer Problems:</li>
+            <ul>
+                <% if (r.peer >= 6) {
+                  peerCat = "Very high";
+                } else if (r.peer >= 5) {
+                  peerCat = "High";
                 } else if (r.peer >= 3) {
-                  peerCat = "Slightly raised (" + r.peer + ")";
+                  peerCat = "Slightly raised";
                 } else {
-                  peerCat = "Close to average (" + r.peer + ")";
+                  peerCat = "Close to average";
                 } %>
-              <%= peerCat %>
-            </td>
+                <li><%= r.peer %>: <%= peerCat %></li>
+            </ul>
 
-            <td id="prosocial">
-              <% if (r.prosocial >= 6) {
-                  prosocialCat = "Close to average (" + r.prosocial + ")";
-                } else if (r.prosocial == 5) {
-                  prosocialCat = "Slightly lowered (" + r.prosocial + ")";
-                } else if (r.prosocial == 4) {
-                  prosocialCat = "Low (" + r.prosocial + ")";
+        <li>Pro-Social Behavior:</li>
+            <ul>
+                <% if (r.prosocial >= 6) {
+                  prosocialCat = "Close to Average";
+                } else if (r.prosocial >= 5) {
+                  prosocialCat = "Slightly Lowered";
+                } else if (r.prosocial >= 4) {
+                  prosocialCat = "Low";
                 } else {
-                  prosocialCat = "Very low (" + r.prosocial + ")";
+                  prosocialCat = "Very Low";
                 } %>
-              <%= prosocialCat %>
-            </td>
+                <li><%= r.prosocial %>: <%= prosocialCat %></li>
+            </ul>
+        </ul>
 
-            <td id="impact">
-              <% if (r.impact >= 3) {
-                  impactCat = "Very high (" + r.impact + ")";
-                } else if (r.impact == 2) {
-                  impactCat = "High (" + r.impact + ")";
-                } else if (r.impact == 1) {
-                  impactCat = "Slightly raised (" + r.impact + ")";
-                } else {
-                  impactCat = "Close to average (" + r.impact + ")";
-                } %>
-              <%= impactCat %>
-            </td>
-
-            <td id="expires"><%= r.expires.toDateString() %></td>
-            <td id="completedby"><%= r.completedby %></td>
-            <td id="role"><%= r.role %></td>
-        </tr>
     <% }); %>   
         
-    </table>
     <br>
-    <button type="submit" onclick="logTask()">Submit</button>
+    <button type="submit" onclick="window.print();return false;">Print For Records</button>
+    <button type="submit" onclick="logTask()">Return to HomePage</button>
+    <button type="submit" onclick="logTask()">Submit to Database</button>
 
     <script>
       const logTask = async function () {
