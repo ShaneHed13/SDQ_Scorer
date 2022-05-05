@@ -13,101 +13,199 @@
         
     <% results.forEach(function(r) { %>
       
-    <p>Child Name:&nbsp;<%= r.child %></p> 
-    <p>DOB:&nbsp;<%= r.birthdate.toLocaleDateString() %></p>
-    <p>Completed by: <%=r.completedby %>(<%=r.role %>) </p>
-    <p>Completion Date: <%=r.expires.toLocaleDateString() %></p>
+    <p>Child Name:&nbsp;<span id="child"><%= r.child %></span></p> 
+    <p>DOB:&nbsp;<span id="dob"><%= r.birthdate.toLocaleDateString() %></span></p>
+    <p>Completed by: <span id="completedby"><%= r.completedby %></span> (<span id="role"><%= r.role %></span>)</p>
+    <p>Completion Date: <span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
       <ul>
         <li>Total Score:</li>
             <ul>
-                <% if (r.total >= 19) {
-                  totalCat = "Very high";
-                } else if (r.total >= 16) {
-                  totalCat = "High";
-                } else if (r.total >= 12) {
-                  totalCat = "Slightly raised";
-                } else {
-                  totalCat = "Close to average";
-                } %>
-                <li><%= r.total %>: <%= totalCat %></li>
+                <% if (r.role == "Parent" && r.total >= 20) {
+                    totalCat = "Very High";
+                  } else if (r.role == "Parent" && r.total >= 17) {
+                    totalCat = "High";
+                  } else if (r.role == "Parent" && r.total >= 14) {
+                    totalCat = "Slightly raised";
+                  } else if (r.role == "Parent") {
+                    totalCat = "Close to average";
+                  } else if (r.role == "Teacher" && r.total >= 19) {
+                    totalCat = "Very high";
+                  } else if (r.role == "Teacher" && r.total >= 16) {
+                    totalCat = "High";
+                  } else if (r.role == "Teacher" && r.total >= 12) {
+                    totalCat = "Slightly raised";
+                  } else if (r.role == "Teacher") {
+                    totalCat = "Close to average";
+                  } else if (r.role == "Self" && r.total >=20) {
+                    totalCat = "Very High";
+                  } else if (r.role == "Self" && r.total >= 18) {
+                    totalCat = "High";
+                  } else if (r.role == "Self" && r.total >= 15) {
+                    totalCat = "Slightly raised";
+                  } else if (r.role == "Self") {
+                    totalCat = "Close to average";
+                  } %>
+                <li><span id="total"><%= r.total %></span>: <%= totalCat %></li>
             </ul>
 
         <li>Conduct Problems:</li>
             <ul>
-                <% if (r.conduct >= 5) {
-                  conductCat = "Very high";
-                } else if (r.conduct >= 4) {
-                  conductCat = "High";
-                } else if (r.conduct >= 3) {
-                  conductCat = "Slightly raised";
-                } else {
-                  conductCat = "Close to average";
-                } %>
-                <li><%= r.conduct %>: <%= conductCat %></li>
+                <% if (r.role == "Parent" && r.conduct >= 6) {
+                    conductCat = "Very high";
+                  } else if (r.role == "Parent" && r.conduct >= 4) {
+                    conductCat = "High";
+                  } else if (r.role == "Parent" && r.conduct == 3) {
+                    conductCat = "Slightly raised";
+                  } else if (r.role == "Parent") {
+                    conductCat = "Close to average";
+                  } else if (r.role == "Teacher" && r.conduct >= 5) {
+                    conductCat = "Very High";
+                  } else if (r.role == "Teacher" && r.conduct == 4) {
+                    conductCat = "High";
+                  } else if (r.role == "Teacher" && r.conduct == 3) {
+                    conductCat = "Slightly raised";
+                  } else if (r.role == "Teacher") {
+                    conductCat = "Close to average";
+                  } else if (r.role == "Self" && r.conduct >=6) {
+                    conductCat = "Very High";
+                  } else if (r.role == "Self" && r.conduct == 5) {
+                    conductCat = "High";
+                  } else if (r.role == "Self" && r.conduct == 4) {
+                    conductCat = "Slightly raised";
+                  } else if (r.role == "Self") {
+                    conductCat = "Close to average";
+                  } %>
+                <li><span id="conduct"><%= r.conduct %></span>: <%= conductCat %></li>
             </ul>
 
         <li>Emotional Problems:</li>
             <ul>
-                <% if (r.emotional >= 6) {
-                  emotionalCat = "Very high";
-                } else if (r.emotional >= 5) {
-                  emotionalCat = "High";
-                } else if (r.emotional >= 4) {
-                  emotionalCat = "Slightly raised";
-                } else {
-                  emotionalCat = "Close to average";
-                } %>
-                <li><%= r.emotional %>: <%= emotionalCat %></li>
+                <% if (r.role == "Teacher" && r.emotional >= 6) {
+                    emotionalCat = "Very high";
+                  } else if (r.role == "Teacher" && r.emotional == 5) {
+                    emotionalCat = "High";
+                  } else if (r.role == "Teacher" && r.emotional == 4) {
+                    emotionalCat = "Slightly raised";
+                  } else if (r.role == "Teacher") {
+                    emotionalCat = "Close to average";
+                  } else if (r.role == "Parent" && r.emotional >= 7) {
+                    emotionalCat = "Very high";
+                  } else if (r.role == "Parent" && r.emotional >= 5) {
+                    emotionalCat = "High";
+                  } else if (r.role == "Parent" && r.emotional == 4) {
+                    emotionalCat = "Slightly raised";
+                  } else if (r.role == "Parent") {
+                    emotionalCat = "Close to average";
+                  } else if (r.role == "Self" && r.emotional >= 7) {
+                    emotionalCat = "Very high";
+                  } else if (r.role == "Self" && r.emotional == 6) {
+                    emotionalCat = "High";
+                  } else if (r.role == "Self" && r.emotional == 5) {
+                    emotionalCat = "Slightly raised";
+                  } else if (r.role == "Self") {
+                    emotionalCat = "Close to average";
+                  } %>
+                <li><span id="emotional"><%= r.emotional %></span>: <%= emotionalCat %></li>
             </ul>
 
         <li>Hyperactivity Problems:</li>
             <ul>
-                <% if (r.hyperactivity >= 9) {
-                  hyperactivityCat = "Very high";
-                } else if (r.hyeractivity >= 8) {
-                  hyperactivityCat = "High";
-                } else if (r.hyperactivity >= 6) {
-                  hyperactivityCat = "Slightly raised";
-                } else {
-                  hyperactivityCat = "Close to average";
-                } %>
-                <li><%= r.hyperactivity %>: <%= hyperactivityCat %></li>
+                <% if (r.role == "Teacher" && r.hyperactivity >= 9) {
+                    hyperactivityCat = "Very high";
+                  } else if (r.role == "Teacher" && r.hyeractivity == 8) {
+                    hyperactivityCat = "High";
+                  } else if (r.role == "Teacher" && r.hyperactivity >= 6) {
+                    hyperactivityCat = "Slightly raised";
+                  } else if (r.role == "Teacher") {
+                    hyperactivityCat = "Close to average";
+                  } else if (r.role == "Parent" && r.hyperactivity >= 9) {
+                    hyperactivityCat = "Very high";
+                  } else if (r.role == "Parent" && r.hyeractivity == 8) {
+                    hyperactivityCat = "High";
+                  } else if (r.role == "Parent" && r.hyperactivity >= 6) {
+                    hyperactivityCat = "Slightly raised";
+                  } else if (r.role == "Parent") {
+                    hyperactivityCat = "Close to average"; 
+                  } else if (r.role == "Self" && r.hyperactivity >= 8) {
+                    hyperactivityCat = "Very high";
+                  } else if (r.role == "Self" && r.hyeractivity == 7) {
+                    hyperactivityCat = "High";
+                  } else if (r.role == "Self" && r.hyperactivity == 6) {
+                    hyperactivityCat = "Slightly raised";
+                  } else if (r.role == "Self") {
+                    hyperactivityCat = "Close to average"; 
+                  } %>
+                <li><span id="hyperactivity"><%= r.hyperactivity %></span>: <%= hyperactivityCat %></li>
             </ul>
 
         <li>Peer Problems:</li>
             <ul>
-                <% if (r.peer >= 6) {
-                  peerCat = "Very high";
-                } else if (r.peer >= 5) {
-                  peerCat = "High";
-                } else if (r.peer >= 3) {
-                  peerCat = "Slightly raised";
-                } else {
-                  peerCat = "Close to average";
-                } %>
-                <li><%= r.peer %>: <%= peerCat %></li>
+                <% if (r.role == "Teacher" && r.peer >= 6) {
+                    peerCat = "Very high";
+                  } else if (r.role == "Teacher" && r.peer == 5) {
+                    peerCat = "High";
+                  } else if (r.role == "Teacher" && r.peer >= 3) {
+                    peerCat = "Slightly raised";
+                  } else if (r.role == "Teacher") {
+                    peerCat = "Close to average";
+                  } else if (r.role == "Parent" && r.peer >= 5) {
+                    peerCat = "Very high";
+                  } else if (r.role == "Parent" && r.peer == 4) {
+                    peerCat = "High";
+                  } else if (r.role == "Parent" && r.peer == 3) {
+                    peerCat = "Slightly raised";
+                  } else if (r.role == "Parent") {
+                    peerCat = "Close to average"; 
+                  } else if (r.role == "Self" && r.peer >= 5) {
+                    peerCat = "Very high";
+                  } else if (r.role == "Self" && r.peer == 4) {
+                    peerCat = "High";
+                  } else if (r.role == "Self" && r.peer == 3) {
+                    peerCat = "Slightly raised";
+                  } else if (r.role == "Self") {
+                    peerCat = "Close to average";
+                  } %>
+                <li><span id="peer"><%= r.peer %></span>: <%= peerCat %></li>
             </ul>
 
         <li>Pro-Social Behavior:</li>
             <ul>
-                <% if (r.prosocial >= 6) {
-                  prosocialCat = "Close to Average";
-                } else if (r.prosocial >= 5) {
-                  prosocialCat = "Slightly Lowered";
-                } else if (r.prosocial >= 4) {
-                  prosocialCat = "Low";
-                } else {
-                  prosocialCat = "Very Low";
-                } %>
-                <li><%= r.prosocial %>: <%= prosocialCat %></li>
+                <% if (r.role == "Teacher" && r.prosocial >= 6) {
+                    prosocialCat = "Close to Average";
+                  } else if (r.role == "Teacher" && r.prosocial == 5) {
+                    prosocialCat = "Slightly Lowered";
+                  } else if (r.role == "Teacher" && r.prosocial == 4) {
+                    prosocialCat = "Low";
+                  } else if (r.role == "Teacher") {
+                    prosocialCat = "Very Low";
+                  } else if (r.role == "Parent" && r.prosocial >= 8) {
+                    prosocialCat = "Close to Average";
+                  } else if (r.role == "Parent" && r.prosocial == 7) {
+                    prosocialCat = "Slightly Lowered";
+                  } else if (r.role == "Parent" && r.prosocial == 6) {
+                    prosocialCat = "Low";
+                  } else if (r.role == "Parent") {
+                    prosocialCat = "Very Low";
+                  } else if (r.role == "Self" && r.prosocial >= 7) {
+                    prosocialCat = "Close to Average";
+                  } else if (r.role == "Self" && r.prosocial == 6) {
+                    prosocialCat = "Slightly Lowered";
+                  } else if (r.role == "Self" && r.prosocial == 5) {
+                    prosocialCat = "Low";
+                  } else if (r.role == "Self") {
+                    prosocialCat = "Very Low";
+                  } %>
+                <li><span id="prosocial"><%= r.prosocial %></span>: <%= prosocialCat %></li>
             </ul>
         </ul>
 
     <% }); %>   
+
+    <p id="redirect" style="display: none;"><strong>Your test results have been submitted.  Redirecting to homepage...</strong></p>
         
     <br>
-    <button type="submit" onclick="window.print();return false;">Print For Records</button>
-    <button type="submit" onclick="logTask()">Return to HomePage</button>
+    <button type="submit" onclick="window.print()">Print For Records</button>
+    <button><a href="/">Return to HomePage</a></button>
     <button type="submit" onclick="logTask()">Submit to Database</button>
 
     <script>
@@ -122,13 +220,15 @@
         let haScore = document.getElementById('hyperactivity').innerHTML;
         let ppScore = document.getElementById('peer').innerHTML;
         let prScore = document.getElementById('prosocial').innerHTML;
-        let imScore = document.getElementById('impact').innerHTML;
+        //let imScore = document.getElementById('impact').innerHTML;
         let compBy = document.getElementById('completedby').innerHTML;
         let role = document.getElementById('role').innerHTML;
         let expires = document.getElementById('expires').innerHTML;
 
-        // Test for correct values
-        //console.log(tdScore + ", " + expires);
+        let redirect = document.getElementById('redirect');
+
+        // Just testing for correct values
+        console.log(tdScore + ", " + expires + ", " + role);
 
         // Posts test results to the db
         const response = await fetch('/log', {
@@ -147,7 +247,7 @@
             hyperactivity: haScore,
             peer: ppScore,
             prosocial: prScore,
-            impact: imScore,
+            impact: 10,
             completed: compBy,
             role: role,
             expires: expires
@@ -157,6 +257,13 @@
 
         const result = await response.json();
         console.log(result);
+
+        redirect.style.display = "block";
+
+        let tID = setTimeout(function () {
+          window.location.href = "/";
+          window.clearTimeout(tID);
+        }, 3000);
 
       }; 
     </script>

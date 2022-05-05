@@ -248,7 +248,15 @@
       let child = document.getElementById('name').value;
       let birthDate = document.getElementById('dob').value;
       let compBy = document.getElementById('completed').value;
-      /* let role = ""; */
+      var role = "";
+
+      if (document.getElementById('teacher').checked == true) {
+          var role = "Teacher";
+        } else if (document.getElementById('parent').checked == true) {
+          var role = "Parent";
+        } else if (document.getElementById('self').checked == true) {
+          var role = "Self";
+        }
 
       if(aArray[0] == undefined || aArray[1] == undefined || aArray[2] == undefined || aArray[3] == undefined || aArray[4] == undefined || aArray[5] == undefined || aArray[6] == undefined || aArray[7] == undefined || aArray[8] == undefined || aArray[9] == undefined || aArray[10] == undefined ||
          aArray[11] == undefined || aArray[12] == undefined || aArray[13] == undefined || aArray[14] == undefined || aArray[15] == undefined || aArray[16] == undefined ||aArray[17] == undefined || aArray[18] == undefined || aArray[19] == undefined || aArray[20] == undefined ||
@@ -264,6 +272,8 @@
         alert("Please enter the name of the person completing the form.");
       } else if(expires== "") {
         alert("Please enter a date of completion.");
+      } else if (role == "") {
+        alert('Please select who is administering this test.');
       } else {
 
         alert("Test Completion Successful");
@@ -303,18 +313,10 @@
         let haScore = q2 + q10 + q15 + q21 + q25;
         let ppScore = q6 + q11 + q14 + q19 + q23;
         let prScore = q1 + q4 + q9 + q17 + q20;
-        let tdScore = epScore + cpScore + haScore + ppScore + prScore;
-  
-        /*
-        if (document.getElementById('teacher').checked == true) {
-          let role = "Teacher";
-        }
+        let tdScore = epScore + cpScore + haScore + ppScore;
 
-        if (document.getElementById('parent').checked == true) {
-          let role = "Parent";
-        }  */
 
-        //alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate);
+        alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate + "role: " + role);
 
         // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {
@@ -335,7 +337,7 @@
             prosocial: prScore,
             impact: 10,
             completed: compBy,
-            role: "Teacher",
+            role: role,
             expires: expires
           })
 
