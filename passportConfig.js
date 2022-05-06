@@ -30,7 +30,6 @@ function initialize(passport) {
             }
 
             if (isMatch) {
-              console.log("Logging in...");
               return done(null, user);
             } else {
               return done(null, false, { message: 'Email or password is invalid.' });

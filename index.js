@@ -277,7 +277,7 @@ express()
 
         `SELECT * FROM impactSupplement`
       );
-        
+
       const locals = {
 
         'testQuestions': (testQuestions) ? testQuestions.rows : null,
@@ -368,11 +368,11 @@ express()
   })
 
   .get('/login', checkAuthenticated, async (req, res) => {
-        res.render('pages/login');
+    res.render('pages/login');
   })
 
   .get('/home', checkNotAuthenticated, async (req, res) => {
-      res.render('pages/home', { user: req.user.name });
+    res.render('pages/home', { user: req.user.name });
   })
 
   .get('/logout', (req, res) => {
@@ -385,13 +385,6 @@ express()
     let { name, email, password, password2 } = req.body;
 
     let errors = []; // use for form validation
-
-    console.log({
-      name,
-      email,
-      password,
-      password2
-    });
 
     if (!name || !email || !password || !password2) {
       errors.push({ message: "All fields are required" });
@@ -409,22 +402,16 @@ express()
       res.render('pages/register', { errors, name, email, password, password2 });
     } else {
       hashedPassword = await bcrypt.hash(password, 10);
-      console.log(hashedPassword);
       // Validation passed
       pool.query(
         `SELECT * FROM users
           WHERE email = $1`,
         [email],
         (err, results) => {
-          if (err) {
-            console.log(err);
-          }
-          console.log(results.rows);
 
           if (results.rows.length > 0) {
-            return res.render("register", {
-              message: "Email already registered"
-            });
+            errors.push({ message: "Email already registered"})
+            res.render('pages/register', { errors, name, email, password, password2 });
           } else {
             pool.query(
               `INSERT INTO users (name, email, password)
@@ -435,7 +422,6 @@ express()
                 if (err) {
                   throw err;
                 }
-                console.log(results.rows);
                 req.flash("success_msg", "You are now registered. Please log in");
                 res.redirect("/login");
               }
@@ -549,22 +535,23 @@ express()
   })
 
   .listen(PORT, () => {
-    console.log('Listening on PORT:' + PORT)});
+    console.log('Listening on PORT:' + PORT)
+  });
 
-  function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return res.redirect('/home');
-    }
-    next();
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/home');
   }
-  
-  function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next()
-    }
-  
-    res.redirect('/login');
+  next();
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
   }
+
+  res.redirect('/login');
+}
 
 
 
