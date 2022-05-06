@@ -164,7 +164,7 @@
 
   <br>
 
-  <button type="submit" onclick="logTask()">Submit</button>
+  <button type="submit" onclick="logTask()">Submit</button>&nbsp;&nbsp;&nbsp;<label for="validation" id="validation" style="font-weight: bold;"></label>
     
 <script>
     let currentTaskID = null;
@@ -175,7 +175,21 @@
       let count = 0;
       let qArray = [];
       let selectedValue = "";
+      let validation = document.getElementById("validation");
 
+      //Getting values for date reference
+      let currentDate = new Date();
+      let day = currentDate.getDate();
+      let month = currentDate.getMonth()+1; 
+      let year = currentDate.getFullYear();
+
+      if (day < 10) {
+        day = '0' + day;
+      } else if (month < 10 ) {
+        month = '0' + month;
+      }
+
+      currentDate = year + "/" + month + "/" + day;
       while (count < 26) {
 
         //getting reference to all radio buttons with the value of count
@@ -246,7 +260,8 @@
       // Getting values from text and date boxes
       let expires = document.getElementById('date').value;
       let child = document.getElementById('name').value;
-      let birthDate = document.getElementById('dob').value;
+      let birthDate = new Date();
+      birthDate = document.getElementById('dob').value;
       let compBy = document.getElementById('completed').value;
       var role = "";
 
@@ -257,23 +272,23 @@
         } else if (document.getElementById('self').checked == true) {
           var role = "Self";
         }
-
+     
       if(aArray[0] == undefined || aArray[1] == undefined || aArray[2] == undefined || aArray[3] == undefined || aArray[4] == undefined || aArray[5] == undefined || aArray[6] == undefined || aArray[7] == undefined || aArray[8] == undefined || aArray[9] == undefined || aArray[10] == undefined ||
          aArray[11] == undefined || aArray[12] == undefined || aArray[13] == undefined || aArray[14] == undefined || aArray[15] == undefined || aArray[16] == undefined ||aArray[17] == undefined || aArray[18] == undefined || aArray[19] == undefined || aArray[20] == undefined ||
          aArray[21] == undefined || aArray[22] == undefined || aArray[23] == undefined || aArray[24] == undefined) {
         
-        alert('Please provide and answer for each question.');
+        validation.innerHTML = "Please select a response for each question.";
       
       } else if(child == "") {
-        alert("Please enter the child's name.");
-      } else if(birthDate == "") {
-        alert("Please enter the child's birthday.");
+        validation.innerHTML="Please enter a child's name.";
+      } else if(birthDate == "" || Date.parse(birthDate) > Date.parse(currentDate)) {
+        validation.innerHTML="Please enter a valid birth date.";
       } else if(compBy==""){
-        alert("Please enter the name of the person completing the form.");
-      } else if(expires== "") {
-        alert("Please enter a date of completion.");
+        validation.innerHTML="Please enter the name of the individual completing the assessment.";
+      } else if(expires== "" || Date.parse(expires) > Date.parse(currentDate)) {
+        validation.innerHTML="Please enter a valid completed date.";
       } else if (role == "") {
-        alert('Please select who is administering this test.');
+        validation.innerHTML="Please select a role for the individual completing the test.";
       } else {
 
         alert("Test Completion Successful");
