@@ -282,7 +282,7 @@
       } else if(child == "") {
         validation.innerHTML="Please enter a child's name.";
       } else if(birthDate == "" || Date.parse(birthDate) > Date.parse(currentDate)) {
-        validation.innerHTML="Please enter a valid birth date.";
+        validation.innerHTML="Please enter a valid birthday for the child.";
       } else if(compBy==""){
         validation.innerHTML="Please enter the name of the individual completing the assessment.";
       } else if(expires== "" || Date.parse(expires) > Date.parse(currentDate)) {
