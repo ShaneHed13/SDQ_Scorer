@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
+  <head class="noprint">
+    <meta class="noprint" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title class="noprint">SDQ Score and Store Results</title>
+      
+        <style>
+            ul {
+                list-style-type: none;
+            }
+            @media print {
+               .noprint {
+                  visibility: hidden;
+               }
+            }
+        </style>
+      
   </head>
 
   <body>
-    <a href="/home">Return to Homepage</a>
+    <a class="noprint" href="/home">Return to Homepage</a>
         
     <% results.forEach(function(r) { %>
       
@@ -45,7 +57,7 @@
                   } else if (r.role == "Self") {
                     totalCat = "Close to average";
                   } %>
-                <li><span id="total"><%= r.total %></span>: <%= totalCat %></li>
+                <li><span id="total"><%= r.total %></span>&rarr; <%= totalCat %></li>
             </ul>
 
         <li>Conduct Problems:</li>
@@ -75,7 +87,7 @@
                   } else if (r.role == "Self") {
                     conductCat = "Close to average";
                   } %>
-                <li><span id="conduct"><%= r.conduct %></span>: <%= conductCat %></li>
+                <li><span id="conduct"><%= r.conduct %></span>&rarr; <%= conductCat %></li>
             </ul>
 
         <li>Emotional Problems:</li>
@@ -105,7 +117,7 @@
                   } else if (r.role == "Self") {
                     emotionalCat = "Close to average";
                   } %>
-                <li><span id="emotional"><%= r.emotional %></span>: <%= emotionalCat %></li>
+                <li><span id="emotional"><%= r.emotional %></span>&rarr; <%= emotionalCat %></li>
             </ul>
 
         <li>Hyperactivity Problems:</li>
@@ -135,7 +147,7 @@
                   } else if (r.role == "Self") {
                     hyperactivityCat = "Close to average"; 
                   } %>
-                <li><span id="hyperactivity"><%= r.hyperactivity %></span>: <%= hyperactivityCat %></li>
+                <li><span id="hyperactivity"><%= r.hyperactivity %></span>&rarr; <%= hyperactivityCat %></li>
             </ul>
 
         <li>Peer Problems:</li>
@@ -165,7 +177,7 @@
                   } else if (r.role == "Self") {
                     peerCat = "Close to average";
                   } %>
-                <li><span id="peer"><%= r.peer %></span>: <%= peerCat %></li>
+                <li><span id="peer"><%= r.peer %></span>&rarr; <%= peerCat %></li>
             </ul>
 
         <li>Pro-Social Behavior:</li>
@@ -195,8 +207,13 @@
                   } else if (r.role == "Self") {
                     prosocialCat = "Very Low";
                   } %>
-                <li><span id="prosocial"><%= r.prosocial %></span>: <%= prosocialCat %></li>
-            </ul>
+                <li><span id="prosocial"><%= r.prosocial %></span>&rarr; <%= prosocialCat %></li>
+          </ul>
+                <br><br>
+                <li>Externalizing Behaviors</li>
+                    <ul><li><%= r.conduct + r.hyperactivity %>/20</li></ul>
+                <li>Internalizing Behaviors</li>
+                    <ul><li><%= r.emotional + r.peer %>/20</li></ul>
         </ul>
 
     <% }); %>   
@@ -204,9 +221,9 @@
     <p id="redirect" style="display: none;"><strong>Your test results have been submitted.  Redirecting to homepage...</strong></p>
         
     <br>
-    <button type="submit" onclick="window.print()">Print For Records</button>
-    <button><a href="/">Return to HomePage</a></button>
-    <button type="submit" onclick="logTask()">Submit to Database</button>
+    <button type="submit" onclick="window.print()" class="noprint">Print For Records</button>
+    <button class="noprint"><a href="/">Return to HomePage</a></button>
+    <button class="noprint" type="submit" onclick="logTask()">Submit to Database</button>
 
     <script>
       const logTask = async function () {
