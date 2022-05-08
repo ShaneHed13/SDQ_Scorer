@@ -27,7 +27,7 @@
       
     <p>Child Name:&nbsp;<span id="child"><%= r.child %></span></p> 
     <p>DOB:&nbsp;<span id="dob"><%= r.birthdate.toLocaleDateString() %></span></p>
-    <p>Completed by: <span id="completedby"><%= user %></span> (<span id="role"><%= r.role %></span>)</p>
+    <p>Completed by: <span id="completedby"><%= r.completedby %></span> (<span id="role"><%= r.role %></span>)</p>
     <p hidden>Email: <span id="email"><%= email %></span>
     <p>Completion Date: <span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
       <ul>
@@ -239,7 +239,8 @@
         let ppScore = document.getElementById('peer').innerHTML;
         let prScore = document.getElementById('prosocial').innerHTML;
         //let imScore = document.getElementById('impact').innerHTML;
-        let compBy = document.getElementById('email').innerHTML;
+        let compBy = document.getElementById('completedby').innerHTML;
+        let scoredBy = document.getElementById('email').innerHTML;
         let role = document.getElementById('role').innerHTML;
         let expires = document.getElementById('expires').innerHTML;
 
@@ -267,6 +268,7 @@
             prosocial: prScore,
             impact: 10,
             completed: compBy,
+            scored: scoredBy,
             role: role,
             expires: expires
           })

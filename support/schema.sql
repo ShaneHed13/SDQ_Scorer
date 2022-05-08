@@ -9,7 +9,8 @@ CREATE TABLE completedSDQ (
   peer TEXT NOT NULL,
   prosocial TEXT NOT NULL,
   impact TEXT NOT NULL,
-  completedBy TEXT NOT NULL,
+  completedby TEXT NOT NULL,
+  scoredBy TEXT NOT NULL,
   role TEXT NOT NULL,
   expires DATE NOT NULL
 );
@@ -25,7 +26,8 @@ CREATE TABLE results (
   peer INT NOT NULL,
   prosocial INT NOT NULL,
   impact INT NOT NULL,
-  completedBy TEXT NOT NULL,
+  completedby TEXT NOT NULL,
+  scoredBy TEXT NOT NULL,
   role TEXT NOT NULL,
   expires DATE NOT NULL
 );
