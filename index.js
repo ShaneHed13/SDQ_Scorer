@@ -133,11 +133,11 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ`
+        `SELECT * FROM completedSDQ WHERE completedby = '${req.user.email}'`
       );
 
       const locals = {
-        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
+        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null
       };
 
       res.render('pages/db-info.ejs', locals);
@@ -282,7 +282,8 @@ express()
 
         'testQuestions': (testQuestions) ? testQuestions.rows : null,
         'impactQuestions': (impactQuestions) ? impactQuestions.rows : null,
-
+         user: req.user.name,
+         email: req.user.email 
       };
 
       res.render('pages/sdqPage.ejs', locals);
@@ -302,7 +303,7 @@ express()
 
       const completedSDQ = await client.query(
         // Dummy SQL command to allow page load
-        `SELECT * FROM completedSDQ WHERE child = ''`
+        `SELECT * FROM completedSDQ WHERE child = '' AND completedby = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -323,7 +324,7 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}'`
+        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}' AND completedby = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -350,6 +351,8 @@ express()
 
       const locals = {
         'results': (results) ? results.rows : null,
+        user: req.user.name,
+        email: req.user.email 
       };
 
       res.render('pages/results.ejs', locals);

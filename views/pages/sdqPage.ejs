@@ -9,15 +9,16 @@
 <body>
 
   <a href="/home">Return to Homepage</a>
-  <h1>Single Page Strength and Difficulties Questionnaire</h1>
-   
+  <h1>Single Page Strength and Difficulties Questionnaire</h1> 
     
-  
   <select onchange="changeTest();">
     <option value='sdq410pt'>4-10 Parent/Teacher Single Page</option>
     <option value='sdq1117pt'>11-17 Parent/Teacher Single Page</option>
     <option value='sdq1117s'>11-17 Self Single Page</option>
   </select>
+
+  <p>Completed By: <span id="completed"><%= user %></span><span id="email"><%= email %></span> &nbsp;&nbsp;&nbsp; </p>
+  <p id="date">Date Completed: <%= new Date().toJSON().slice(0,10).replace(/-/g,'/') %> </p>
 
   <script>
       
@@ -147,11 +148,6 @@
 
   <br><br>
 
-  <label>Completed By: </label><input id="completed" type="text"> &nbsp;&nbsp;&nbsp;
-  <label>Date Completed: </label><input id="date" type="date">
-
-  <br><br>
-
   <table>
     <tr>
       <td>
@@ -258,11 +254,11 @@
       } //end while loop
 
       // Getting values from text and date boxes
-      let expires = document.getElementById('date').value;
+      let expires = new Date().toJSON().slice(0,10).replace(/-/g,'/');
       let child = document.getElementById('name').value;
       let birthDate = new Date();
       birthDate = document.getElementById('dob').value;
-      let compBy = document.getElementById('completed').value;
+      let compBy = document.getElementById('email').value;
       var role = "";
 
       if (document.getElementById('teacher').checked == true) {
@@ -283,10 +279,6 @@
         validation.innerHTML="Please enter a child's name.";
       } else if(birthDate == "" || Date.parse(birthDate) > Date.parse(currentDate)) {
         validation.innerHTML="Please enter a valid birthday for the child.";
-      } else if(compBy==""){
-        validation.innerHTML="Please enter the name of the individual completing the assessment.";
-      } else if(expires== "" || Date.parse(expires) > Date.parse(currentDate)) {
-        validation.innerHTML="Please enter a valid completed date.";
       } else if (role == "") {
         validation.innerHTML="Please select a role for the individual completing the test.";
       } else {
@@ -358,9 +350,10 @@
 
         });
 
+
         const result = await response.json();
         console.log(result);
-
+        
         window.location.href = "results";
 
       }
