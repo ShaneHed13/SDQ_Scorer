@@ -17,7 +17,7 @@
     <option value='sdq1117s'>11-17 Self Single Page</option>
   </select>
 
-  <p>Completed By: <span id="completed"><%= user %></span><span id="email"><%= email %></span> &nbsp;&nbsp;&nbsp; </p>
+  <p>Completed By: <span id="completed"><%= user %></span><span id="email" hidden><%= email %></span> &nbsp;&nbsp;&nbsp; </p>
   <p id="date">Date Completed: <%= new Date().toJSON().slice(0,10).replace(/-/g,'/') %> </p>
 
   <script>
