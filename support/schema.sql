@@ -44,14 +44,10 @@ CREATE TABLE impactSupplement (
   id SERIAL PRIMARY KEY,
   parent TEXT NOT NULL,
   teacher TEXT NOT NULL,
-<<<<<<< HEAD
-  self TEXT NOT NULL
-=======
   notAtAll INT NOT NULL,
   little INT NOT NULL,
   mediumAmt INT NOT NULL,
   great INT NOT null
->>>>>>> 3d3bec6f6ccea51a27e7e34a618444bc657bd20e
 );
 
 CREATE TABLE users (
@@ -74,6 +70,7 @@ INSERT INTO impactSupplement (parent, teacher, self) VALUES
 ('CLASSSROOM LEARNING', 'N/A', 'CLASSROOM LEARNING'),
 ('LEISURE ACTIVITIES', 'N/A', 'LEISURE ACTIVITIES'),
 ('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties put a burden on you or the class as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?');   
+
 
 INSERT INTO tests (name) VALUES
   ('SDQ 4-10 Parents/Teachers'),

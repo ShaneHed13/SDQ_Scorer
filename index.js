@@ -62,11 +62,11 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ`
+        `SELECT * FROM completedSDQ WHERE completedby = '${req.user.email}'`
       );
 
       const locals = {
-        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
+        'completedSDQ': (completedSDQ) ? completedSDQ.rows : null
       };
 
       res.render('pages/db-info.ejs', locals);
@@ -98,7 +98,8 @@ express()
 
         'testQuestions': (testQuestions) ? testQuestions.rows : null,
         'impactQuestions': (impactQuestions) ? impactQuestions.rows : null,
-
+         user: req.user.name,
+         email: req.user.email 
       };
 
       res.render('pages/sdqPage.ejs', locals);
@@ -118,7 +119,7 @@ express()
 
       const completedSDQ = await client.query(
         // Dummy SQL command to allow page load
-        `SELECT * FROM completedSDQ WHERE child = ''`
+        `SELECT * FROM completedSDQ WHERE child = '' AND completedby = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -139,7 +140,7 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}'`
+        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}' AND completedby = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -166,6 +167,8 @@ express()
 
       const locals = {
         'results': (results) ? results.rows : null,
+        user: req.user.name,
+        email: req.user.email 
       };
 
       res.render('pages/results.ejs', locals);
@@ -198,6 +201,7 @@ express()
   })
 
   .post('/register', async (req, res) => {
+    let emailRegex = /^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
     let { name, email, password, password2 } = req.body;
 
     let errors = []; // use for form validation
@@ -205,6 +209,10 @@ express()
     if (!name || !email || !password || !password2) {
       errors.push({ message: "All fields are required" });
     }
+
+    if (!email.match(emailRegex)) {
+      errors.push({ message: "A valid email is required."})
+    } 
 
     if (password.length < 7) {
       errors.push({ message: "Password must be a least 7 characters long" });
