@@ -14,96 +14,19 @@
     <a href="/logout">Logout</a>
   </div>
 
-  <br><br>
-    
-  <h3>Universal Form</h3>
+  <br>
     
   <a href="sdqPage">Complete SDQ</a> 
     
   <br><br>
-  
-  <h3>Single Sided Versions</h3>
-
-  <a href="sdq410pt">SDQ 4-10 Parent/Teacher Version</a>
-
-  <br>
-
-  <a href="sdq1117pt">SDQ 11-17 Parent/Teacher Version</a>
-    
-  <br>
-
-  <a href="sdq1117s">SDQ 11-17 Self Version</a>
-
-  <h3>Double Sided Versions</h3>
-    
-  <a href="sdq410pIS">SDQ 4-10 Parent Version w/ Impact Supplement</a>
-
-  <br>
-    
-  <a href="sdq410tIS">SDQ 4-10 Teacher Version w/ Impact Supplement</a>
-
-  <br>
-    
-  <a href="sdq1117pIS">SDQ 11-17 Parent Version w/ Impact Supplement</a>
-    
-  <br>
-    
-  <a href="sdq1117tIS">SDQ 11-17 Teacher Version w/ Impact Supplement</a>
-    
-  <br>
-
-  <a href="sdq1117sIS">SDQ 11-17 Self Version w/ Impact Supplement</a>
-    
-  <br>
-  <br>
-    
-
-  
-    
-  <br>   
-  <br>
     
   <a href="student-records">Individual Student Records</a>
     
-    
-  <br>
-    
-    
+  <br><br>
+      
   <a href="db-info">All SDQ Records</a>
 
   <script>
-    let currentTaskID = null;
-
-    const logTask = async function () {
-
-      const response = await fetch('/log', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-
-        body: JSON.stringify({
-          total: '50',
-          emotional: '10',
-          conduct: '10',
-          hyperactivity: '10',
-          peer: '10',
-          prosocial: '10',
-          impact: '10',
-          expires: "'1/1/1900'",
-
-        })
-
-      });
-
-      const result = await response.json();
-      console.log(result);
-
-      currentTaskId = id;
-
-    };
-
 
     function validateUser() {
       console.log(username.value + " " + password.value);

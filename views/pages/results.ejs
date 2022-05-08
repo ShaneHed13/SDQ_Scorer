@@ -11,6 +11,10 @@
             ul {
                 list-style-type: none;
             }
+            p {
+                
+                text-decoration: bold;
+            }
             @media print {
                .noprint {
                   visibility: hidden;
@@ -25,13 +29,19 @@
         
     <% results.forEach(function(r) { %>
       
+    <p><strong>Child Name:</strong>&nbsp;<span id="child"><%= r.child %></span></p> 
+    <p><strong>DOB:</strong>&nbsp;<span id="dob"><%= r.birthdate.toLocaleDateString() %></span></p>
+    <p><strong>Completed by:</strong>&nbsp;<span id="completedby"><%= r.completedby %></span> (<span id="role"><%= r.role %></span>)</p>
+    <p><strong>Completion Date:</strong>&nbsp;<span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
+
     <p>Child Name:&nbsp;<span id="child"><%= r.child %></span></p> 
     <p>DOB:&nbsp;<span id="dob"><%= r.birthdate.toLocaleDateString() %></span></p>
     <p>Completed by: <span id="completedby"><%= r.completedby %></span> (<span id="role"><%= r.role %></span>)</p>
     <p hidden>Email: <span id="email"><%= email %></span>
     <p>Completion Date: <span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
+
       <ul>
-        <li>Total Score:</li>
+        <li><strong>Total Score:</strong></li>
             <ul>
                 <% if (r.role == "Parent" && r.total >= 20) {
                     totalCat = "Very High";
@@ -61,7 +71,7 @@
                 <li><span id="total"><%= r.total %></span>&rarr; <%= totalCat %></li>
             </ul>
 
-        <li>Conduct Problems:</li>
+        <li><strong>Conduct Problems:</strong></li>
             <ul>
                 <% if (r.role == "Parent" && r.conduct >= 6) {
                     conductCat = "Very high";
@@ -91,7 +101,7 @@
                 <li><span id="conduct"><%= r.conduct %></span>&rarr; <%= conductCat %></li>
             </ul>
 
-        <li>Emotional Problems:</li>
+        <li><strong>Emotional Problems:</strong></li>
             <ul>
                 <% if (r.role == "Teacher" && r.emotional >= 6) {
                     emotionalCat = "Very high";
@@ -121,7 +131,7 @@
                 <li><span id="emotional"><%= r.emotional %></span>&rarr; <%= emotionalCat %></li>
             </ul>
 
-        <li>Hyperactivity Problems:</li>
+        <li><strong>Hyperactivity Problems:</strong></li>
             <ul>
                 <% if (r.role == "Teacher" && r.hyperactivity >= 9) {
                     hyperactivityCat = "Very high";
@@ -151,7 +161,7 @@
                 <li><span id="hyperactivity"><%= r.hyperactivity %></span>&rarr; <%= hyperactivityCat %></li>
             </ul>
 
-        <li>Peer Problems:</li>
+        <li><strong>Peer Problems:</strong></li>
             <ul>
                 <% if (r.role == "Teacher" && r.peer >= 6) {
                     peerCat = "Very high";
@@ -181,7 +191,7 @@
                 <li><span id="peer"><%= r.peer %></span>&rarr; <%= peerCat %></li>
             </ul>
 
-        <li>Pro-Social Behavior:</li>
+        <li><strong>Pro-Social Behavior:</strong></li>
             <ul>
                 <% if (r.role == "Teacher" && r.prosocial >= 6) {
                     prosocialCat = "Close to Average";
@@ -211,9 +221,9 @@
                 <li><span id="prosocial"><%= r.prosocial %></span>&rarr; <%= prosocialCat %></li>
           </ul>
                 <br><br>
-                <li>Externalizing Behaviors</li>
+                <li><strong>Externalizing Behaviors</strong></li>
                     <ul><li><%= r.conduct + r.hyperactivity %>/20</li></ul>
-                <li>Internalizing Behaviors</li>
+                <li><strong>Internalizing Behaviors</strong></li>
                     <ul><li><%= r.emotional + r.peer %>/20</li></ul>
         </ul>
 
@@ -223,8 +233,8 @@
         
     <br>
     <button type="submit" onclick="window.print()" class="noprint">Print For Records</button>
-    <button class="noprint"><a href="/">Return to HomePage</a></button>
     <button class="noprint" type="submit" onclick="logTask()">Submit to Database</button>
+    <input class="noprint" type=button onClick="location.href='/home'" value='Return to Homepage'>
 
     <script>
       const logTask = async function () {
