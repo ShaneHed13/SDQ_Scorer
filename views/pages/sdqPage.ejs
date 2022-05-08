@@ -254,7 +254,7 @@
       } //end while loop
 
       // Getting values from text and date boxes
-      let expires = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+      let expires = new Date().toLocaleDateString();
       let child = document.getElementById('name').value;
       let birthDate = new Date();
       birthDate = document.getElementById('dob').value;
