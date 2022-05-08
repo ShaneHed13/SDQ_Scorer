@@ -385,7 +385,7 @@ express()
   })
 
   .post('/register', async (req, res) => {
-    let emailRegex = /^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(.[a-z]+)?$/;
+    let emailRegex = /^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
     let { name, email, password, password2 } = req.body;
 
     let errors = []; // use for form validation
