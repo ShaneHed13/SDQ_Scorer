@@ -385,6 +385,7 @@ express()
   })
 
   .post('/register', async (req, res) => {
+    let emailRegex = /^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9-]+).([a-z]+)(.[a-z]+)?$/;
     let { name, email, password, password2 } = req.body;
 
     let errors = []; // use for form validation
@@ -392,6 +393,10 @@ express()
     if (!name || !email || !password || !password2) {
       errors.push({ message: "All fields are required" });
     }
+
+    if (!email.match(emailRegex)) {
+      errors.push({ message: "A valid email is required."})
+    } 
 
     if (password.length < 7) {
       errors.push({ message: "Password must be a least 7 characters long" });
