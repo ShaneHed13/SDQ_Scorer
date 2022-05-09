@@ -22,3 +22,10 @@ a:hover {
 a:active {
   color: red
 }
+
+@media screen and (max-width: 850px) {
+  img {
+    width: 75%;
+  }
+  
+}
