@@ -21,6 +21,8 @@
       <th>Prosocial Behavior</th>
       <th>Impact Score</th>
       <th>Expiration Date</th>
+      <th>Completed By</th>
+      <th>Role</th>
     </tr>
 
     <% completedSDQ.forEach(function(r) { %>
@@ -51,6 +53,12 @@
         </td>
         <td>
           <%= r.expires.toDateString() %>
+        </td>
+        <td>
+          <%= r.completedby %>
+        </td>
+        <td>
+          <%= r.role %>
         </td>
       </tr>
       <% }); %>

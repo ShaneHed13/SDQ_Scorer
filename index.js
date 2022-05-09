@@ -62,7 +62,7 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ WHERE completedby = '${req.user.email}'`
+        `SELECT * FROM completedSDQ WHERE scoredBy = '${req.user.email}'`
       );
 
       const locals = {
@@ -119,7 +119,7 @@ express()
 
       const completedSDQ = await client.query(
         // Dummy SQL command to allow page load
-        `SELECT * FROM completedSDQ WHERE child = '' AND completedby = '${req.user.email}'`
+        `SELECT * FROM completedSDQ WHERE child = '' AND scoredBy = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -140,7 +140,7 @@ express()
       const client = await pool.connect();
 
       const completedSDQ = await client.query(
-        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}' AND completedby = '${req.user.email}'`
+        `SELECT * FROM completedSDQ WHERE child = '${req.params.child}' AND scoredBy = '${req.user.email}'`
       );
       const locals = {
         'completedSDQ': (completedSDQ) ? completedSDQ.rows : null,
@@ -277,13 +277,14 @@ express()
       const prosocial = req.body.prosocial;
       const impact = req.body.impact;
       const completed = req.body.completed;
+      const scored = req.body.scored;
       const role = req.body.role;
       const expires = req.body.expires;
 
 
       const sqlInsert = await client.query(
-        `INSERT INTO completedSDQ (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
-        VALUES('${child}', '${dob}', '${total}', '${emotional}', '${conduct}', '${hyperactivity}' , '${peer}', '${prosocial}', '${impact}', '${completed}', '${role}', '${expires}')
+        `INSERT INTO completedSDQ (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedBy, scoredBy, role, expires)
+        VALUES('${child}', '${dob}', '${total}', '${emotional}', '${conduct}', '${hyperactivity}' , '${peer}', '${prosocial}', '${impact}', '${completed}', '${scored}', '${role}', '${expires}')
         RETURNING id as new_id;`);
 
 
@@ -322,6 +323,7 @@ express()
       const prosocial = req.body.prosocial;
       const impact = req.body.impact;
       const completed = req.body.completed;
+      const scored = req.body.scored;
       const role = req.body.role;
       const expires = req.body.expires;
 
@@ -330,8 +332,8 @@ express()
       );
 
       const sqlInsert = await client.query(
-        `INSERT INTO results (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedby, role, expires)
-        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity} , ${peer}, ${prosocial}, ${impact}, '${completed}', '${role}', '${expires}')
+        `INSERT INTO results (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedBy, scoredBy, role, expires)
+        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity}, ${peer}, ${prosocial}, ${impact}, '${completed}', '${scored}', '${role}', '${expires}')
         RETURNING id as new_id;`);
 
 

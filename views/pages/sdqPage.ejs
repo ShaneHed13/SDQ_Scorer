@@ -17,8 +17,15 @@
     <option value='sdq1117s'>11-17 Self Single Page</option>
   </select>
 
-  <p>Completed By: <span id="completed"><%= user %></span><span id="email" hidden><%= email %></span> &nbsp;&nbsp;&nbsp; </p>
+  <br><br><br>
+
+  <label>Completed By: </label><input id="completedBy" type="text">
+  
   <p id="date">Date Completed: <%= new Date().toLocaleDateString() %> </p>
+  <p id="email" hidden><%= email %></p>
+
+  <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
+  <label>Date of Birth: </label><input id="dob" type="date">
 
   <script>
       
@@ -61,9 +68,6 @@
       }
   
   </script>
-
-  <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
-  <label>Date of Birth: </label><input id="dob" type="date">
  
   <br><br>
 
@@ -258,15 +262,16 @@
       let child = document.getElementById('name').value;
       let birthDate = new Date();
       birthDate = document.getElementById('dob').value;
-      let compBy = document.getElementById('email').value;
+      let compBy = document.getElementById('completedBy').value;
+      let scoredBy = document.getElementById('email').value;
       var role = "";
 
       if (document.getElementById('teacher').checked == true) {
-          var role = "Teacher";
+          role = "Teacher";
         } else if (document.getElementById('parent').checked == true) {
-          var role = "Parent";
+          role = "Parent";
         } else if (document.getElementById('self').checked == true) {
-          var role = "Self";
+          role = "Self";
         }
      
       if(aArray[0] == undefined || aArray[1] == undefined || aArray[2] == undefined || aArray[3] == undefined || aArray[4] == undefined || aArray[5] == undefined || aArray[6] == undefined || aArray[7] == undefined || aArray[8] == undefined || aArray[9] == undefined || aArray[10] == undefined ||
@@ -322,8 +327,7 @@
         let prScore = q1 + q4 + q9 + q17 + q20;
         let tdScore = epScore + cpScore + haScore + ppScore;
 
-
-        alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate + "role: " + role);
+        alert("ep: " + epScore + " cp: " + cpScore + " ha: " + haScore + " pp: " + ppScore + " pr: " + prScore + " td: " + tdScore + " name: " + child + " DOB: " + birthDate + " role: " + role + " Completed By: " + compBy);
 
         // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {
@@ -344,6 +348,7 @@
             prosocial: prScore,
             impact: 10,
             completed: compBy,
+            scored: scoredBy,
             role: role,
             expires: expires
           })
@@ -352,7 +357,7 @@
 
 
         const result = await response.json();
-        console.log(result);
+        console.log(result.scoredBy);
         
         window.location.href = "results";
 
