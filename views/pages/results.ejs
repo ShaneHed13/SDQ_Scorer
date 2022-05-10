@@ -218,13 +218,14 @@
                     prosocialCat = "Very Low";
                   } %>
                 <li><span id="prosocial"><%= r.prosocial %></span>&rarr; <%= prosocialCat %></li>
-          </ul>
+
+            </ul>
                 <br><br>
                 <li><strong>Externalizing Behaviors</strong></li>
                     <ul><li><%= r.conduct + r.hyperactivity %>/20</li></ul>
                 <li><strong>Internalizing Behaviors</strong></li>
                     <ul><li><%= r.emotional + r.peer %>/20</li></ul>
-        </ul>
+            </ul>
 
     <% }); %>   
 
@@ -258,6 +259,7 @@
         // Just testing for correct values
         console.log(tdScore + ", " + expires + ", " + role);
         console.log(compBy);
+
         // Posts test results to the db
         const response = await fetch('/log', {
           method: 'POST',
