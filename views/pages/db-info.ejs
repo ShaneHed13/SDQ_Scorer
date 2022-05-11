@@ -8,62 +8,104 @@
 </head>
 
 <body>
+    
+    <script>
+    
+    function showDetails(id){
+        
+        console.log(id);
+        
+        let element = document.getElementById(id)
+        
+        console.log(element);
+        
+        if (element.style.display == 'none'){
+            
+            element.style.display = 'inline-block';
+            
+        } else {
+            
+            element.style.display = 'none';
+            
+        }
+        
+    };
+        
+
+    
+    </script>
+
+    
   <a href="/home">Return to Homepage</a>
   <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
   
   <h1>All Completed SDQ's</h1>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Total</th>
-      <th>Emotional Problems</th>
-      <th>Conduct Problems</th>
-      <th>Hyperactivity Problems</th>
-      <th>Peer Problems</th>
-      <th>Prosocial Behavior</th>
-      <th>Impact Score</th>
-      <th>Expiration Date</th>
-      <th>Completed By</th>
-      <th>Role</th>
-    </tr>
+
+
 
     <% completedSDQ.forEach(function(r) { %>
+  <table style="border: 1px solid black; border-collapse: collapse;">
+    <tr>      
+        <th style="border-right: 1px solid black;"></th>
+      <th style="border-right: 1px solid black;">Name</th>
+      <th style="border-right: 1px solid black;">Date Completed</th>
+      <th style="border-right: 1px solid black;">Completed By</th>
+      <th style="border-right: 1px solid black;">Role</th>
+
+    </tr>
       <tr>
-        <td>
+        <td style="text-align:center; border-right: 1px solid black">
+            <input type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black">
           <%= r.child %>
         </td>
-        <td>
-          <%= r.total %>
-        </td>
-        <td>
-          <%= r.emotional %>
-        </td>
-        <td>
-          <%= r.conduct %>
-        </td>
-        <td>
-          <%= r.hyperactivity %>
-        </td>
-        <td>
-          <%= r.peer %>
-        </td>
-        <td>
-          <%= r.prosocial %>
-        </td>
-        <td>
-          <%= r.impact %>
-        </td>
-        <td>
+        <td style="text-align:center; border-right: 1px solid black">
           <%= r.expires.toDateString() %>
         </td>
-        <td>
+        <td style="text-align:center; border-right: 1px solid black">
           <%= r.completedby %>
         </td>
-        <td>
+        <td style="text-align:center; border-right: 1px solid black">
           <%= r.role %>
         </td>
       </tr>
+    </table>
+    <table id="<%=r.id%>" style="border: 1px solid black; border-collapse: collapse; display:none">
+    <tr>
+      <th style="border-right: 1px solid black;">&nbsp;Total Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Emotional Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Conduct Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Peer Problems Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Hyperactivity Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Impact Score&nbsp;</th>
+      <th style="border-right: 1px solid black;">&nbsp;Pro-Social Score&nbsp;</th>
+    </tr>
+    <tr>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.total %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.emotional %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.conduct %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.peer %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.hyperactivity %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.impact %>
+        </td>
+        <td style="text-align:center; border-right: 1px solid black;">
+          <%= r.prosocial %>
+        </td>
+      </tr>
+</table>
       <% }); %>
 
   </table>
