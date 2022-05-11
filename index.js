@@ -197,7 +197,7 @@ express()
   .get('/logout', (req, res) => {
     req.logOut();
     req.flash('success_msg', 'You are now logged out.');
-    res.redirect('/');
+    res.redirect('/login');
   })
 
   .post('/register', async (req, res) => {
