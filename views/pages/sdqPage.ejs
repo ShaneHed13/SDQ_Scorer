@@ -13,7 +13,7 @@
   <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
   <h1>Single Page Strength and Difficulties Questionnaire</h1> 
     
-  <select onchange="changeTest();">
+  <select onchange="changeTest(); ageCheck();">
     <option value='sdq410pt'>4-10 Parent/Teacher Single Page</option>
     <option value='sdq1117pt'>11-17 Parent/Teacher Single Page</option>
     <option value='sdq1117s'>11-17 Self Single Page</option>
@@ -35,19 +35,34 @@
           
           const userDOB = new Date(document.getElementById('dob').value);
           const today = new Date();
-
+          const select = document.querySelector("select");
+          const selectedChoice = select.value; 
+ 
           const msDiff = today - userDOB;
           const age = Math.floor(msDiff / (365.25*24*60*60*1000))
 
           console.log(age)
           
+          DOBvalidation.innerHTML="";
+          
           if (age > 17 || age < 4) {
               
-              DOBvalidation.innerHTML="  Test not rated for this age"
+              DOBvalidation.innerHTML="  SDQ not rated for this age"
               
-          } else if ()
+          } else if (age > 10 && age < 18 && select.value == "sdq410pt") {
+              
+              DOBvalidation.innerHTML="  Please Select an 11-17 test"
+              
+          } else if (age > 3 && age < 11 && select.value == "sdq1117pt") {
+              
+              DOBvalidation.innerHTML="  Please Select the 4-10 test"
+              
+          } else if (age > 3 && age < 11 && select.value == "sdq1117s") {
+              
+              DOBvalidation.innerHTML="  Please Select the 4-10 test"
           
-      }
+        }
+      };
       
       function changeTest(){
         const select = document.querySelector("select");
