@@ -316,10 +316,11 @@
         validation.innerHTML="Please enter a child's name.";
       } else if(birthDate == "" || Date.parse(birthDate) > Date.parse(currentDate)) {
         validation.innerHTML="Please enter a valid birthday for the child.";
-      } else if(birthDate == "" || Date.parse(birthDate) - Date.parse(currentDate)) {
-        validation.innerHTML="Please enter a valid birthday for the child.";
       } else if (role == "") {
         validation.innerHTML="Please select a role for the individual completing the test.";
+      } else if (DOBvalidation.innerHTML != "") {
+        validation.innerHTML="Please ensure the test chosen matches the clients age.";
+
       } else {
 
         alert("Test Completion Successful");
