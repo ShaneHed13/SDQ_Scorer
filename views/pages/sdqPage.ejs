@@ -27,11 +27,25 @@
   <p id="email" hidden><%= email %></p>
 
   <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
-  <label>Date of Birth: </label><input id="dob" type="date">
+  <label>Date of Birth: </label><input id="dob" type="date" onfocusout="ageCheck();"><label for="DOBvalidation" id="DOBvalidation" style="font-weight: bold;"></label>
 
   <script>
       
-      function ageCheck()   
+      function ageCheck()   {
+          
+          const userDOB = new Date(document.getElementById('dob').value);
+          const today = new Date();
+
+          const msDiff = today - userDOB;
+          const age = Math.floor(msDiff / (365.25*24*60*60*1000))
+
+          console.log(age)
+          
+          if (age > 17) {
+              
+              DOBvalidation.innerHTML="Please enter a valid birthday for the child."
+              
+          }
           
       }
       
@@ -286,6 +300,8 @@
       } else if(child == "") {
         validation.innerHTML="Please enter a child's name.";
       } else if(birthDate == "" || Date.parse(birthDate) > Date.parse(currentDate)) {
+        validation.innerHTML="Please enter a valid birthday for the child.";
+      } else if(birthDate == "" || Date.parse(birthDate) - Date.parse(currentDate)) {
         validation.innerHTML="Please enter a valid birthday for the child.";
       } else if (role == "") {
         validation.innerHTML="Please select a role for the individual completing the test.";
