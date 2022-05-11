@@ -93,14 +93,14 @@
             <div class ="b" style="display:none;"><%= r.sdq1117pt %></div>
             <div class ="c" style="display:none;"><%= r.sdq1117s %></div>
         </td>
-        <td><input type="radio" name="<%= r.id %>" value="never">
-          <%= r.never %>
+        <td style="text-align:center;" ><input type="radio" name="<%= r.id %>" value="never">
+
         </td>
-        <td><input type="radio" name="<%= r.id %>" value="sometimes">
-          <%= r.sometimes %>
+        <td style="text-align:center;"><input type="radio" name="<%= r.id %>" value="sometimes">
+
         </td>
-        <td><input type="radio" name="<%= r.id %>" value="always">
-          <%= r.always %>
+        <td style="text-align:center;"><input type="radio" name="<%= r.id %>" value="always">
+
         </td>
       </tr>
       <% }); %>
@@ -149,19 +149,16 @@
         </td>
       </tr>
       <% }); %>
-
   </table>
 
-  <br><br>
 
+<br>
   <table>
-    <tr>
-      <td>
-    <tr>Parent<input id="parent" type="radio" name="cb"></tr>
-    <tr>Teacher<input id="teacher" type="radio" name="cb"></tr>
-    <tr>Self<input id="self" type="radio" name="cb"></tr>
-    </td>
-    </tr>
+      <tr><td>Please Select Who Completed this Form:</td></tr>
+    <tr><td><input id="parent" type="radio" name="cb">Parent</td></tr>
+    <tr><td><input id="teacher" type="radio" name="cb">Teacher</td></tr>
+    <tr><td><input id="self" type="radio" name="cb">Self</td></tr>
+
   </table>
 
   <br>
