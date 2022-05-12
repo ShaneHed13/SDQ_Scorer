@@ -27,89 +27,95 @@
         
         console.log(id);
         
-        let element = document.getElementById(id);
+        let aID = "a"+id;
+        let bID = "b"+id;
         
-        console.log(element);
+        let aElement = document.getElementById(aID);
+        let bElement = document.getElementById(bID);
         
-        if (element.style.display == 'none'){
+        if (aElement.style.display == 'none' && bElement.style.display == 'none'){
             
-            element.style.display = 'inline-block';
+            aElement.style.display = 'table-row';
+            bElement.style.display = 'table-row';
             
         } else {
             
-            element.style.display = 'none';
+            aElement.style.display = 'none';
+            bElement.style.display = 'none';
             
         }
         
     };
     
     </script>
-    <% completedSDQ.forEach(function(r) { %>
-  <table style="border: 1px solid black; border-collapse: collapse;">
-    <tr>      
-      <th style="border-right: 1px solid black; width: 100px;"></th>
-      <th style="border-right: 1px solid black; width: 203px;">Name</th>
-      <th style="border-right: 1px solid black; width: 160px;">Date Completed</th>
-      <th style="border-right: 1px solid black; width: 200px;">Completed By</th>
-      <th style="border-right: 1px solid black; width: 100px;">Role</th>
+      
+      <table style="border: 1px solid black; border-collapse: collapse;">
+          <% completedSDQ.forEach(function(r) { %>
 
-    </tr>
-      <tr>
-        <td style="text-align:center; border-right: 1px solid black">
-            <input type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black">
-          <%= r.child %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black">
-          <%= r.expires.toDateString() %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black">
-          <%= r.completedby %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black">
-          <%= r.role %>
-        </td>
-      </tr>
-    </table>
-    <table id="<%=r.id%>" style="border: 1px solid black; border-collapse: collapse; display:none;">
-    <tr>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Total Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Emotional Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Conduct Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Peer Problems Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Hyperactivity Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Impact Score&nbsp;</th>
-      <th style="border-right: 1px solid black; width: 108px;">&nbsp;Pro-Social Score&nbsp;</th>
-    </tr>
-    <tr>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.total %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.emotional %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.conduct %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.peer %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.hyperactivity %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.impact %>
-        </td>
-        <td style="text-align:center; border-right: 1px solid black;">
-          <%= r.prosocial %>
-        </td>
-      </tr>
+        <tr>      
+            <th style="border-right: 1px solid black; width: 100px;"></th>
+            <th style="border-right: 1px solid black; width: 203px;">Name</th>
+            <th style="border-right: 1px solid black; width: 160px;">Date Completed</th>
+            <th style="border-right: 1px solid black; width: 200px;">Completed By</th>
+            <th style="border-right: 1px solid black; width: 100px;">Role</th>
+            <th style="border-right: 1px solid black; width: 100px;">Total</th>
+        </tr>
+          
+        <tr>
+            <td style="text-align:center; border-right: 1px solid black">
+                <input type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black">
+                <%= r.child %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black">
+                <%= r.expires.toDateString() %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black">
+                <%= r.completedby %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black">
+                <%= r.role %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black">
+                <%= r.total %>
+            </td>
+        </tr>
+
+        <tr id="a<%=r.id%>" style="display:none;" >
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Emotional Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Conduct Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Peer Problems Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Hyperactivity Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Impact Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Pro-Social Score&nbsp;</td>
+        </tr>
+
+        <tr id="b<%=r.id%>" style="display:none;">
+            <td style="text-align:center; border-right: 1px solid black;">
+                <%= r.emotional %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black;">
+                <%= r.conduct %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black;">
+                <%= r.peer %>
+            </td>
+            <td style="text-align:center; border-right: 1px solid black;">
+                <%= r.hyperactivity %>
+            </td>
+            <td class="<%=r.id%>" style="text-align:center; border-right: 1px solid black;">
+                <%= r.impact %>
+            </td>
+            <td class="<%=r.id%>" style="text-align:center; border-right: 1px solid black;">
+                <%= r.prosocial %>
+            </td>
+        </tr>
+
+<% }); %>
 </table>
-      <% }); %>
-
-  </div>
-  </div>  
+</div>
+</div>  
 </body>
 
 </html>
