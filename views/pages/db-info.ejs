@@ -8,11 +8,18 @@
 </head>
 
 <body>
-  <a href="/home">Return to Homepage</a>
-  <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
+  <div id="wrapper">
+    <div class="center">
+      <img src="/images/header.jpg" alt="sdqLogo">
+    </div>
+    <nav id="pageNav">
+      <a class="noprint" href="/home">Return to Homepage</a>
+      <a href="../sdqPage">Complete SDQ</a>
+      <a href="../student-records">Individual Student Records</a>
+    </nav>
   
   <h1>All Completed SDQ's</h1>
-
+  <div id="resultTable">
   <table>
     <tr>
       <th>Name</th>
@@ -67,6 +74,8 @@
       <% }); %>
 
   </table>
+  </div>
+  </div>  
 </body>
 
 </html>

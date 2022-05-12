@@ -8,15 +8,23 @@
 </head>
 
 <body>
-
-  <a href="/home">Return to Homepage</a>
-  <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
+  <div id="wrapper">
+    <div class="center">
+      <img src="/images/header.jpg" alt="sdqLogo">
+    </div>
+  <nav id="pageNav">
+    <a class="noprint" href="/home">Return to Homepage</a>
+    <a href="../sdqPage">Complete SDQ</a>
+    <a href="/db-info">All SDQ Records</a>
+  </nav>
   <h1>Individual Student Records</h1>
 
+  <div id="childName">
   <label for="child">Child's Name: </label>
   <input type="text" id="child" name="child">
   <button type="submit" onclick="getChildRecords()">Submit</button>
-
+  </div>
+  <div id="resultTable">
   <table>
     <tr>
       <th>Child</th>
@@ -71,7 +79,7 @@
       <% }); %>
 
   </table>
-
+  </div>
   <script>
 
     function getChildRecords() {
@@ -80,8 +88,15 @@
       window.location.href = '/student-records/' + childName;
     }
 
-  </script>
+    
 
+    function validateUser() {
+      console.log(username.value + " " + password.value);
+    }
+
+
+  </script>
+  </div>
 </body>
 
 </html>

@@ -8,11 +8,19 @@
 </head>
 
 <body>
-
-  <a href="/home">Return to Homepage</a>
-  <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
+  <div id="wrapper">
+  <div class="center">
+  <img src="/images/header.jpg" alt="header">
+  </div>
+  <div id="pageNav">
+    <nav>
+      <a class="noprint" href="/home">Return to Homepage</a>
+      <a href="student-records">Individual Student Records</a>
+      <a href="db-info">All SDQ Records</a>
+    </nav>
+    </div>
   <h1>Single Page Strength and Difficulties Questionnaire</h1> 
-    
+  <div id="input">
   <select onchange="changeTest();">
     <option value='sdq410pt'>4-10 Parent/Teacher Single Page</option>
     <option value='sdq1117pt'>11-17 Parent/Teacher Single Page</option>
@@ -26,9 +34,9 @@
   <p id="date">Date Completed: <%= new Date().toLocaleDateString() %> </p>
   <p id="email" hidden><%= email %></p>
 
-  <label>Child's Name: </label><input id="name" type="text">&nbsp;&nbsp;&nbsp;
+  <label>Child's Name: </label><input id="name" type="text">
   <label>Date of Birth: </label><input id="dob" type="date" onfocusout="ageCheck();"><label for="DOBvalidation" id="DOBvalidation" style="font-weight: bold;"></label>
-
+  </div>
   <script>
       
       function ageCheck()   {
@@ -90,7 +98,7 @@
   </script>
  
   <br><br>
-
+  <div id="qTable">
   <table>
     <tr>
       <th>Num.</th>
@@ -106,7 +114,7 @@
         <td>
           <%= r.id %>
         </td>
-        <td>
+        <td style="text-align: left;">
             <div class ="a" style="display:inline-block;"><%= r.sdq410pt %></div>
             <div class ="b" style="display:none;"><%= r.sdq1117pt %></div>
             <div class ="c" style="display:none;"><%= r.sdq1117s %></div>
@@ -124,7 +132,7 @@
       <% }); %>
 
   </table>
-    
+  </div>
     <br><br>
     
   <select id="isChange" onchange="changeIS();">
@@ -171,8 +179,8 @@
 
 
 <br>
-  <table>
-      <tr><td>Please Select Who Completed this Form:</td></tr>
+  <table id="completeTable">
+      <tr><td id="complete" style="font-size: 20px;font-weight: bold;">Please Select Who Completed this Form:</td></tr>
     <tr><td><input id="parent" type="radio" name="cb">Parent</td></tr>
     <tr><td><input id="teacher" type="radio" name="cb">Teacher</td></tr>
     <tr><td><input id="self" type="radio" name="cb">Self</td></tr>
@@ -181,8 +189,8 @@
 
   <br>
 
-  <button type="submit" onclick="logTask()">Submit</button>&nbsp;&nbsp;&nbsp;<label for="validation" id="validation" style="font-weight: bold;"></label>
-    
+  <button id="subButton" type="submit" onclick="logTask()">Submit</button>&nbsp;&nbsp;&nbsp;<label for="validation" id="validation" style="font-weight: bold;"></label>
+</div>    
 <script>
     let currentTaskID = null;
 
@@ -206,7 +214,7 @@
         month = '0' + month;
       }
 
-      currentDate = year + "/" + month + "/" + day;
+      currentDate = year + "-" + month + "-" + day;
       while (count < 26) {
 
         //getting reference to all radio buttons with the value of count

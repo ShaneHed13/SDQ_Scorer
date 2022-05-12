@@ -9,11 +9,12 @@
   <title>Login</title>
 </head>
 
-<body class="center">
-  <img src="/images/sdqLogo.png" alt="sdqLogo">
-  <div class="center">
+<body>
+  <div id="wrapper">
+    <div class="center">
+    <img src="/images/header.jpg" alt="sdqLogo">
     <h1>Login</h1>
-
+    <div id="login">
     <form action="/login" method="POST">
       <div>
         <input type="email" id="email" name="email" placeholder="Email"
@@ -25,13 +26,15 @@
           placeholder="Password" required />
       </div>
       <br>
-      <div>
+      <div  id="button">
         <input type="submit" value="Login" />
       </div>
       <br>
+      <div id="loginReg">
       <a href="/register">Register</a>
+      </div>
     </form>
-  
+    <div id="loginErr">
     <ul>
       <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
       <li><%= error.message %></li>
@@ -49,9 +52,9 @@
       <li><%= messages.error %></li>
       <% } %>
     </ul>
-  
+    </div>
+    </div>
   </div>
- 
 </body>
 
 </html>

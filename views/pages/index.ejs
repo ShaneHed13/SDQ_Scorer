@@ -7,17 +7,19 @@
     <title>Home</title>
   </head>
   <body class="center"> 
-    <img src="/images/sdqLogo.png" alt="sdqLogo">
-
+    <div id="wrapper">
+      <div class="center">
+        <img src="/images/header.jpg" alt="sdqLogo">
+      </div>
+      <div id="homeNav">
+      <nav>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      </nav>
+      </div>
     <% if (typeof message !== 'undefined' ) { %>
     <p><%= message %></p>
     <% } %>
-
-    <div class="center">
-      <a href="/login">Login</a>
-      <br>
-      <a href="/register">Register</a>
     </div>
-
   </body>
 </html>

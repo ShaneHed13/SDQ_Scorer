@@ -7,30 +7,21 @@
   <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
-<body class="center">
-  <img src="/images/sdqLogo.png" alt="sdqLogo">
-  <div class="center">
-
-    <h2>Welcome, <%= user %>!</h2>
-    <div>
-      <a href="/logout">Logout</a>
+<body>
+  <div id="wrapper">
+    <div class="center">
+    <img src="/images/header.jpg" alt="sdqLogo">
     </div>
-
-    <br>
-
-    <a href="sdqPage">Complete SDQ</a>
-
-    <br>
-
-    <a href="student-records">Individual Student Records</a>
-
-    <br>
-
-    <a href="db-info">All SDQ Records</a>
-
+    <div id="homeNav">
+    <nav>
+      <label>Welcome, <%= user %>!</label><br>
+      <a href="/logout">Logout</a>
+      <a href="sdqPage">Complete SDQ</a>
+      <a href="student-records">Individual Student Records</a>
+      <a href="db-info">All SDQ Records</a>
+    </nav>
+    </div>
   </div>
-
-
   <script>
 
     function validateUser() {
@@ -38,7 +29,6 @@
     }
 
   </script>
-
 </body>
 
 </html>

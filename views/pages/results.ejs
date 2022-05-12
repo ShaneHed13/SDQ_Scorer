@@ -26,19 +26,33 @@
   </head>
 
   <body>
+    <div id="wrapper">
     <a class="noprint" href="/home">Return to Homepage</a>
-    <div class="center"><img src="/images/sdqLogo.png" alt="sdqLogo"></div>
-        
+    <div class="center">
+      <img src="/images/header.jpg" alt="header">
+    </div>
+    <div id="pageNav">
+      <nav>
+        <a class="noprint" href="/home">Return to Homepage</a>
+        <a href="sdqPage">Complete SDQ</a>
+        <a href="student-records">Individual Student Records</a>
+      </nav>
+    </div>
+    <h1>Assessment Results</h1>
+
+    <div id="testRes">
+    <div id="left">
     <% results.forEach(function(r) { %>
       
-      <p><strong>Child Name:</strong>&nbsp;<span id="child"><%= r.child %></span></p> 
+    <p><strong>Child Name:</strong>&nbsp;<span id="child"><%= r.child %></span></p> 
     <p><strong>DOB:</strong>&nbsp;<span id="dob"><%= r.birthdate.toLocaleDateString() %></span></p>
 
     <p><strong>Completed by:</strong>&nbsp;<span id="completedby"><%= r.completedby %></span> (<span id="role"><%= r.role %></span>)</p>
 
     <p hidden>Email: <span id="email"><%= email %></span>
     <p><strong>Completion Date:</strong> <span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
-
+    </div>  
+    <div id="right">
       <ul>
         <li><strong>Total Score:</strong></li>
             <ul>
@@ -226,16 +240,20 @@
                 <li><strong>Internalizing Behaviors</strong></li>
                     <ul><li><%= r.emotional + r.peer %>/20</li></ul>
             </ul>
+            </div>
 
     <% }); %>   
-
-    <p id="redirect" style="display: none;"><strong>Your test results have been submitted.  Redirecting to homepage...</strong></p>
         
-    <br>
+    <div id="buttons">
+    <br><br><br><br><br><br><br><br><br>
     <button type="submit" onclick="window.print()" class="noprint">Print For Records</button>
     <button class="noprint" type="submit" onclick="logTask()">Submit to Database</button>
-    <input class="noprint" type=button onClick="location.href='/home'" value='Return to Homepage'>
-
+    <input class="noprint" type=button onClick="location.href='home'" value='Return to Homepage'>
+    </div>
+    </div>
+    <div class ="redirect">
+    <p id="redirect" style="display: none;"><strong>Your test results have been submitted.  Redirecting to homepage...</strong></p>
+    </div>
     <script>
       const logTask = async function () {
 
@@ -298,7 +316,7 @@
 
       }; 
     </script>
-
+  </div>
   </body>
-
+  
 </html>
