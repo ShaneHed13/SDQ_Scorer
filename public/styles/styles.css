@@ -259,7 +259,7 @@ table {
 }
 
 #qTable th {
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
   border-style: solid;
   border-color: black;
@@ -274,12 +274,12 @@ table {
   border-color: #4f4f4f;
   padding: 10px;
   text-align: center;
-  font-size: 10px;
+  font-size: 20px;
   border-radius: 5px;
 }
 
 #resultTable th {
-  font-size: 15px;
+  font-size: 20px;
   border-style: solid;
   border-color: black;
   color: #bababa;
