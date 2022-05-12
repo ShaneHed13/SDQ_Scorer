@@ -20,28 +20,14 @@
   
   <h1>All Completed SDQ's</h1>
   <div id="resultTable">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Total</th>
-      <th>Emotional Problems</th>
-      <th>Conduct Problems</th>
-      <th>Hyperactivity Problems</th>
-      <th>Peer Problems</th>
-      <th>Prosocial Behavior</th>
-      <th>Impact Score</th>
-      <th>Expiration Date</th>
-      <th>Completed By</th>
-      <th>Role</th>
-    </tr>
-    
+
     <script>
     
     function showDetails(id){
         
         console.log(id);
         
-        let element = document.getElementById(id)
+        let element = document.getElementById(id);
         
         console.log(element);
         
@@ -56,14 +42,19 @@
         }
         
     };
-        
-
     
     </script>
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> cf7cdb882bf7dada93bd483b47c0f41080c24391
     <% completedSDQ.forEach(function(r) { %>
   <table style="border: 1px solid black; border-collapse: collapse;">
     <tr>      
-        <th style="border-right: 1px solid black; width: 100px;"></th>
+      <th style="border-right: 1px solid black; width: 100px;"></th>
       <th style="border-right: 1px solid black; width: 203px;">Name</th>
       <th style="border-right: 1px solid black; width: 160px;">Date Completed</th>
       <th style="border-right: 1px solid black; width: 200px;">Completed By</th>
@@ -124,7 +115,6 @@
 </table>
       <% }); %>
 
-  </table>
   </div>
   </div>  
 </body>
