@@ -16,37 +16,31 @@
       <div class="center">
         <h1>Register</h1>
         <div id="login">
-          <form action="/register" method="POST">
-            <div>
-              <input type="text" id="name" name="name" placeholder="Name"
-                required />
-            </div>
+          <form action="/register" method="POST" name="registration">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" />
+            <br><br>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" />
+            <p>
+              Passwords must be 7 characters long.
+            </p>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"
+              placeholder="Password" />
+            <br><br>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password"
+              placeholder="Confirm Password" />
+
             <br>
-            <div>
-              <input type="text" id="email" name="email" placeholder="Email"
-                required />
-            </div>
-            <div>
-              <p>
-                Passwords must be 7 characters long.
-              </p>
-              <input type="password" id="password" name="password"
-                placeholder="Password" required />
-            </div>
             <br>
-            <div>
-              <input type="password" id="password2" name="password2"
-                placeholder="Confirm Password" required />
-            </div>
-            <br>
-            <div>
-              <input type="submit" value="Register" />
-            </div>
-            <br>
+            <input type="submit" value="Register" />
+
+            <br><br>
             <div id="loginReg">
               <a href="/login">Login</a>
-            </div>
-            
           </form>
 
           <ul>
@@ -62,6 +56,60 @@
         </div>
       </div>
     </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+
+    <script>
+
+      $(function () {
+
+        $("form[name='registration']").validate({
+
+          rules: {
+
+            name: {
+              required: true,
+              minlength: 2
+            },
+            email: {
+              required: true,
+              email: true
+            },
+            password: {
+              required: true,
+              minlength: 7
+            },
+            confirm_password: {
+              required: true,
+              minlength: 7,
+              equalTo: "#password"
+            }
+          },
+          // Specify validation error messages
+          messages: {
+            name: "Please enter your name.",
+            password: {
+              required: "Please provide a password",
+              minlength: "Your password must be at least 7 characters long"
+            },
+            confirm_password: {
+              required: "Please confirm password",
+              minlength: "Your password must be at least 7 characters long",
+              equalTo: "Passwords do not match"
+            },
+            email: "Please enter a valid email address"
+          },
+
+          submitHandler: function (form) {
+            form.submit();
+          }
+        });
+      });
+
+    </script>
 </body>
 
 </html>

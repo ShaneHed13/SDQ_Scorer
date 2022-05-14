@@ -185,6 +185,18 @@ h1 {
   font-weight: bold;
 }
 
+label,
+input {
+  display: block;
+}
+input{
+ margin-bottom:15px;
+}
+
+label.error {
+  color: red;
+}
+
 table {
   margin: auto;
 }
