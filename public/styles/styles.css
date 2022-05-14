@@ -358,7 +358,7 @@ table {
 }
 /*End Login Styles*/
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   img {
     width: 75%;
   }
