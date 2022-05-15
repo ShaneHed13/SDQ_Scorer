@@ -33,8 +33,8 @@
 
       <label>Completed By: </label><input id="completedBy" type="text">
 
-      <p id="date">Date Completed: <%= new Date().toLocaleDateString() %>
-      </p>
+      <label>Completion Date: </label><input id="dateCompleted" type="date">
+        
       <p id="email" hidden>
         <%= email %>
       </p>
@@ -331,7 +331,8 @@
       } //end while loop
 
       // Getting values from text and date boxes
-      let expires = new Date().toLocaleDateString();
+      let expires = new Date();
+      expires = document.getElementById('dateCompleted').value;
       let child = document.getElementById('name').value;
       let birthDate = new Date();
       birthDate = document.getElementById('dob').value;
