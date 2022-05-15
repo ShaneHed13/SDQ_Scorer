@@ -21,8 +21,6 @@
   
   <h1>All Completed SDQ's</h1>
   <div id="resultTable">
-      
-  <input id="searchbar" onkeyup="search()" type="text" name="search" placeholder="Search">
 
     <script>
     
@@ -72,7 +70,7 @@
                 <%= r.child %>
             </td>
             <td style="text-align:center; border-right: 1px solid black">
-                <%= r.expires.toDateString() %>
+                <%= r.expires.toLocaleDateString() %>
             </td>
             <td style="text-align:center; border-right: 1px solid black">
                 <%= r.completedby %>
