@@ -19,7 +19,7 @@
           <form action="/register" method="POST" name="registration">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Name" />
-            <br><br>
+            <br>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Email" />
             <div>
@@ -31,13 +31,11 @@
                   <% }) %>
                     <% } %>
             </div>
-            <p>
-              Password must be at least 7 characters long.
-            </p>
-            <label for="password">Password</label>
+            <br>
+            <label for="password">Password (Must be at least 7 characters long.)</label>
             <input type="password" id="password" name="password"
               placeholder="Password" />
-            <br><br>
+            <br>
 
             <label for="confirm_password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password"
