@@ -197,6 +197,10 @@ label.error {
   color: red;
 }
 
+#emailError {
+  color: red;
+}
+
 table {
   margin: auto;
 }
