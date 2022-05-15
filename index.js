@@ -201,31 +201,12 @@ express()
   })
 
   .post('/register', async (req, res) => {
-    let emailRegex = /^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
-    let { name, email, password, password2 } = req.body;
+    let { name, email, password, confirm_password } = req.body;
 
     let errors = []; // use for form validation
 
-    if (!name || !email || !password || !password2) {
-      errors.push({ message: "All fields are required" });
-    }
-
-    if (!email.match(emailRegex)) {
-      errors.push({ message: "A valid email is required."})
-    } 
-
-    if (password.length < 7) {
-      errors.push({ message: "Password must be a least 7 characters long" });
-    }
-
-    if (password !== password2) {
-      errors.push({ message: "Passwords do not match" });
-    }
-
-    if (errors.length > 0) {
-      res.render('pages/register', { errors, name, email, password, password2 });
-    } else {
       hashedPassword = await bcrypt.hash(password, 10);
+
       // Validation passed
       pool.query(
         `SELECT * FROM users
@@ -234,9 +215,13 @@ express()
         (err, results) => {
 
           if (results.rows.length > 0) {
+
             errors.push({ message: "Email already registered"})
-            res.render('pages/register', { errors, name, email, password, password2 });
+            res.render('pages/register', { errors, name, email, password, confirm_password });
+
+
           } else {
+            
             pool.query(
               `INSERT INTO users (name, email, password)
                   VALUES ($1, $2, $3)
@@ -253,7 +238,7 @@ express()
           }
         }
       );
-    }
+
   })
 
   .post('/login',
