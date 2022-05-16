@@ -98,6 +98,17 @@ body {
   color: #bababa ;
 }
 
+#detailButton {
+  margin: 10px;
+  width: 100px;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #4f4f4f;
+  color: #bababa ;
+}
+
 #isChange {
   margin-left: 25px;
 }
@@ -213,6 +224,7 @@ table {
   margin-left:20px;
   font-size: 20px;
   font-weight: bold;
+  width: 500px;
 }
 
 #childName input {
@@ -221,6 +233,7 @@ table {
   width: 200px;
   padding: 5px;
   font-size: 17px;
+  display: inline-block;
 }
 
 #childName button {
@@ -295,7 +308,7 @@ table {
 }
 
 #resultTable th {
-  font-size: 20px;
+  font-size: 15px;
   border-style: solid;
   border-color: black;
   color: #bababa;

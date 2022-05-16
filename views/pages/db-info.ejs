@@ -50,13 +50,13 @@
     
     </script>
       
-      <table style="border: 1px solid black; border-collapse: collapse;">
+      <table id="qTable">
           <% completedSDQ.forEach(function(r) { %>
 
         <tr>      
             <th style="border-right: 1px solid black; width: 100px;"></th>
             <th style="border-right: 1px solid black; width: 203px;">Name</th>
-            <th style="border-right: 1px solid black; width: 160px;">Date Completed</th>
+            <th style="border-right: 1px solid black; width: 300px;">Date Completed</th>
             <th style="border-right: 1px solid black; width: 200px;">Completed By</th>
             <th style="border-right: 1px solid black; width: 100px;">Role</th>
             <th style="border-right: 1px solid black; width: 100px;">Total</th>
@@ -64,7 +64,7 @@
           
         <tr>
             <td style="text-align:center; border-right: 1px solid black">
-                <input type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
+                <input  id="detailButton" type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
             </td>
             <td  class="name" style="text-align:center; border-right: 1px solid black">
                 <%= r.child %>
