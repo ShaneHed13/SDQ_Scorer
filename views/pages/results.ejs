@@ -56,180 +56,183 @@
       <ul>
         <li><strong>Total Score:</strong></li>
             <ul>
-                <% if (r.role == "Parent" && r.total >= 20) {
-                    totalCat = "Very High";
-                  } else if (r.role == "Parent" && r.total >= 17) {
-                    totalCat = "High";
-                  } else if (r.role == "Parent" && r.total >= 14) {
-                    totalCat = "Slightly raised";
-                  } else if (r.role == "Parent") {
-                    totalCat = "Close to average";
-                  } else if (r.role == "Teacher" && r.total >= 19) {
-                    totalCat = "Very high";
-                  } else if (r.role == "Teacher" && r.total >= 16) {
-                    totalCat = "High";
-                  } else if (r.role == "Teacher" && r.total >= 12) {
-                    totalCat = "Slightly raised";
-                  } else if (r.role == "Teacher") {
-                    totalCat = "Close to average";
-                  } else if (r.role == "Self" && r.total >=20) {
-                    totalCat = "Very High";
-                  } else if (r.role == "Self" && r.total >= 18) {
-                    totalCat = "High";
-                  } else if (r.role == "Self" && r.total >= 15) {
-                    totalCat = "Slightly raised";
-                  } else if (r.role == "Self") {
-                    totalCat = "Close to average";
+                <%  scoreCategories = ["Close to average", "Slightly raised", "High", "Very high", "Slightly lowered", "Low", "Very low"];
+                    roles = ["Parent", "Teacher", "Self"];
+                
+                  if (r.role === roles[0] && r.total >= 20) {
+                    totalCat = scoreCategories[3];
+                  } else if (r.role === roles[0] && r.total >= 17) {
+                    totalCat = scoreCategories[2];
+                  } else if (r.role === roles[0] && r.total >= 14) {
+                    totalCat = scoreCategories[1];
+                  } else if (r.role === roles[0]) {
+                    totalCat = scoreCategories[0];
+                  } else if (r.role === roles[1] && r.total >= 19) {
+                    totalCat = scoreCategories[3];
+                  } else if (r.role === roles[1] && r.total >= 16) {
+                    totalCat = scoreCategories[2];
+                  } else if (r.role === roles[1] && r.total >= 12) {
+                    totalCat = scoreCategories[1];
+                  } else if (r.role === roles[1]) {
+                    totalCat = scoreCategories[0];
+                  } else if (r.role === roles[2] && r.total >=20) {
+                    totalCat = scoreCategories[3];
+                  } else if (r.role === roles[2] && r.total >= 18) {
+                    totalCat = scoreCategories[2];
+                  } else if (r.role === roles[2] && r.total >= 15) {
+                    totalCat = scoreCategories[1];
+                  } else if (r.role === roles[2]) {
+                    totalCat = scoreCategories[0];
                   } %>
                 <li><span id="total"><%= r.total %></span>&rarr; <%= totalCat %></li>
             </ul>
 
         <li><strong>Conduct Problems:</strong></li>
             <ul>
-                <% if (r.role == "Parent" && r.conduct >= 6) {
-                    conductCat = "Very high";
-                  } else if (r.role == "Parent" && r.conduct >= 4) {
-                    conductCat = "High";
-                  } else if (r.role == "Parent" && r.conduct == 3) {
-                    conductCat = "Slightly raised";
-                  } else if (r.role == "Parent") {
-                    conductCat = "Close to average";
-                  } else if (r.role == "Teacher" && r.conduct >= 5) {
-                    conductCat = "Very High";
-                  } else if (r.role == "Teacher" && r.conduct == 4) {
-                    conductCat = "High";
-                  } else if (r.role == "Teacher" && r.conduct == 3) {
-                    conductCat = "Slightly raised";
-                  } else if (r.role == "Teacher") {
-                    conductCat = "Close to average";
-                  } else if (r.role == "Self" && r.conduct >=6) {
-                    conductCat = "Very High";
-                  } else if (r.role == "Self" && r.conduct == 5) {
-                    conductCat = "High";
-                  } else if (r.role == "Self" && r.conduct == 4) {
-                    conductCat = "Slightly raised";
-                  } else if (r.role == "Self") {
-                    conductCat = "Close to average";
+                <% if (r.role === roles[0] && r.conduct >= 6) {
+                    conductCat = scoreCategories[3];
+                  } else if (r.role === roles[0] && r.conduct >= 4) {
+                    conductCat = scoreCategories[2];
+                  } else if (r.role === roles[0] && r.conduct === 3) {
+                    conductCat = scoreCategories[1];
+                  } else if (r.role === roles[0]) {
+                    conductCat = scoreCategories[0];
+                  } else if (r.role === roles[1] && r.conduct >= 5) {
+                    conductCat = scoreCategories[3];
+                  } else if (r.role === roles[1] && r.conduct === 4) {
+                    conductCat = scoreCategories[2];
+                  } else if (r.role === roles[1] && r.conduct === 3) {
+                    conductCat = scoreCategories[1];
+                  } else if (r.role === roles[1]) {
+                    conductCat = scoreCategories[0];
+                  } else if (r.role === roles[2] && r.conduct >=6) {
+                    conductCat = scoreCategories[3];
+                  } else if (r.role === roles[2] && r.conduct === 5) {
+                    conductCat = scoreCategories[2];
+                  } else if (r.role === roles[2] && r.conduct === 4) {
+                    conductCat = scoreCategories[1];
+                  } else if (r.role === roles[2]) {
+                    conductCat = scoreCategories[0];
                   } %>
                 <li><span id="conduct"><%= r.conduct %></span>&rarr; <%= conductCat %></li>
             </ul>
 
         <li><strong>Emotional Problems:</strong></li>
             <ul>
-                <% if (r.role == "Teacher" && r.emotional >= 6) {
-                    emotionalCat = "Very high";
-                  } else if (r.role == "Teacher" && r.emotional == 5) {
-                    emotionalCat = "High";
-                  } else if (r.role == "Teacher" && r.emotional == 4) {
-                    emotionalCat = "Slightly raised";
-                  } else if (r.role == "Teacher") {
-                    emotionalCat = "Close to average";
-                  } else if (r.role == "Parent" && r.emotional >= 7) {
-                    emotionalCat = "Very high";
-                  } else if (r.role == "Parent" && r.emotional >= 5) {
-                    emotionalCat = "High";
-                  } else if (r.role == "Parent" && r.emotional == 4) {
-                    emotionalCat = "Slightly raised";
-                  } else if (r.role == "Parent") {
-                    emotionalCat = "Close to average";
-                  } else if (r.role == "Self" && r.emotional >= 7) {
-                    emotionalCat = "Very high";
-                  } else if (r.role == "Self" && r.emotional == 6) {
-                    emotionalCat = "High";
-                  } else if (r.role == "Self" && r.emotional == 5) {
-                    emotionalCat = "Slightly raised";
-                  } else if (r.role == "Self") {
-                    emotionalCat = "Close to average";
+                <% if (r.role === roles[1] && r.emotional >= 6) {
+                    emotionalCat = scoreCategories[3];
+                  } else if (r.role === roles[1] && r.emotional === 5) {
+                    emotionalCat = scoreCategories[2];
+                  } else if (r.role === roles[1] && r.emotional === 4) {
+                    emotionalCat = scoreCategories[1];
+                  } else if (r.role === roles[1]) {
+                    emotionalCat = scoreCategories[0];
+                  } else if (r.role === roles[0] && r.emotional >= 7) {
+                    emotionalCat = scoreCategories[3];
+                  } else if (r.role === roles[0] && r.emotional >= 5) {
+                    emotionalCat = scoreCategories[2];
+                  } else if (r.role === roles[0] && r.emotional === 4) {
+                    emotionalCat = scoreCategories[1];
+                  } else if (r.role === roles[0]) {
+                    emotionalCat = scoreCategories[0];
+                  } else if (r.role === roles[2] && r.emotional >= 7) {
+                    emotionalCat = scoreCategories[3];
+                  } else if (r.role === roles[2] && r.emotional === 6) {
+                    emotionalCat = scoreCategories[2];
+                  } else if (r.role === roles[2] && r.emotional === 5) {
+                    emotionalCat = scoreCategories[1];
+                  } else if (r.role === roles[2]) {
+                    emotionalCat = scoreCategories[0];
                   } %>
                 <li><span id="emotional"><%= r.emotional %></span>&rarr; <%= emotionalCat %></li>
             </ul>
 
         <li><strong>Hyperactivity Problems:</strong></li>
             <ul>
-                <% if (r.role == "Teacher" && r.hyperactivity >= 9) {
-                    hyperactivityCat = "Very high";
-                  } else if (r.role == "Teacher" && r.hyeractivity == 8) {
-                    hyperactivityCat = "High";
-                  } else if (r.role == "Teacher" && r.hyperactivity >= 6) {
-                    hyperactivityCat = "Slightly raised";
-                  } else if (r.role == "Teacher") {
-                    hyperactivityCat = "Close to average";
-                  } else if (r.role == "Parent" && r.hyperactivity >= 9) {
-                    hyperactivityCat = "Very high";
-                  } else if (r.role == "Parent" && r.hyeractivity == 8) {
-                    hyperactivityCat = "High";
-                  } else if (r.role == "Parent" && r.hyperactivity >= 6) {
-                    hyperactivityCat = "Slightly raised";
-                  } else if (r.role == "Parent") {
-                    hyperactivityCat = "Close to average"; 
-                  } else if (r.role == "Self" && r.hyperactivity >= 8) {
-                    hyperactivityCat = "Very high";
-                  } else if (r.role == "Self" && r.hyeractivity == 7) {
-                    hyperactivityCat = "High";
-                  } else if (r.role == "Self" && r.hyperactivity == 6) {
-                    hyperactivityCat = "Slightly raised";
-                  } else if (r.role == "Self") {
-                    hyperactivityCat = "Close to average"; 
+                <% if (r.role === roles[1] && r.hyperactivity >= 9) {
+                    hyperactivityCat = scoreCategories[3];
+                  } else if (r.role === roles[1] && r.hyeractivity === 8) {
+                    hyperactivityCat = scoreCategories[2];
+                  } else if (r.role === roles[1] && r.hyperactivity >= 6) {
+                    hyperactivityCat = scoreCategories[1];
+                  } else if (r.role === roles[1]) {
+                    hyperactivityCat = scoreCategories[0];
+                  } else if (r.role === roles[0] && r.hyperactivity >= 9) {
+                    hyperactivityCat = scoreCategories[3];
+                  } else if (r.role === roles[0] && r.hyeractivity === 8) {
+                    hyperactivityCat = scoreCategories[2];
+                  } else if (r.role === roles[0] && r.hyperactivity >= 6) {
+                    hyperactivityCat = scoreCategories[1];
+                  } else if (r.role === roles[0]) {
+                    hyperactivityCat = scoreCategories[0]; 
+                  } else if (r.role === roles[2] && r.hyperactivity >= 8) {
+                    hyperactivityCat = scoreCategories[3];
+                  } else if (r.role === roles[2] && r.hyeractivity === 7) {
+                    hyperactivityCat = scoreCategories[2];
+                  } else if (r.role === roles[2] && r.hyperactivity === 6) {
+                    hyperactivityCat = scoreCategories[1];
+                  } else if (r.role === roles[2]) {
+                    hyperactivityCat = scoreCategories[0];
                   } %>
                 <li><span id="hyperactivity"><%= r.hyperactivity %></span>&rarr; <%= hyperactivityCat %></li>
             </ul>
 
         <li><strong>Peer Problems:</strong></li>
             <ul>
-                <% if (r.role == "Teacher" && r.peer >= 6) {
-                    peerCat = "Very high";
-                  } else if (r.role == "Teacher" && r.peer == 5) {
-                    peerCat = "High";
-                  } else if (r.role == "Teacher" && r.peer >= 3) {
-                    peerCat = "Slightly raised";
-                  } else if (r.role == "Teacher") {
-                    peerCat = "Close to average";
-                  } else if (r.role == "Parent" && r.peer >= 5) {
-                    peerCat = "Very high";
-                  } else if (r.role == "Parent" && r.peer == 4) {
-                    peerCat = "High";
-                  } else if (r.role == "Parent" && r.peer == 3) {
-                    peerCat = "Slightly raised";
-                  } else if (r.role == "Parent") {
-                    peerCat = "Close to average"; 
-                  } else if (r.role == "Self" && r.peer >= 5) {
-                    peerCat = "Very high";
-                  } else if (r.role == "Self" && r.peer == 4) {
-                    peerCat = "High";
-                  } else if (r.role == "Self" && r.peer == 3) {
-                    peerCat = "Slightly raised";
-                  } else if (r.role == "Self") {
-                    peerCat = "Close to average";
+                <% if (r.role === roles[1] && r.peer >= 6) {
+                    peerCat = scoreCategories[3];
+                  } else if (r.role === roles[1] && r.peer == 5) {
+                    peerCat = scoreCategories[2];
+                  } else if (r.role === roles[1] && r.peer >= 3) {
+                    peerCat = scoreCategories[1];
+                  } else if (r.role === roles[1]) {
+                    peerCat = scoreCategories[0];
+                  } else if (r.role === roles[0] && r.peer >= 5) {
+                    peerCat = scoreCategories[3];
+                  } else if (r.role === roles[0] && r.peer === 4) {
+                    peerCat = scoreCategories[2];
+                  } else if (r.role === roles[0] && r.peer === 3) {
+                    peerCat = scoreCategories[1];
+                  } else if (r.role === roles[0]) {
+                    peerCat = scoreCategories[0]; 
+                  } else if (r.role === roles[3] && r.peer >= 5) {
+                    peerCat = scoreCategories[3];
+                  } else if (r.role === roles[3] && r.peer === 4) {
+                    peerCat = scoreCategories[2];
+                  } else if (r.role === roles[3] && r.peer === 3) {
+                    peerCat = scoreCategories[1];
+                  } else if (r.role === roles[3]) {
+                    peerCat = scoreCategories[0];
                   } %>
                 <li><span id="peer"><%= r.peer %></span>&rarr; <%= peerCat %></li>
             </ul>
 
         <li><strong>Pro-Social Behavior:</strong></li>
             <ul>
-                <% if (r.role == "Teacher" && r.prosocial >= 6) {
-                    prosocialCat = "Close to Average";
-                  } else if (r.role == "Teacher" && r.prosocial == 5) {
-                    prosocialCat = "Slightly Lowered";
-                  } else if (r.role == "Teacher" && r.prosocial == 4) {
-                    prosocialCat = "Low";
-                  } else if (r.role == "Teacher") {
-                    prosocialCat = "Very Low";
-                  } else if (r.role == "Parent" && r.prosocial >= 8) {
-                    prosocialCat = "Close to Average";
-                  } else if (r.role == "Parent" && r.prosocial == 7) {
-                    prosocialCat = "Slightly Lowered";
-                  } else if (r.role == "Parent" && r.prosocial == 6) {
-                    prosocialCat = "Low";
-                  } else if (r.role == "Parent") {
-                    prosocialCat = "Very Low";
-                  } else if (r.role == "Self" && r.prosocial >= 7) {
-                    prosocialCat = "Close to Average";
-                  } else if (r.role == "Self" && r.prosocial == 6) {
-                    prosocialCat = "Slightly Lowered";
-                  } else if (r.role == "Self" && r.prosocial == 5) {
-                    prosocialCat = "Low";
-                  } else if (r.role == "Self") {
-                    prosocialCat = "Very Low";
+                <% if (r.role === roles[1] && r.prosocial >= 6) {
+                    prosocialCat = scoreCategories[0];
+                  } else if (r.role === roles[1] && r.prosocial == 5) {
+                    prosocialCat = scoreCategories[4];
+                  } else if (r.role === roles[1] && r.prosocial == 4) {
+                    prosocialCat = scoreCategories[5];
+                  } else if (r.role === roles[1]) {
+                    prosocialCat = scoreCategories[6];
+                  } else if (r.role === roles[0] && r.prosocial >= 8) {
+                    prosocialCat = scoreCategories[0];
+                  } else if (r.role === roles[0] && r.prosocial == 7) {
+                    prosocialCat = scoreCategories[4];
+                  } else if (r.role === roles[0] && r.prosocial == 6) {
+                    prosocialCat = scoreCategories[5];
+                  } else if (r.role === roles[0]) {
+                    prosocialCat = scoreCategories[6];
+                  } else if (r.role === roles[2] && r.prosocial >= 7) {
+                    prosocialCat = scoreCategories[0];
+                  } else if (r.role === roles[2] && r.prosocial == 6) {
+                    prosocialCat = scoreCategories[4];
+                  } else if (r.role === roles[2] && r.prosocial == 5) {
+                    prosocialCat = scoreCategories[5];
+                  } else if (r.role === roles[2]) {
+                    prosocialCat = scoreCategories[6];
                   } %>
                 <li><span id="prosocial"><%= r.prosocial %></span>&rarr; <%= prosocialCat %></li>
 
