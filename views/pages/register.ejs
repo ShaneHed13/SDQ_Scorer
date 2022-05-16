@@ -17,10 +17,10 @@
         <h1>Register</h1>
         <div id="login">
           <form action="/register" method="POST" name="registration">
-            <label for="name">Name</label>
+
             <input type="text" id="name" name="name" placeholder="Name" />
             <br>
-            <label for="email">Email</label>
+
             <input type="email" id="email" name="email" placeholder="Email" />
             <div>
               <% if (typeof errors !='undefined' ) { %>
@@ -37,7 +37,6 @@
               placeholder="Password" />
             <br>
 
-            <label for="confirm_password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password"
               placeholder="Confirm Password" />
 

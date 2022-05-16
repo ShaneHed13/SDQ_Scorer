@@ -329,6 +329,10 @@ table {
   margin-left: 25px;
 }
 
+td input {
+  display: inline;
+}
+
 #right {
   float: right;
   margin-right: 300px;
