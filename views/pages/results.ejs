@@ -238,12 +238,34 @@
                 <li><span id="prosocial"><%= r.prosocial %></span>&rarr; <%= prosocialCat %></li>
 
             </ul>
-                <br><br>
+
+            <li><strong>Impact:</strong></li>
+            <ul>
+              <% switch (r.impact) {
+                case 2 :
+                  iCat = "High";
+                  break;
+                case 1 :
+                  iCat = "Slightly raised";
+                  break;
+                case 0 :
+                  iCat = "Close to average";
+                  break;
+                default:
+                  iCat = "Very High";
+                  break;
+              } %>
+              <li><span id="impact"><%= r.impact %></span>&rarr; <%= iCat %></li>
+            </ul>
+            
+                <br>
                 <li><strong>Externalizing Behaviors</strong></li>
                     <ul><li><%= r.conduct + r.hyperactivity %>/20</li></ul>
                 <li><strong>Internalizing Behaviors</strong></li>
                     <ul><li><%= r.emotional + r.peer %>/20</li></ul>
             </ul>
+            <br>
+            
             </div>
 
     <% }); %>   
@@ -270,7 +292,7 @@
         let haScore = document.getElementById('hyperactivity').innerHTML;
         let ppScore = document.getElementById('peer').innerHTML;
         let prScore = document.getElementById('prosocial').innerHTML;
-        //let imScore = document.getElementById('impact').innerHTML;
+        let imScore = document.getElementById('impact').innerHTML;
         let compBy = document.getElementById('completedby').innerHTML;
         let scoredBy = document.getElementById('email').innerHTML;
         let role = document.getElementById('role').innerHTML;
@@ -299,7 +321,7 @@
             hyperactivity: haScore,
             peer: ppScore,
             prosocial: prScore,
-            impact: 10,
+            impact: imScore,
             completed: compBy,
             scored: scoredBy,
             role: role,

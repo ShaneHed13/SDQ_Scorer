@@ -246,8 +246,11 @@
     const logTask = async function () {
 
       let count = 0;
+      let impactCount =0;
       let qArray = [];
+      let iArray = [];
       let selectedValue = "";
+      let impactValue = "";
       let validation = document.getElementById("validation");
 
       //Getting values for date reference
@@ -283,9 +286,28 @@
       //Testing 
       //alert(qArray.toString());
 
+      while (impactCount < 7) {
+        const impactBtns = document.querySelectorAll('input[name="i' + impactCount + '"]');
+
+        for (const impactBtn of impactBtns) {
+
+          if (impactBtn.checked) {
+          impactValue = impactBtn.value;
+          iArray.push(impactValue);
+          break;
+        }
+      }
+
+      impactCount++;
+    }
+
       //Assigning values
       let val = 0;
       let aArray = [];
+      // Impact values
+      let iVal = 0;
+      let iaArray = [];
+
       while (val < 26) {
 
         //Checking for questions with values calculated differently
@@ -329,6 +351,30 @@
         val++;
 
       } //end while loop
+
+      // Impact question loop
+      while (iVal < 7) {
+
+        switch (iArray[iVal]) {
+            case 'notAtAll':
+              iaArray.push(0)
+              break;
+            case 'aLittle':
+              iaArray.push(0)
+              break;
+            case 'mediumAmt':
+              iaArray.push(1)
+              break;
+            case 'greatDeal':
+              iaArray.push(2)
+              break;
+            default:
+              break;
+          } 
+
+        iVal++;
+
+      }
 
       // Getting values from text and date boxes
       let expires = new Date();
@@ -389,8 +435,16 @@
         let q23;
         let q24;
         let q25;
+        let i1;
+        let i2;
+        let i3;
+        let i4;
+        let i5;
+        let i6;
 
         [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25] = aArray;
+
+        [i1, i2, i3, i4, i5, i6] = iaArray;
 
 
         //Assign actual scores
@@ -400,6 +454,7 @@
         let ppScore = q6 + q11 + q14 + q19 + q23;
         let prScore = q1 + q4 + q9 + q17 + q20;
         let tdScore = epScore + cpScore + haScore + ppScore;
+        let iScore = i1 + i2 + i3 + i4 + i5 + i6;
 
         // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {
@@ -418,7 +473,7 @@
             hyperactivity: haScore,
             peer: ppScore,
             prosocial: prScore,
-            impact: 10,
+            impact: iScore,
             completed: compBy,
             scored: scoredBy,
             role: role,
