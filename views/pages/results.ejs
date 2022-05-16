@@ -53,6 +53,7 @@
     <p hidden>Email: <span id="email"><%= email %></span>
     <p><strong>Completion Date:</strong> <span id="expires"><%= r.expires.toLocaleDateString() %></span></p>
     </div>  
+
     <div id="right">
       <ul>
         <li><strong>Total Score:</strong></li>
@@ -274,7 +275,6 @@
     <% }); %>   
         
     <div id="buttons">
-    <br><br><br><br><br><br><br><br><br>
     <button type="submit" onclick="window.print()" class="noprint">Print For Records</button>
     <button class="noprint" type="submit" onclick="logTask()">Submit to Database</button>
     <input class="noprint" type=button onClick="location.href='home'" value='Return to Homepage'>

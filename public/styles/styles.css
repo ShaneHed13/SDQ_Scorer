@@ -345,6 +345,10 @@ td input {
 
 #buttons {
   margin-left: 300px;
+  margin-bottom: 150px;
+  padding-top: 150px;
+  display: block;
+  
 }
 
 #buttons button {
@@ -352,13 +356,16 @@ td input {
   padding: 10px;
   width: 200px;
   margin-top: 20px;
+  border-radius: 5px;
 }
+
 
 #buttons input {
   padding: 10px;
   width: 200px;
   margin-top: 20px;
   margin-bottom: 30px;
+  border-radius: 5px;
 }
 
 #redirect {
@@ -454,4 +461,133 @@ td input {
   #homeNav a + a {
     margin-left: 20px;
   }
+
+  #left {
+    float: left;
+    margin-left: 225px;
+  }
+
+  #right {
+    float: right;
+    margin-right: 225px;
+    margin-bottom: 50px;
+  }
+
+  #buttons button {
+    padding: 10px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+  }
+
+  #buttons input {
+    padding: 10px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+  }
+
+  #buttons {
+    margin: 0 auto;
+    display: block;
+  
+    margin-left: 225px;
+
+  }
+
+  #testRes {
+    margin-bottom: 150px;
+  }
+
+}
+
+@media screen and (max-width: 920px) {
+
+  #left {
+    float: left;
+    margin-left: 150px;
+  }
+
+  #right {
+    float: right;
+    margin-right: 150px;
+    margin-bottom: 50px;
+  }
+
+  #buttons button {
+    padding: 10px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+  }
+
+  #buttons input {
+    padding: 10px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+  }
+
+  #buttons {
+    margin: 0 auto;
+    display: block;
+  
+    margin-left: 150px;
+
+  }
+
+  #testRes {
+    margin-bottom: 150px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+
+  #left {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  #right {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  #buttons {
+
+    padding-top: 10px;
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  #buttons button {
+    padding: 10px;
+    width: 200px;
+    margin: 5px auto;
+    display: block;
+
+  }
+
+  #buttons input {
+    padding: 10px;
+    width: 200px;
+
+
+    margin: 5px auto;
+    display: block;
+
+  }
+
 }
