@@ -114,7 +114,7 @@
         document.querySelectorAll(".sIS").forEach(el => {
           el.style.display = selectedIS == "sIS" ? 'inline-block' : 'none';
         });
-        
+
         // Hide the questions that contain N/A
         if (selectedIS == "tIS") {
           document.querySelectorAll(".question4").forEach(el2 => {
@@ -369,25 +369,31 @@
       } //end while loop
 
       // Impact question loop
+      const selectIS = document.getElementById("isChange");
+      const selectedIS = selectIS.value;
       while (iVal < 7) {
 
-        switch (iArray[iVal]) {
-          case 'notAtAll':
-            iaArray.push(0)
-            break;
-          case 'aLittle':
-            iaArray.push(0)
-            break;
-          case 'mediumAmt':
-            iaArray.push(1)
-            break;
-          case 'greatDeal':
-            iaArray.push(2)
-            break;
-          default:
-            break;
+        if ((iVal == 4 && selectedIS == "tIS") || (iVal == 5 && selectedIS == "tIS")) {
+          iaArray.push(0);
+          console.log(iVal)
+        } else {
+          switch (iArray[iVal]) {
+            case 'notAtAll':
+              iaArray.push(0)
+              break;
+            case 'aLittle':
+              iaArray.push(0)
+              break;
+            case 'mediumAmt':
+              iaArray.push(1)
+              break;
+            case 'greatDeal':
+              iaArray.push(2)
+              break;
+            default:
+              break;
+          }
         }
-
         iVal++;
 
       }
@@ -415,6 +421,11 @@
         aArray[21] == undefined || aArray[22] == undefined || aArray[23] == undefined || aArray[24] == undefined) {
 
         validation.innerHTML = "Please select a response for each question on the assessment.";
+
+      } else if ((document.getElementById("isChange").value != "no") && (iaArray[0] == undefined
+        || iaArray[1] == undefined || iaArray[2] == undefined || iaArray[3] == undefined || iaArray[4] == undefined || iaArray[5] == undefined)) {
+
+        validation.innerHTML = "Please select a response for each question on the supplement.";
 
       } else if (child == "") {
         validation.innerHTML = "Please enter a child's name.";
@@ -474,10 +485,9 @@
         let prScore = q1 + q4 + q9 + q17 + q20;
         let tdScore = epScore + cpScore + haScore + ppScore;
         let iScore;
-        if (selectedIS == "pIS" || selectedIS == "sIS") {
+        if (selectedIS != "no") {
           iScore = i1 + i2 + i3 + i4 + i5 + i6;
-        } else if (selectedIS == "tIS") {
-          iScore = i1 + i2 + i3 + 0 + 0 + i6;
+          console.log(iScore)
         } else {
           iScore = "N/A";
         }
