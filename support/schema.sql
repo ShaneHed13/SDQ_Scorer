@@ -68,10 +68,10 @@ CREATE TABLE tests (
 
 INSERT INTO impactSupplement (parent, teacher, self) VALUES
 ('Do the difficulties upset or distress your child?','Do the difficulties upset or distress the child?', 'Do the difficulties upset or distress you?'),
-('HOME LIFE','PEER RELATIONSHIPS', 'HOME LIFE'),
-('FRIENDSHIPS', 'CLASSROOM LEARNING', 'FRIENDSHIPS'),
-('CLASSSROOM LEARNING', 'N/A', 'CLASSROOM LEARNING'),
-('LEISURE ACTIVITIES', 'N/A', 'LEISURE ACTIVITIES'),
+('Do the difficulties affect home life?','Do the difficulties affect peer relationships?', 'Do the difficulties affect home life?'),
+('Do the difficulties affect friendships?', 'Do the difficulties affect classroom learning?', 'Do the difficulties affect friendships?'),
+('Do the difficulties affect classroom learning?', 'N/A', 'Do the difficulties affect classroom learning?'),
+('Do the difficulties affect leisure activities?', 'N/A', 'Do the difficulties affect leisure activities?'),
 ('Do the difficilties put a burden on you or the family as a whole?', 'Do the difficulties put a burden on you or the class as a whole?', 'Do the difficulties make it harder for those around you (family, friends, teachers, etc.)?');   
 
 
