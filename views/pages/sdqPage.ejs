@@ -34,7 +34,7 @@
       <label>Completed By: </label><input id="completedBy" type="text">
 
       <label>Completion Date: </label><input id="dateCompleted" type="date">
-        
+
       <p id="email" hidden>
         <%= email %>
       </p>
@@ -246,7 +246,7 @@
     const logTask = async function () {
 
       let count = 0;
-      let impactCount =0;
+      let impactCount = 0;
       let qArray = [];
       let iArray = [];
       let selectedValue = "";
@@ -292,14 +292,14 @@
         for (const impactBtn of impactBtns) {
 
           if (impactBtn.checked) {
-          impactValue = impactBtn.value;
-          iArray.push(impactValue);
-          break;
+            impactValue = impactBtn.value;
+            iArray.push(impactValue);
+            break;
+          }
         }
-      }
 
-      impactCount++;
-    }
+        impactCount++;
+      }
 
       //Assigning values
       let val = 0;
@@ -356,21 +356,21 @@
       while (iVal < 7) {
 
         switch (iArray[iVal]) {
-            case 'notAtAll':
-              iaArray.push(0)
-              break;
-            case 'aLittle':
-              iaArray.push(0)
-              break;
-            case 'mediumAmt':
-              iaArray.push(1)
-              break;
-            case 'greatDeal':
-              iaArray.push(2)
-              break;
-            default:
-              break;
-          } 
+          case 'notAtAll':
+            iaArray.push(0)
+            break;
+          case 'aLittle':
+            iaArray.push(0)
+            break;
+          case 'mediumAmt':
+            iaArray.push(1)
+            break;
+          case 'greatDeal':
+            iaArray.push(2)
+            break;
+          default:
+            break;
+        }
 
         iVal++;
 
@@ -448,13 +448,21 @@
 
 
         //Assign actual scores
+        const selectIS = document.getElementById("isChange");
+        const selectedIS = selectIS.value;
+
         let epScore = q3 + q8 + q13 + q16 + q24;
         let cpScore = q5 + q7 + q12 + q18 + q22;
         let haScore = q2 + q10 + q15 + q21 + q25;
         let ppScore = q6 + q11 + q14 + q19 + q23;
         let prScore = q1 + q4 + q9 + q17 + q20;
         let tdScore = epScore + cpScore + haScore + ppScore;
-        let iScore = i1 + i2 + i3 + i4 + i5 + i6;
+        let iScore;
+        if (selectedIS != "no") {
+          iScore = i1 + i2 + i3 + i4 + i5 + i6;
+        } else {
+          iScore = "N/A";
+        }
 
         // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {

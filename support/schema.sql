@@ -25,7 +25,7 @@ CREATE TABLE results (
   hyperactivity INT NOT NULL,
   peer INT NOT NULL,
   prosocial INT NOT NULL,
-  impact INT NOT NULL,
+  impact TEXT NOT NULL,
   completedby TEXT NOT NULL,
   scoredBy TEXT NOT NULL,
   role TEXT NOT NULL,

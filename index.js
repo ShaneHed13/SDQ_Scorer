@@ -318,7 +318,7 @@ express()
 
       const sqlInsert = await client.query(
         `INSERT INTO results (child, birthdate, total, emotional, conduct, hyperactivity, peer, prosocial, impact, completedBy, scoredBy, role, expires)
-        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity}, ${peer}, ${prosocial}, ${impact}, '${completed}', '${scored}', '${role}', '${expires}')
+        VALUES('${child}', '${dob}', ${total}, ${emotional}, ${conduct}, ${hyperactivity}, ${peer}, ${prosocial}, '${impact}', '${completed}', '${scored}', '${role}', '${expires}')
         RETURNING id as new_id;`);
 
 
