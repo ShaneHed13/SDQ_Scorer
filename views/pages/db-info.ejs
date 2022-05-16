@@ -13,6 +13,7 @@
       <img src="/images/header.jpg" alt="sdqLogo">
     </div>
     <nav id="pageNav">
+      <a href="/logout">Logout</a>
       <a class="noprint" href="/home">Return to Homepage</a>
       <a href="../sdqPage">Complete SDQ</a>
       <a href="../student-records">Individual Student Records</a>
@@ -65,11 +66,11 @@
             <td style="text-align:center; border-right: 1px solid black">
                 <input type="button" onClick="showDetails(<%= r.id%>);" value='Details'>
             </td>
-            <td style="text-align:center; border-right: 1px solid black">
+            <td  class="name" style="text-align:center; border-right: 1px solid black">
                 <%= r.child %>
             </td>
             <td style="text-align:center; border-right: 1px solid black">
-                <%= r.expires.toDateString() %>
+                <%= r.expires.toLocaleDateString() %>
             </td>
             <td style="text-align:center; border-right: 1px solid black">
                 <%= r.completedby %>
@@ -83,12 +84,12 @@
         </tr>
 
         <tr id="a<%=r.id%>" style="display:none;" >
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Emotional Score&nbsp;</td>
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Conduct Score&nbsp;</td>
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Peer Problems Score&nbsp;</td>
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Hyperactivity Score&nbsp;</td>
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Impact Score&nbsp;</td>
-            <td style="border-right: 1px solid black; width: 108px;">&nbsp;Pro-Social Score&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Emotional Score</strong>&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Conduct Score</strong>&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Peer Problems Score</strong>&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Hyperactivity Score</strong>&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Impact Score</strong>&nbsp;</td>
+            <td style="border-right: 1px solid black; width: 108px;">&nbsp;<strong>Pro-Social Score</strong>&nbsp;</td>
         </tr>
 
         <tr id="b<%=r.id%>" style="display:none;">

@@ -12,49 +12,76 @@
 <body>
   <div id="wrapper">
     <div class="center">
-    <img src="/images/header.jpg" alt="sdqLogo">
-    <h1>Login</h1>
-    <div id="login">
-    <form action="/login" method="POST">
-      <div>
-        <input type="email" id="email" name="email" placeholder="Email"
-          required />
+      <img src="/images/header.jpg" alt="sdqLogo">
+      <h1>Login</h1>
+      <div id="login">
+        <form action="/login" method="POST" name="login">
+          <div>
+            <input type="email" id="email" name="email" placeholder="Email" />
+          </div>
+          <br>
+          <div>
+            <input type="password" id="password" name="password"
+              placeholder="Password" />
+          </div>
+          <br>
+          <div id="button">
+            <input type="submit" value="Login" />
+          </div>
+          <br>
+          <div id="loginReg">
+            <a href="/register">Register</a>
+          </div>
+        </form>
+        <div id="loginErr">
+          <br>
+          <div>
+            <% if (messages.error) { %>
+              <p>
+                <%= messages.error %>
+              </p>
+              <% } %>
+
+          </div>
+        </div>
       </div>
-      <br>
-      <div>
-        <input type="password" id="password" name="password"
-          placeholder="Password" required />
-      </div>
-      <br>
-      <div  id="button">
-        <input type="submit" value="Login" />
-      </div>
-      <br>
-      <div id="loginReg">
-      <a href="/register">Register</a>
-      </div>
-    </form>
-    <div id="loginErr">
-    <ul>
-      <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
-      <li><%= error.message %></li>
-      <% }) %> <% } %>
-    </ul>
-  
-    <ul>
-      <% if(messages.success_msg) { %>
-      <li><%= messages.success_msg %></li>
-      <% } %>
-    </ul>
-  
-    <ul>
-      <% if (messages.error) { %>
-      <li><%= messages.error %></li>
-      <% } %>
-    </ul>
     </div>
-    </div>
-  </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+
+    <script>
+
+      $(function () {
+
+        $("form[name='login']").validate({
+
+          rules: {
+
+            email: {
+              required: true,
+              email: true
+            },
+            password: {
+              required: true,
+            }
+          },
+          // Specify validation error messages
+          messages: {
+            password: "Please provide a password",
+            email: "Please enter a valid email address"
+          },
+
+          submitHandler: function (form) {
+            form.submit();
+          }
+        });
+      });
+
+    </script>
+
 </body>
 
 </html>

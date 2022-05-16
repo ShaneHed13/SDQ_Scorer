@@ -185,6 +185,22 @@ h1 {
   font-weight: bold;
 }
 
+label,
+input {
+  display: block;
+}
+input{
+ margin-bottom:15px;
+}
+
+label.error {
+  color: red;
+}
+
+#emailError {
+  color: red;
+}
+
 table {
   margin: auto;
 }
@@ -358,7 +374,7 @@ table {
 }
 /*End Login Styles*/
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   img {
     width: 75%;
   }
