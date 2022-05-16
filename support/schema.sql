@@ -46,10 +46,11 @@ CREATE TABLE impactSupplement (
   id SERIAL PRIMARY KEY,
   parent TEXT NOT NULL,
   teacher TEXT NOT NULL,
-  notAtAll INT NOT NULL,
-  little INT NOT NULL,
-  mediumAmt INT NOT NULL,
-  great INT NOT null
+  self TEXT NOT NULL,
+  notAtAll INT,
+  little INT,
+  mediumAmt INT,
+  great INT
 );
 
 CREATE TABLE users (
