@@ -114,7 +114,23 @@
         document.querySelectorAll(".sIS").forEach(el => {
           el.style.display = selectedIS == "sIS" ? 'inline-block' : 'none';
         });
-
+        
+        // Hide the questions that contain N/A
+        if (selectedIS == "tIS") {
+          document.querySelectorAll(".question4").forEach(el2 => {
+            el2.style.display = 'none'
+          })
+          document.querySelectorAll(".question5").forEach(el2 => {
+            el2.style.display = 'none'
+          })
+        } else {
+          document.querySelectorAll(".question4").forEach(el2 => {
+            el2.style.display = 'revert'
+          })
+          document.querySelectorAll(".question5").forEach(el2 => {
+            el2.style.display = 'revert'
+          })
+        }
       }
 
     </script>
@@ -186,7 +202,7 @@
 
       <% impactQuestions.forEach(function(r) { %>
 
-        <tr>
+        <tr class="question<%= r.id %>">
           <td>
             <div class="pIS" style="display:none;">
               <%= r.parent %>
@@ -458,11 +474,14 @@
         let prScore = q1 + q4 + q9 + q17 + q20;
         let tdScore = epScore + cpScore + haScore + ppScore;
         let iScore;
-        if (selectedIS != "no") {
+        if (selectedIS == "pIS" || selectedIS == "sIS") {
           iScore = i1 + i2 + i3 + i4 + i5 + i6;
+        } else if (selectedIS == "tIS") {
+          iScore = i1 + i2 + i3 + 0 + 0 + i6;
         } else {
           iScore = "N/A";
         }
+
 
         // Sending successful test results to a Results page for scoring
         const response = await fetch('/results', {
