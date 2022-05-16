@@ -198,11 +198,10 @@ h1 {
 
 label,
 input {
-  display: block;
+  display: inline-block;
+  margin-bottom:15px;
 }
-input{
- margin-bottom:15px;
-}
+
 
 label.error {
   color: red;
@@ -272,6 +271,7 @@ table {
   margin-bottom: 20px;
   border-radius: 5px;
 }
+
 
 #qTable table {
   border-style: solid;
@@ -384,6 +384,10 @@ table {
 
 #button input{
   width: 150px
+}
+
+.topInfo {
+  width: 5000px;
 }
 /*End Login Styles*/
 

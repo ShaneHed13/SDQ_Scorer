@@ -31,16 +31,17 @@
 
       <br><br><br>
 
-      <label>Completed By: </label><input id="completedBy" type="text">
+      <label class="topInfo">Completed By: </label><input id="completedBy" type="text">
 
-      <label>Completion Date: </label><input id="dateCompleted" type="date">
-        
+      <label class="topInfo">Completion Date: </label><input id="dateCompleted" type="date">
+
+      <!-- email is used to protect privacy in database -->
       <p id="email" hidden>
         <%= email %>
       </p>
 
-      <label>Child's Name: </label><input id="name" type="text">
-      <label>Date of Birth: </label><input id="dob" type="date"
+      <label class="topInfo">Child's Name: </label><input id="name" type="text">
+      <label class="topInfo">Date of Birth: </label><input id="dob" type="date"
         onfocusout="ageCheck();"><label for="DOBvalidation" id="DOBvalidation"
         style="font-weight: bold;"></label>
     </div>
@@ -216,22 +217,23 @@
 
 
     <br>
-    <table id="completeTable">
-      <tr>
-        <td id="complete" style="font-size: 20px;font-weight: bold;">Please
-          Select Who Completed this Form:</td>
-      </tr>
-      <tr>
-        <td><input id="parent" type="radio" name="cb">Parent</td>
-      </tr>
-      <tr>
-        <td><input id="teacher" type="radio" name="cb">Teacher</td>
-      </tr>
-      <tr>
-        <td><input id="self" type="radio" name="cb">Self</td>
-      </tr>
+    <div id="completeTable">
 
-    </table>
+      <div id="complete" style="font-size: 20px;font-weight: bold;">Please
+        Select Who Completed this Form:</div>
+      <br>
+      <label for="parent"><input id="parent" type="radio"
+          name="cb" />Parent</label>
+
+      <br>
+      <label for="teacher"><input id="teacher" type="radio"
+          name="cb" />Teacher</label>
+
+      <br>
+      <label for="self"><input id="self" type="radio" name="cb" />Self</label>
+
+
+    </div>
 
     <br>
 
@@ -246,7 +248,7 @@
     const logTask = async function () {
 
       let count = 0;
-      let impactCount =0;
+      let impactCount = 0;
       let qArray = [];
       let iArray = [];
       let selectedValue = "";
@@ -292,14 +294,14 @@
         for (const impactBtn of impactBtns) {
 
           if (impactBtn.checked) {
-          impactValue = impactBtn.value;
-          iArray.push(impactValue);
-          break;
+            impactValue = impactBtn.value;
+            iArray.push(impactValue);
+            break;
+          }
         }
-      }
 
-      impactCount++;
-    }
+        impactCount++;
+      }
 
       //Assigning values
       let val = 0;
@@ -356,21 +358,21 @@
       while (iVal < 7) {
 
         switch (iArray[iVal]) {
-            case 'notAtAll':
-              iaArray.push(0)
-              break;
-            case 'aLittle':
-              iaArray.push(0)
-              break;
-            case 'mediumAmt':
-              iaArray.push(1)
-              break;
-            case 'greatDeal':
-              iaArray.push(2)
-              break;
-            default:
-              break;
-          } 
+          case 'notAtAll':
+            iaArray.push(0)
+            break;
+          case 'aLittle':
+            iaArray.push(0)
+            break;
+          case 'mediumAmt':
+            iaArray.push(1)
+            break;
+          case 'greatDeal':
+            iaArray.push(2)
+            break;
+          default:
+            break;
+        }
 
         iVal++;
 
