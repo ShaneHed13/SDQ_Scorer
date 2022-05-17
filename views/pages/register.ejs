@@ -18,10 +18,10 @@
         <div id="login">
           <form action="/register" method="POST" name="registration">
 
-            <input type="text" id="name" name="name" placeholder="Name" />
+            <input class="inputfield" type="text" id="name" name="name" placeholder="Name" />
             <br>
 
-            <input type="email" id="email" name="email" placeholder="Email" />
+            <input class="inputfield" type="email" id="email" name="email" placeholder="Email" />
             <div>
               <% if (typeof errors !='undefined' ) { %>
                 <% errors.forEach(error=> { %>
@@ -33,11 +33,11 @@
             </div>
             <br>
             <label for="password">Password (Must be at least 7 characters long.)</label>
-            <input type="password" id="password" name="password"
+            <input class="inputfield" type="password" id="password" name="password"
               placeholder="Password" />
             <br>
 
-            <input type="password" id="confirm_password" name="confirm_password"
+            <input class="inputfield" type="password" id="confirm_password" name="confirm_password"
               placeholder="Confirm Password" />
 
             <br>
