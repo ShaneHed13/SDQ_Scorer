@@ -56,8 +56,6 @@
         const msDiff = today - userDOB;
         const age = Math.floor(msDiff / (365.25 * 24 * 60 * 60 * 1000))
 
-        console.log(age)
-
         DOBvalidation.innerHTML = "";
 
         if (age > 17 || age < 4) {
@@ -98,8 +96,6 @@
       function changeIS() {
         const selectIS = document.getElementById("isChange");
         const selectedIS = selectIS.value;
-
-        console.log(selectedIS);
 
         document.querySelectorAll(".IS, .pIS, .tIS, .sIS").forEach(el => {
           el.style.display = selectedIS == "no" ? 'none' : 'inline-block';
@@ -375,7 +371,6 @@
 
         if ((iVal == 4 && selectedIS == "tIS") || (iVal == 5 && selectedIS == "tIS")) {
           iaArray.push(0);
-          console.log(iVal)
         } else {
           switch (iArray[iVal]) {
             case 'notAtAll':
@@ -487,7 +482,6 @@
         let iScore;
         if (selectedIS != "no") {
           iScore = i1 + i2 + i3 + i4 + i5 + i6;
-          console.log(iScore)
         } else {
           iScore = "N/A";
         }
@@ -521,8 +515,6 @@
 
 
         const result = await response.json();
-        console.log(result.scoredBy);
-
         window.location.href = "results";
 
       }

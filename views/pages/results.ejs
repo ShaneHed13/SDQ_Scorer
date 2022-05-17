@@ -303,10 +303,6 @@
 
         let redirect = document.getElementById('redirect');
 
-        // Just testing for correct values
-        console.log(tdScore + ", " + expires + ", " + role);
-        console.log(compBy);
-
         // Posts test results to the db
         const response = await fetch('/log', {
           method: 'POST',
@@ -334,7 +330,6 @@
         });
 
         const result = await response.json();
-        console.log(result);
 
         redirect.style.display = "block";
 

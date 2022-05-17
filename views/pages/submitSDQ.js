@@ -147,6 +147,5 @@ const submitSDQ = async function () {
   });
 
   const result = await response.json();
-  console.log(result);
 
 };
