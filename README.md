@@ -11,8 +11,11 @@ Using the website requires only that a user-name and password are created and us
 
 # Credits
 Nicholas Theis
+
 Zachary Hendrickson
+
 Whitney Kugel
+
 Shane Hedrington
 
 # License
